@@ -1,0 +1,5 @@
+fsnowoptics = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc
+kmt_file = /global/cfs/cdirs/e3sm/inputdata/share/domains/domain.ocn.gx1v6.090206.nc
+grid_file = /global/cfs/cdirs/e3sm/inputdata/share/domains/domain.ocn.gx1v6.090206.nc
+stream_domfilename = /pscratch/sd/j/jsallen/betacast/grids/domains/domain.ocn.180x360.nc
+stream_fldfilename = /pscratch/sd/j/jsallen/betacast/grids/sst_reynolds_daily_180x360_1982_2024_timeseries.nc

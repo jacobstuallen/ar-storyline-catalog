@@ -1,0 +1,10 @@
+atm2ocn_fmapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_ne30np4_to_gx1v6_aave_110121.nc
+atm2ocn_smapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_ne30np4_to_gx1v6_native_110328.nc
+atm2ocn_vmapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_ne30np4_to_gx1v6_native_110328.nc
+ocn2atm_fmapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_gx1v6_to_ne30np4_aave_110121.nc
+ocn2atm_smapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_gx1v6_to_ne30np4_aave_110121.nc
+atm2ice_fmapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_ne30np4_to_gx1v6_aave_110121.nc
+atm2ice_smapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_ne30np4_to_gx1v6_native_110328.nc
+atm2ice_vmapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_ne30np4_to_gx1v6_native_110328.nc
+ice2atm_fmapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_gx1v6_to_ne30np4_aave_110121.nc
+ice2atm_smapname = /global/cfs/cdirs/e3sm/inputdata/cpl/cpl6/map_gx1v6_to_ne30np4_aave_110121.nc

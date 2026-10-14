@@ -1,0 +1,113 @@
+2026-09-21 08:34:15: case.setup starting 
+ ---------------------------------------------------
+2026-09-21 08:34:21: case.setup success 
+ ---------------------------------------------------
+2026-09-21 08:34:21: xmlchange success <command> ./xmlchange RUN_STARTDATE=2005-12-18  </command>
+ ---------------------------------------------------
+2026-09-21 08:34:21: xmlchange success <command> ./xmlchange SSTICE_YEAR_START=1982,SSTICE_YEAR_END=2024,SSTICE_YEAR_ALIGN=1982  </command>
+ ---------------------------------------------------
+2026-09-21 08:34:22: xmlchange success <command> ./xmlchange SSTICE_DATA_FILENAME=/pscratch/sd/j/jsallen/betacast/grids/sst_reynolds_daily_180x360_1982_2024_timeseries.nc  </command>
+ ---------------------------------------------------
+2026-09-21 08:34:22: xmlchange success <command> ./xmlchange SSTICE_GRID_FILENAME=/pscratch/sd/j/jsallen/betacast/grids/domains/domain.ocn.180x360.nc  </command>
+ ---------------------------------------------------
+2026-09-21 08:34:23: case.build starting 
+ ---------------------------------------------------
+2026-09-21 08:38:27: case.build success 
+ ---------------------------------------------------
+2026-09-21 10:06:25: xmlchange success <command> ./xmlchange STOP_N=21  </command>
+ ---------------------------------------------------
+2026-09-21 10:06:46: xmlchange success <command> ./xmlchange REST_N=7  </command>
+ ---------------------------------------------------
+2026-09-21 19:51:37: case.submit starting 58728681
+ ---------------------------------------------------
+2026-09-21 19:51:37: case.submit success 58728681
+ ---------------------------------------------------
+2026-09-21 23:34:19: case.run starting 58728681
+ ---------------------------------------------------
+2026-09-21 23:34:24: model execution starting 58728681
+ ---------------------------------------------------
+2026-09-22 06:17:27: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-09-22 06:17:27: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.58728681.260921-233419
+ ---------------------------------------------------
+2026-09-22 12:34:36: case.submit starting 58765105
+ ---------------------------------------------------
+2026-09-22 12:34:36: case.submit success 58765105
+ ---------------------------------------------------
+2026-09-22 14:34:53: case.run starting 58765105
+ ---------------------------------------------------
+2026-09-22 14:34:58: model execution starting 58765105
+ ---------------------------------------------------
+2026-09-22 17:06:08: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-09-22 17:06:08: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.58765105.260922-143453
+ ---------------------------------------------------
+2026-10-02 14:42:07: case.submit starting 59230392
+ ---------------------------------------------------
+2026-10-02 14:42:07: case.submit success 59230392
+ ---------------------------------------------------
+2026-10-02 22:50:26: case.run starting 59230392
+ ---------------------------------------------------
+2026-10-02 22:50:31: model execution starting 59230392
+ ---------------------------------------------------
+2026-10-03 01:21:27: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-03 01:21:27: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59230392.261002-225026
+ ---------------------------------------------------
+2026-10-03 07:26:31: case.submit starting 59267854
+ ---------------------------------------------------
+2026-10-03 07:26:31: case.submit success 59267854
+ ---------------------------------------------------
+2026-10-03 17:14:26: case.run starting 59267854
+ ---------------------------------------------------
+2026-10-03 17:14:31: model execution starting 59267854
+ ---------------------------------------------------
+2026-10-03 19:45:33: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-03 19:45:33: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59267854.261003-171426
+ ---------------------------------------------------
+2026-10-05 09:11:29: case.submit starting 59379497
+ ---------------------------------------------------
+2026-10-05 09:11:29: case.submit success 59379497
+ ---------------------------------------------------
+2026-10-05 10:47:18: case.run starting 59379497
+ ---------------------------------------------------
+2026-10-05 10:47:31: model execution starting 59379497
+ ---------------------------------------------------
+2026-10-05 13:20:43: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-05 13:20:43: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59379497.261005-104718
+ ---------------------------------------------------
+2026-10-05 15:01:25: case.submit starting 59393148
+ ---------------------------------------------------
+2026-10-05 15:01:25: case.submit success 59393148
+ ---------------------------------------------------
+2026-10-05 15:01:55: xmlchange success <command> ./xmlchange REST_N=1  </command>
+ ---------------------------------------------------
+2026-10-05 15:02:09: case.submit starting 59393190
+ ---------------------------------------------------
+2026-10-05 15:02:09: case.submit success 59393190
+ ---------------------------------------------------
+2026-10-05 23:46:54: case.run starting 59393190
+ ---------------------------------------------------
+2026-10-05 23:46:59: model execution starting 59393190
+ ---------------------------------------------------
+2026-10-06 11:09:23: model execution success 59393190
+ ---------------------------------------------------
+2026-10-06 11:09:23: case.run success 59393190
+ ---------------------------------------------------

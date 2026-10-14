@@ -1,0 +1,90 @@
+&elm_inparm
+ albice = 0.60,0.40
+ atm_gustiness = .true.
+ co2_type = 'diagnostic'
+ create_crop_landunit = .false.
+ do_budgets = .true.
+ dtime = 600
+ fatmlndfrc = '/global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/domains/domain.lnd.SnowEater_WUS_30x8_pg2_oRRS15to5.250118.nc'
+ finidat = '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_19860204_WUS_30x8_pg2_F2010CICE_globalnudge_19860204_036_01/run/landstart/Storyline_19860204_WUS_30x8_pg2_F2010CICE_globalnudge_19860204_036_01.elm.r.1986-02-04-00000.nc'
+ fsnowaging = '/global/cfs/cdirs/e3sm/inputdata/lnd/clm2/snicardata/snicar_drdt_bst_fit_60_c070416.nc'
+ fsnowoptics = '/global/cfs/cdirs/e3sm/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc'
+ fsoilordercon = '/global/cfs/cdirs/e3sm/inputdata/lnd/clm2/paramdata/CNP_parameters_c131108.nc'
+ fsurdat = '/global/cfs/cdirs/m2637/E3SM_SCREAM_files/fsurdat/surfdata_SnowEater_WUS_30x8_pg2_simyr2010_c250307.nc'
+ hist_avgflag_pertape = 'A','I'
+ hist_fincl2 = 'FSNO', 'H2OSNO', 'H2OSNO_TOP', 'QSNOMELT', 'QSNOFRZ', 'SNOW', 'SNOWDP', 'SNOWLIQ', 'SNOTTOPL', 'ERRH2OSNO', 'QSNWCPICE',
+         'FGR', 'FSM', 'QDRIP', 'ZBOT', 'TG', 'TV', 'TSA', 'SWup', 'SWdown', 'FIRA', 'FIRE',
+         'LWdown', 'LWup', 'TREFMNAV', 'TREFMXAV', 'Q2M', 'FPSN', 'FSH', 'Rnet', 'TLAI', 'FCTR', 'QOVER',
+         'RH', 'RH2M', 'SOILWATER_10CM', 'ZWT', 'TSOI_10CM', 'QSOIL', 'QVEGE', 'QVEGT', 'QTOPSOIL', 'Qstor', 'H2OCAN',
+         'H2OSFC', 'QH2OSFC', 'TWS', 'HC', 'SNOdTdzL', 'SNOW_SINKS', 'SNOW_SOURCES', 'SNOLIQFL', 'TH2OSFC', 'U10', 'QFLOOD',
+         'QRUNOFF', 'Qle', 'Qh', 'Qair', 'Tair', 'RAIN', 'SNO_Z', 'SNO_T', 'H2OSOI', 'SOILICE', 'SOILLIQ',
+         'TSOI'
+ hist_mfilt = 1,24
+ hist_nhtfrq = 0,-1
+ maxpatch_glcmec = 0
+ maxpatch_pft = 17
+ more_vertlayers = .false.
+ nsegspc = 20
+ paramfile = '/global/cfs/cdirs/e3sm/inputdata/lnd/clm2/paramdata/clm_params_c180301.nc'
+ tw_irr = .false.
+ urban_hac = 'ON'
+ urban_traffic = .false.
+ use_atm_downscaling_to_topunit = .false.
+ use_century_decomp = .false.
+ use_cn = .false.
+ use_crop = .false.
+ use_dynroot = .false.
+ use_fates = .false.
+ use_hydrstress = .false.
+ use_lai_streams = .false.
+ use_lch4 = .false.
+ use_snicar_ad = .true.
+ use_top_solar_rad = .false.
+ use_vertsoilc = .true.
+/
+&ndepdyn_nml
+/
+&pdepdyn_nml
+/
+&popd_streams
+/
+&light_streams
+/
+&lai_streams
+ lai_mapalgo = 'bilinear'
+ model_year_align_lai = 2001
+ stream_fldfilename_lai = '/global/cfs/cdirs/e3sm/inputdata/lnd/clm2/lai_streams/MODISPFTLAI_0.5x0.5_c140711.nc'
+ stream_year_first_lai = 2001
+ stream_year_last_lai = 2013
+/
+&elm_canopyhydrology_inparm
+/
+&elm_soilhydrology_inparm
+/
+&dynamic_subgrid
+ do_transient_pfts = .false.
+/
+&finidat_consistency_checks
+ check_finidat_fsurdat_consistency = .false.
+/
+&dynpft_consistency_checks
+/
+&elmu_inparm
+/
+&elm_soilstate_inparm
+/
+&elm_pflotran_inparm
+/
+&betr_inparm
+/
+&elm_mosart
+ lnd_rof_coupling_nstep = 1
+/
+&elm_humanindex_inparm
+/
+!#--------------------------------------------------------------------------------------------------------------------------
+!# lnd_in:: Comment:
+!# This namelist was created using the following command-line:
+!#     /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/elm/bld/CLM build-namelist -infile /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2/Buildconf/elmconf/namelist -csmdata /global/cfs/cdirs/e3sm/inputdata -inputdata /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2/Buildconf/elm.input_data_list -ignore_ic_year -namelist  &elm_inparm  start_ymd=19860204  / -use_case 2010_CMIP6_control -res ne0np4_SnowEater_WUS_30x8_pg2 -clm_start_type default -envxml_dir /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2 -l_ncpl 144 -r_ncpl 144 -lnd_frac /global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/domains/domain.lnd.SnowEater_WUS_30x8_pg2_oRRS15to5.250118.nc -glc_nec 0 -co2_ppmv 388.717 -co2_type diagnostic -ncpl_base_period day -config /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2/Buildconf/elmconf/config_cache.xml -bgc sp -mask oRRS15to5
+!# For help on options use: /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/elm/bld/CLM build-namelist -help
+!#--------------------------------------------------------------------------------------------------------------------------

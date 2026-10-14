@@ -1,0 +1,50 @@
+2026-09-21 11:04:55 CASE.RUN BEGINS HERE
+2026-09-21 11:04:55 RUN_MODEL BEGINS HERE
+2026-09-21 11:04:55 PRE_RUN_CHECK BEGINS HERE
+Locked XML file 'env_mach_specific.xml' is not currently being handled
+Setting resource.RLIMIT_STACK to -1 from (-1, -1)
+2026-09-21 11:04:56 NAMELIST CREATION BEGINS HERE
+Generating namelists for /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2
+  2026-09-21 11:04:56 atm 
+Create namelist for component eam
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/eam//cime_config/buildnml
+  2026-09-21 11:04:56 lnd 
+Create namelist for component elm
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/elm/cime_config/buildnml
+  2026-09-21 11:04:56 ice 
+Create namelist for component cice
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/cice/cime_config/buildnml
+  2026-09-21 11:04:57 ocn 
+Create namelist for component docn
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/data_comps/docn/cime_config/buildnml
+  2026-09-21 11:04:57 rof 
+Create namelist for component srof
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/stub_comps/srof/cime_config/buildnml
+  2026-09-21 11:04:57 glc 
+Create namelist for component sglc
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/stub_comps/sglc/cime_config/buildnml
+  2026-09-21 11:04:57 wav 
+Create namelist for component swav
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/stub_comps/swav/cime_config/buildnml
+  2026-09-21 11:04:57 iac 
+Create namelist for component siac
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/stub_comps/siac/cime_config/buildnml
+  2026-09-21 11:04:57 esp 
+Create namelist for component sesp
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/stub_comps/sesp/cime_config/buildnml
+  2026-09-21 11:04:57 cpl 
+Create namelist for component drv
+   Calling /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/driver-mct/cime_config/buildnml
+2026-09-21 11:04:57 NAMELIST CREATION HAS FINISHED
+-------------------------------------------------------------------------
+ - Prestage required restarts into /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2/run
+ - Case input data directory (DIN_LOC_ROOT) is /global/cfs/cdirs/e3sm/inputdata 
+ - Checking for required input datasets in DIN_LOC_ROOT
+-------------------------------------------------------------------------
+2026-09-21 11:04:57 PRE_RUN_CHECK HAS FINISHED
+run command is srun  --label  -n 1024 -N 8 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1  
+2026-09-21 11:04:58 SAVE_PRERUN_PROVENANCE BEGINS HERE
+Setting resource.RLIMIT_STACK to -1 from (-1, -1)
+2026-09-21 11:05:00 SAVE_PRERUN_PROVENANCE HAS FINISHED
+2026-09-21 11:05:00 MODEL EXECUTION BEGINS HERE
+[2026-09-21T18:35:00.073] error: *** JOB 58701567 ON nid004485 CANCELLED AT 2026-09-21T18:35:00 DUE TO TIME LIMIT ***

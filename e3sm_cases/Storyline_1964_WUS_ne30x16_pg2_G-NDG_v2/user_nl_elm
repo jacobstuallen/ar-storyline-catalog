@@ -1,0 +1,13 @@
+
+fsurdat = '/global/cfs/cdirs/m2637/E3SM_SCREAM_files/fsurdat/surfdata_SnowEater_WUS_30x16_pg2_simyr2010_c250307.nc'
+finidat = '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/I_spinup_storyline_WUS_30x16_pg2_19641213_036_01/run/landstart/I_spinup_storyline_WUS_30x16_pg2_19641213_036_01.elm.r.1964-12-13-00000.nc'
+
+do_transient_pfts = .false.
+hist_avgflag_pertape='A','I'
+hist_nhtfrq = 0,-1
+hist_mfilt = 1,24
+!hist_fincl2 = 'QFLX_SUB_SNOW','SNO_Z','SNO_T','FSNO','H2OSNO','QSNOMELT','SNOWDP','TSA','TBOT','RAIN','SNOW','QBOT','WIND','SWdown','LWdown'
+hist_fincl2 = 'FSNO','H2OSNO','H2OSNO_TOP','QSNOMELT','QSNOFRZ','SNOW','SNOWDP','SNOWLIQ','SNOTTOPL','ERRH2OSNO','QSNWCPICE','FGR','FSM','QDRIP','ZBOT','TG','TV','TSA','SWup','SWdown','FIRA','FIRE','LWdown','LWup','TREFMNAV','TREFMXAV','Q2M','FPSN','FSH','Rnet','TLAI','FCTR','QOVER','RH','RH2M','SOILWATER_10CM','ZWT','TSOI_10CM','QSOIL','QVEGE','QVEGT','QTOPSOIL','Qstor','H2OCAN','H2OSFC','QH2OSFC','TWS','HC','SNOdTdzL','SNOW_SINKS','SNOW_SOURCES','SNOLIQFL','TH2OSFC','U10','QFLOOD','QRUNOFF','Qle','Qh','Qair','Tair','RAIN','SNO_Z','SNO_T','H2OSOI','SOILICE','SOILLIQ','TSOI'
+!!!hist_empty_htapes = .true.
+
+check_finidat_fsurdat_consistency = .false.

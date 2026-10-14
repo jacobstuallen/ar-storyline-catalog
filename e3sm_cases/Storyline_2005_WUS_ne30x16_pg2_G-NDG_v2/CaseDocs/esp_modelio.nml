@@ -1,0 +1,13 @@
+&modelio
+  diri = "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2/bld/esp"
+  diro = "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2/run"
+  logfile = "esp.log.59724349.261013-013833"
+/
+&pio_inparm
+  pio_netcdf_format = "64bit_data"
+  pio_numiotasks = -99
+  pio_rearranger = -99
+  pio_root = -99
+  pio_stride = -99
+  pio_typename = "nothing"
+/

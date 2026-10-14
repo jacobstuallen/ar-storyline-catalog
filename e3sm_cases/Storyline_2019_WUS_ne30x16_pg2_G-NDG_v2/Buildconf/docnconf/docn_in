@@ -1,0 +1,25 @@
+&docn_nml
+  decomp = "1d"
+  force_prognostic_true = .false.
+  restfilm = "undefined"
+  restfils = "undefined"
+  sst_constant_value = -1.0
+/
+&shr_strdata_nml
+  datamode = "SSTDATA"
+  domainfile = "/global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/domains/domain.ocn.SnowEater_WUS_30x16_pg2_oRRS15to5.250118.nc"
+  dtlimit = 1.5e0
+  fillalgo = "nn"
+  fillmask = "nomask"
+  fillread = "NOT_SET"
+  fillwrite = "NOT_SET"
+  mapalgo = "bilinear"
+  mapmask = "dstmask"
+  mapread = "NOT_SET"
+  mapwrite = "NOT_SET"
+  readmode = "single"
+  streams = "docn.streams.txt.prescribed 1982 1982 2024"
+  taxmode = "cycle"
+  tintalgo = "linear"
+  vectors = "null"
+/

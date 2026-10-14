@@ -1,0 +1,515 @@
+&aerosol_nl
+ aer_drydep_list		= 'bc_a1', 'bc_a3', 'bc_a4', 'dst_a1', 'dst_a3', 'mom_a1', 'mom_a2', 'mom_a3', 'mom_a4', 'ncl_a1', 'ncl_a2',
+         'ncl_a3', 'num_a1', 'num_a2', 'num_a3', 'num_a4', 'num_a5', 'pom_a1', 'pom_a3', 'pom_a4', 'so4_a1', 'so4_a2',
+         'so4_a3', 'so4_a5', 'soa_a1', 'soa_a2', 'soa_a3'
+ aer_wetdep_list		= 'bc_a1', 'bc_a3', 'bc_a4', 'dst_a1', 'dst_a3', 'mom_a1', 'mom_a2', 'mom_a3', 'mom_a4', 'ncl_a1', 'ncl_a2',
+         'ncl_a3', 'num_a1', 'num_a2', 'num_a3', 'num_a4', 'num_a5', 'pom_a1', 'pom_a3', 'pom_a4', 'so4_a1', 'so4_a2',
+         'so4_a3', 'so4_a5', 'soa_a1', 'soa_a2', 'soa_a3'
+ seasalt_emis_scale		=  0.55D0 
+ sol_factb_interstitial		= 0.1D0
+ sol_facti_cloud_borne		= 1.0D0
+ sol_factic_interstitial		= 0.4D0
+ sscav_tuning		= .false.
+/
+&cam_history_nl
+ empty_htapes		= .TRUE.
+ fincl1		= 'U10:I', 'PRECT:I', 'PRECSL:I', 'PRECSC:I', 'U850:I', 'V850:I', 'PSL:I', 'T850:I', 'U500:I',
+         'V500:I', 'T500:I', 'T300:I', 'T200:I', 'Z300:I', 'Z200:I', 'FLUT:I', 'SST:I', 'U200:I',
+         'V200:I', 'OMEGA500:I', 'OMEGA850:I', 'TMQ:I', 'Z500:I', 'TUQ:I', 'TVQ:I', 'TUH:I', 'TVH:I',
+         'CAPE:I', 'TMCLDLIQ:I', 'TMCLDICE:I', 'TMNUMICE:I', 'TMRAINQM:I', 'TMNUMRAI:I', 'WSPDSRFMX:I', 'WSPDSRFAV:I', 'TREFHT:I',
+         'TREFHTMN:I', 'TREFHTMX:I', 'QREFHT:I', 'U10:I', 'RHREFHT:I', 'SHFLX:I', 'LHFLX:I', 'QFLX:I', 'SNOWHLND:I',
+         'SNOWHICE:I', 'PCLDTOP:I', 'PCLDBOT:I', 'PBLH:I', 'TGCLDCWP:I', 'TGCLDLWP:I', 'TGCLDIWP:I', 'CLDTOT:I', 'CLDLOW:I',
+         'CLDMED:I', 'CLDHGH:I', 'PTTEND_RESID:I', 'TTEND_TOT:I', 'PTTEND:I', 'TTEND_CLUBB:I', 'TTENDICE:I', 'DPDLFT:I', 'QRS:I',
+         'QRL:I'
+ fincl2		= 'PRECT:A','PRECC:A','PRECL:A','PRECSL:A','PRECSC:A'
+ fincl3		= 'PS:I','Z3:I','T:I','Q:I','U:I','V:I','Nudge_U:I','Nudge_V:I'
+ fincl4		= 'PS', 'TBOT', 'UBOT', 'VBOT', 'QBOT', 'FLDS', 'FSDS', 'PRECT', 'QREFHT', 'RHREFHT', 'TREFHT',
+         'TREFHTMN', 'TREFHTMX', 'U10', 'WSPDSRFMX', 'WSPDSRFAV'
+ fincl5		= 'SST','OCNFRAC','ICEFRAC','PHIS'
+ fincl6		= 'PRECT','PRECC','PRECL','TREFHT'
+ fincl7		= 'T:I','U:I','V:I','Q:I','Nudge_U:I','Nudge_V:I','Target_U:I','Target_V:I','PS:I','PSL:I'
+ inithist		= 'NONE'
+ mfilt		= 8,8,4,240,1,144,1
+ nhtfrq		= -3,-3,-6,-3,-24,2,-1
+/
+&cam_inparm
+ bnd_topo		= '/global/cfs/cdirs/m2637/E3SM_SCREAM_files/topo/USGS-gtopo30_SnowEater_WUS_30x8np4pg2_x6t.nc'
+ dtime		= 600
+ ncdata		= '/pscratch/sd/j/jsallen/betacast/INIC/Storyline_1964121300_WUS_30x8_pg2_INIC.nc'
+ phys_chnk_fdim_max		=  16 
+ phys_chnk_fdim_mult		=  1 
+ phys_loadbalance		=  2 
+ print_energy_errors		= .false.
+ raytau0		=  5.0D0     
+/
+&chem_inparm
+ airpl_emis_file		= ''
+ chlorine_loading_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/ub/Linoz_Chlorine_Loading_CMIP6_0003-2017_c20171114.nc'
+ chlorine_loading_fixed_ymd		= 20100101
+ chlorine_loading_type		= 'FIXED'
+ clim_soilw_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/dvel/clim_soilw.nc'
+ depvel_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/dvel/depvel_monthly.nc'
+ depvel_lnd_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/dvel/regrid_vegetation.nc'
+ dms_emis_scale		=  2.0D0 
+ drydep_srf_file		= '/global/cfs/cdirs/m2637/E3SM_SCREAM_files/atmsrf/atmsrf_SnowEater_WUS_30x8_pg2_250118.nc'
+ exo_coldens_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/phot/exo_coldens.nc'
+ ext_frc_cycle_yr		= 2010
+ ext_frc_specifier		= 'NO2         -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_NO2_aircraft_vertical_2010_clim_1.9x2.5_c20230213.nc',
+         'SO2         -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so2_elev_1x1_2010_clim_c20190821.nc',
+         'SOAG0       -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/emissions-cmip6_e3sm_SOAG0_elev_2010_clim_1.9x2.5_c20230213.nc',
+         'bc_a4       -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_bc_a4_elev_1x1_2010_clim_c20190821.nc',
+         'num_a1      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a1_elev_1x1_2010_clim_c20190821.nc',
+         'num_a2      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a2_elev_1x1_2010_clim_c20190821.nc',
+         'num_a4      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a4_elev_1x1_2010_clim_c20190821.nc',
+         'pom_a4      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_pom_a4_elev_1x1_2010_clim_c20190821.nc',
+         'so4_a1      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a1_elev_1x1_2010_clim_c20190821.nc',
+         'so4_a2      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a2_elev_1x1_2010_clim_c20190821.nc'
+ ext_frc_type		= 'CYCLICAL'
+ fstrat_efold_list		= 'CH2O', 'CH3O2', 'CH3OOH', 'PAN', 'CO', 'C2H6', 'C3H8', 'C2H4', 'ROHO2', 'CH3COCH3',
+         'C2H5O2', 'C2H5OOH', 'CH3CHO', 'CH3CO3', 'ISOP', 'ISOPO2', 'MVKMACR', 'MVKO2'
+ fstrat_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/ub/ubvals_b40.20th.track1_1996-2005_c110315.nc'
+ fstrat_list		= ''
+ lght_no_prd_factor		=  5.0D0    
+ linoz_data_cycle_yr		= 2010
+ linoz_data_file		= 'linv3_1849-2017_CMIP6_Hist_10deg_58km_c20230705.nc'
+ linoz_data_path		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/ub'
+ linoz_data_type		= 'CYCLICAL'
+ o2_xsect_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/phot/o2src.nc'
+ rsf_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/waccm/phot/RSF_GT200nm_v3.0_c080811.nc'
+ sad_cycle_yr		= 1990
+ sad_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/waccm/sulf/SAD_SULF_1950-2011_1.9x2.5_c130102.nc'
+ sad_type		= 'CYCLICAL'
+ season_wes_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/dvel/season_wes.nc'
+ solar_parms_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/waccm/phot/wasolar_ave.nc'
+ srf_emis_cycle_yr		= 2010
+ srf_emis_specifier		= 'C10H16 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_MTERP_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'C2H4      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_C2H4_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'C2H6      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_C2H6_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'C3H8      -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_C3H8_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'CH2O   -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_CH2O_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'CH3CHO    -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_CH3CHO_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'CH3COCH3  -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_CH3COCH3_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'CO     -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_CO_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'DMS    -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DMSflux.2010.1deg_latlon_conserv.POPmonthlyClimFromACES4BGC_c20190220.nc',
+         'E90       -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions_E90_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'ISOP   -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_ISOP_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'ISOP_VBS -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_ISOP_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'NO     -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/chem_gases/2degrees/emissions-cmip6_e3sm_NO_surface_2010_clim_1.9x2.5_c20230213.nc',
+         'SO2    -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so2_surf_1x1_2010_clim_c20190821.nc',
+         'SOAG0  -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/emissions-cmip6_e3sm_SOAG0_surf_2010_clim_1.9x2.5_c20230213.nc',
+         'bc_a4  -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_bc_a4_surf_1x1_2010_clim_c20190821.nc',
+         'num_a1 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a1_surf_1x1_2010_clim_c20190821.nc',
+         'num_a2 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a2_surf_1x1_2010_clim_c20190821.nc',
+         'num_a4 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_num_a4_surf_1x1_2010_clim_c20190821.nc',
+         'pom_a4 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_pom_a4_surf_1x1_2010_clim_c20190821.nc',
+         'so4_a1 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a1_surf_1x1_2010_clim_c20190821.nc',
+         'so4_a2 -> /global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/emis/DECK_ne30/cmip6_mam4_so4_a2_surf_1x1_2010_clim_c20190821.nc'
+ srf_emis_type		= 'CYCLICAL'
+ sulf_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/waccm/sulf/sulfate.ar5_camchem_c130304.nc'
+ tracer_cnst_cycle_yr		= 2015
+ tracer_cnst_datapath		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart_aero/oxid'
+ tracer_cnst_file		= 'oxid_1.9x2.5_L26_1850-2015_c20181106.nc'
+ tracer_cnst_filelist		= ''
+ tracer_cnst_specifier		= 'prsd_O3:O3','prsd_NO3:NO3','prsd_OH:OH'
+ tracer_cnst_type		= 'CYCLICAL'
+ tuv_xsect_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/phot/tuv_xsect.nc'
+ xactive_prates		= .false.
+ xs_long_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/waccm/phot/temp_prs_GT200nm_JPL10_c130206.nc'
+/
+&chem_surfvals_nl
+ ch4vmr		= 1807.851e-9
+ co2vmr		= 388.717000e-6
+ f11vmr		= 768.7644e-12
+ f12vmr		= 531.2820e-12
+ n2ovmr		= 323.141e-9
+/
+&cldfrc2m_nl
+ cldfrc2m_rhmaxi		=  1.05D0    
+ cldfrc2m_rhmini		=   0.80D0  
+/
+&cldfrc_nl
+ cldfrc_dp1		=  0.018D0    
+ cldfrc_dp2		=  500.0D0 
+ cldfrc_freeze_dry		= .true.
+ cldfrc_ice		= .true.
+ cldfrc_icecrit		=  0.93D0 
+ cldfrc_iceopt		=  5 
+ cldfrc_minice		=  1.0e-12 
+ cldfrc_premib		=  700.0D2 
+ cldfrc_premit		=  25000.0D0 
+ cldfrc_rhminh		=  0.800D0 
+ cldfrc_rhminl		=  0.950D0 
+ cldfrc_rhminl_adj_land		=  0.100D0 
+ cldfrc_sh1		=  0.04D0 
+ cldfrc_sh2		=  500.0D0 
+/
+&cldsed_nl
+ cldsed_ice_stokes_fac		=  1.0D0 
+/
+&cldwat_nl
+ cldwat_conke		=   5.0e-6  
+ cldwat_icritc		=  18.0e-6  
+ cldwat_icritw		=   2.0e-4  
+ cldwat_r3lcrit		=   10.0e-6  
+/
+&clubb_his_nl
+ clubb_history		=  .false. 
+ clubb_rad_history		=  .false. 
+/
+&clubb_param_nl
+ clubb_c1		=  2.4        
+ clubb_c11		=  0.70       
+ clubb_c11b		=  0.20       
+ clubb_c11c		=  0.85       
+ clubb_c14		=  2.5D0      
+ clubb_c1b		=  2.8        
+ clubb_c1c		=  0.75       
+ clubb_c2rt		=  1.75D0    
+ clubb_c6rtb		=  7.50       
+ clubb_c6rtc		=  0.50       
+ clubb_c6thlb		=  7.50       
+ clubb_c6thlc		=  0.50       
+ clubb_c8		=  5.2        
+ clubb_c_k10		=  0.35       
+ clubb_c_k10h		=  0.35       
+ clubb_gamma_coef		=  0.12D0     
+ clubb_gamma_coefb		=  0.28D0     
+ clubb_gamma_coefc		=  1.2        
+ clubb_mu		=  0.0005     
+ clubb_wpxp_l_thresh		=  100.0D0    
+/
+&clubbpbl_diff_nl
+ clubb_cloudtop_cooling		=  .false. 
+ clubb_expldiff		=  .true.  
+ clubb_ice_deep		=  14.e-6     
+ clubb_ice_sh		=  50.e-6    
+ clubb_ipdf_call_placement		=  2         
+ clubb_liq_deep		=  8.e-6     
+ clubb_liq_sh		=  10.e-6    
+ clubb_rainevap_turb		=  .false.  
+ clubb_rnevap_effic		=  1.2D0   
+ clubb_stabcorrect		=  .false. 
+ clubb_timestep		=  300.0D0 
+ clubb_tk1		=  268.15D0   
+ clubb_tk2		=  238.15D0  
+ clubb_use_sgv		=  .true.     
+ relvar_fix		=  .true.    
+/
+&cospsimulator_nl
+ cosp_lite		= .true.
+/
+&ctl_nl
+ cubed_sphere_map		= 2
+ dt_remap_factor		=   2  
+ dt_tracer_factor		=  6 
+ hv_ref_profiles		=  6 
+ hypervis_order		=      2 
+ hypervis_scaling		=  3.0 
+ hypervis_subcycle		=  1 
+ hypervis_subcycle_q		=  6 
+ hypervis_subcycle_tom		=  1 
+ integration		= "explicit"
+ mesh_file		= '/global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/exodus/SnowEater_WUS_30x8.g'
+ nu		=                    3.4e-8 
+ nu_div		=  -1.0 
+ nu_p		=  -1.0 
+ nu_q		=  -1.0 
+ nu_s		=  -1.0 
+ nu_top		= 4e4
+ pgrad_correction		= 0
+ qsplit		=  -1 
+ rsplit		=  -1 
+ se_ftype		=  2 
+ se_geometry		= "sphere"
+ se_limiter_option		=  9 
+ se_lx		=  0.0 
+ se_ly		=  0.0 
+ se_ne		= 0
+ se_ne_x		=  0 
+ se_ne_y		=  0 
+ se_nsplit		=  -1 
+ se_partmethod		=  4 
+ se_topology		= "cube"
+ se_tstep		= 33.33333333333
+ statefreq		=  480 
+ theta_advect_form		= 2
+ theta_hydrostatic_mode		= .true.
+ transport_alg		=  12 
+ tstep_type		= 9
+ vert_remap_q_alg		=  10 
+ vthreads		=  1 
+/
+&dust_nl
+ dust_emis_fact		=  13.8D0     
+ soil_erod_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/dst/dst_1.9x2.5_c090203.nc'
+/
+&gw_drag_nl
+ effgw_beres		=  0.35  
+ effgw_cm		= 1.D0
+ effgw_oro		=  0.375      
+ fcrit2		= 1.0
+ frontgfc		= 1.25D-15
+ gw_convect_hcf		=  10.0  
+ gw_dc		= 2.5D0
+ gw_drag_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/waccm/gw/newmfspectra40_dc25.nc'
+ hdepth_scaling_factor		=  0.50  
+ pgwv		= 32
+ tau_0_ubc		= .true.
+ taubgnd		=  2.5D-3    
+/
+&hetfrz_classnuc_nl
+ hist_hetfrz_classnuc		= .false.
+/
+&linoz_nl
+ linoz_psc_t		=  198.0D0    
+/
+&mam_mom_nl
+ mam_mom_cycle_yr		= 1                                                                                    
+ mam_mom_datapath		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mam/marine_BGC/'
+ mam_mom_datatype		= 'CYCLICAL'
+ mam_mom_filename		= 'monthly_macromolecules_0.1deg_bilinear_latlon_year01_merge_date.nc'
+ mam_mom_fixed_tod		= 0											 
+ mam_mom_fixed_ymd		= 0											 
+ mam_mom_mixing_state		= 3
+ mam_mom_specifier		= 'chla:CHL1','mpoly:TRUEPOLYC','mprot:TRUEPROTC','mlip:TRUELIPC'
+/
+&micro_mg_nl
+ microp_uniform		= .false.
+/
+&micro_nl
+ do_cooper_inp3		=  .false. 
+ do_prescribed_ccn		=  .false. 
+ micro_aerosolactivation		=  .true.  
+ micro_p3_lookup_dir		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops'
+ micro_p3_tableversion		= '4.1.2'
+ micro_subgrid_cloud		=  .true.  
+ micro_tend_output		=  .false.  
+ p3_accret_coeff		=   117.25D0   
+ p3_autocon_coeff		=   30500.0D0   
+ p3_embryonic_rain_size		=  0.000025D0  
+ p3_max_mean_rain_size		=  0.005D0     
+ p3_mincdnc		=  20.D6      
+ p3_nc_autocon_expon		=   -1.10D0   
+ p3_qc_accret_expon		=   1.15D0   
+ p3_qc_autocon_expon		=   3.19D0   
+ p3_wbf_coeff		=  1.0      
+/
+&microp_aero_nl
+ microp_aero_wsub_scheme		= 1
+ microp_aero_wsubmin		=  0.001D0    
+/
+&modal_aer_opt_nl
+ water_refindex_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/water_refindex_rrtmg_c080910.nc'
+/
+&nucleate_ice_nl
+ nucleate_ice_subgrid		= 1.35D0
+ so4_sz_thresh_icenuc		=  0.080e-6   
+ use_preexisting_ice		= .false.
+/
+&nudging_nl
+ model_times_per_day		= 86400
+ nudge_beg_day		= 13
+ nudge_beg_month		= 12
+ nudge_beg_year		= 1964
+ nudge_currentstep		= .FALSE.
+ nudge_end_day		= 31
+ nudge_end_month		= 12
+ nudge_end_year		= 1964
+ nudge_file_ntime		= 1
+ nudge_file_template		= 'ndg.ERA5.WUS_30x8np4pg2.L80.cam2.i.%y-%m-%d-%s.nc'
+ nudge_hwin_hi		= 1.0
+ nudge_hwin_lat0		= 39.0
+ nudge_hwin_latdelta		= 4.0
+ nudge_hwin_latwidth		= 9999.0
+ nudge_hwin_lo		= 0.0
+ nudge_hwin_lon0		= 240.0
+ nudge_hwin_londelta		= 4.0
+ nudge_hwin_lonwidth		= 9999.0
+ nudge_loc_physout		= .TRUE.
+ nudge_method		= 'Linear'
+ nudge_model		= .true.
+ nudge_path		= '/pscratch/sd/j/jsallen/ndg/se_WUS_30x8np4pg2_L80/ERA5/'
+ nudge_pscoef		= 0.00
+ nudge_psprof		= 0
+ nudge_qcoef		= 0.00
+ nudge_qprof		= 0
+ nudge_tcoef		= 0.00
+ nudge_times_per_day		= 4
+ nudge_tprof		= 0
+ nudge_ucoef		= 1.00
+ nudge_uprof		= 2
+ nudge_vcoef		= 1.00
+ nudge_vprof		= 2
+ nudge_vwin_hi		= 1.0
+ nudge_vwin_hindex		= 61.0
+ nudge_vwin_ldelta		= 1.0
+ nudge_vwin_lindex		= 44.0
+ nudge_vwin_lo		= 0.0
+/
+&phys_ctl_nl
+ cam_chempkg		= 'chemuci_linozv3_mam5_vbs'
+ cam_physpkg		= 'default'
+ cflx_cpl_opt		=  2 
+ cld_macmic_num_steps		=  6 
+ conv_water_in_rad		=  1 
+ convproc_do_aer		= .true.
+ convproc_do_gas		= .false.
+ convproc_method_activate		= 2
+ deep_scheme		= 'ZM'
+ demott_ice_nuc		= .true.
+ do_aerocom_ind3		=  .false. 
+ do_clubb_sgs		=  .true.  
+ do_shoc_sgs		=  .false. 
+ do_tms		=  .false.   
+ eddy_scheme		= 'CLUBB_SGS'
+ fix_g1_err_ndrop		= .true.
+ gaschmbudget_2d_l1_e		=          34       
+ gaschmbudget_2d_l1_s		=          1        
+ gaschmbudget_2d_l2_e		=          46       
+ gaschmbudget_2d_l2_s		=          35       
+ gaschmbudget_2d_l3_e		=          66       
+ gaschmbudget_2d_l3_s		=          47       
+ gaschmbudget_2d_l4_e		=          80       
+ gaschmbudget_2d_l4_s		=          67       
+ history_aero_optics		= .true.
+ history_aerosol		= .true.
+ history_amwg		= .true.
+ history_budget		=                .false.  
+ history_clubb		=       .false.   
+ history_eddy		=                  .false.  
+ history_vdiag		=                 .false.  
+ history_verbose		=               .false.  
+ history_waccm		=                 .false.  
+ ieflx_opt		= 0
+ is_output_interactive_volc		= .false.
+ linearize_pbl_winds		= .false.
+ liqcf_fix		= .true.
+ macrop_scheme		= 'CLUBB_SGS'
+ mam_amicphys_optaa		= 1
+ micro_do_icesupersat		=  .false. 
+ microp_scheme		= 'P3'
+ modal_strat_sulfate_aod_treatment		= .false.
+ n_so4_monolayers_pcage		=   3.0D0   
+ radiation_scheme		= 'rrtmg'
+ regen_fix		= .true.
+ resus_fix		= .true.
+ shallow_scheme		= 'CLUBB_SGS'
+ srf_flux_avg		= 0
+ ssalt_tuning		= .true.
+ ucigaschmbudget_2d_l1_e		=          34       
+ ucigaschmbudget_2d_l1_s		=          1        
+ ucigaschmbudget_2d_l2_e		=          46       
+ ucigaschmbudget_2d_l2_s		=          35       
+ ucigaschmbudget_2d_l3_e		=          66       
+ ucigaschmbudget_2d_l3_s		=          47       
+ ucigaschmbudget_2d_l4_e		=          80       
+ ucigaschmbudget_2d_l4_s		=          67       
+ use_gw_convect		= .true.
+ use_gw_energy_fix		= .true.
+ use_gw_front		= .true.
+ use_gw_oro		= .true.
+ use_hetfrz_classnuc		= .true.
+ use_subcol_microp		= .false.
+ waccmx_opt		= 'off'
+/
+&prescribed_ghg_nl
+ prescribed_ghg_cycle_yr		= 1995
+ prescribed_ghg_datapath		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/methane'
+ prescribed_ghg_file		= 'ch4_oxid_1.9x2.5_L26_1990-1999clim.c090804.nc'
+ prescribed_ghg_filelist		= ''
+ prescribed_ghg_specifier		= 'prsd_ch4:CH4'
+ prescribed_ghg_type		= 'CYCLICAL'
+/
+&rad_cnst_nl
+ icecldoptics		= 'mitchell'
+ iceopticsfile		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/iceoptics_c080917.nc'
+ liqcldoptics		= 'gammadist'
+ liqopticsfile		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/F_nwvl200_mu20_lam50_res64_t298_c080428.nc'
+ mode_defs		= 'mam5_mode1:accum:=', 'A:num_a1:N:num_c1:num_mr:+',
+         'A:so4_a1:N:so4_c1:sulfate:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/sulfate_rrtmg_c080918.nc:+', 'A:pom_a1:N:pom_c1:p-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ocpho_rrtmg_c130709_kPOM0.04.nc:+',
+         'A:soa_a1:N:soa_c1:s-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ocphi_rrtmg_c100508.nc:+', 'A:bc_a1:N:bc_c1:black-c:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/bcpho_rrtmg_c100508.nc:+',
+         'A:dst_a1:N:dst_c1:dust:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/dust_aeronet_rrtmg_c141106.nc:+', 'A:ncl_a1:N:ncl_c1:seasalt:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ssam_rrtmg_c100508.nc:+',
+         'A:mom_a1:N:mom_c1:m-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/poly_rrtmg_c130816.nc', 'mam5_mode2:aitken:=',
+         'A:num_a2:N:num_c2:num_mr:+', 'A:so4_a2:N:so4_c2:sulfate:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/sulfate_rrtmg_c080918.nc:+',
+         'A:soa_a2:N:soa_c2:s-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ocphi_rrtmg_c100508.nc:+', 'A:ncl_a2:N:ncl_c2:seasalt:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ssam_rrtmg_c100508.nc:+',
+         'A:mom_a2:N:mom_c2:m-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/poly_rrtmg_c130816.nc', 'mam5_mode3:coarse:=',
+         'A:num_a3:N:num_c3:num_mr:+', 'A:dst_a3:N:dst_c3:dust:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/dust_aeronet_rrtmg_c141106.nc:+',
+         'A:ncl_a3:N:ncl_c3:seasalt:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ssam_rrtmg_c100508.nc:+', 'A:so4_a3:N:so4_c3:sulfate:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/sulfate_rrtmg_c080918.nc:+',
+         'A:bc_a3:N:bc_c3:black-c:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/bcpho_rrtmg_c100508.nc:+', 'A:pom_a3:N:pom_c3:p-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ocpho_rrtmg_c130709_kPOM0.04.nc:+',
+         'A:soa_a3:N:soa_c3:s-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ocphi_rrtmg_c100508.nc:+', 'A:mom_a3:N:mom_c3:m-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/poly_rrtmg_c130816.nc',
+         'mam5_mode4:primary_carbon:=', 'A:num_a4:N:num_c4:num_mr:+',
+         'A:pom_a4:N:pom_c4:p-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/ocpho_rrtmg_c130709_kPOM0.04.nc:+', 'A:bc_a4:N:bc_c4:black-c:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/bcpho_rrtmg_c100508.nc:+',
+         'A:mom_a4:N:mom_c4:m-organic:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/poly_rrtmg_c130816.nc', 'mam5_mode5:strat_coarse:=',
+         'A:num_a5:N:num_c5:num_mr:+', 'A:so4_a5:N:so4_c5:sulfate:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/sulfate_rrtmg_c080918.nc'
+ rad_climate		= 'A:H2OLNZ:H2O', 'N:O2:O2',
+         'N:CO2:CO2', 'A:O3:O3',
+         'A:N2OLNZ:N2O', 'A:CH4LNZ:CH4',
+         'N:CFC11:CFC11', 'N:CFC12:CFC12',
+         'M:mam5_mode1:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/mam4_mode1_rrtmg_aeronetdust_c141106.nc', 'M:mam5_mode2:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/mam4_mode2_rrtmg_c130628.nc',
+         'M:mam5_mode3:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/mam4_mode3_rrtmg_aeronetdust_c141106.nc', 'M:mam5_mode4:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/mam4_mode4_rrtmg_c130628.nc',
+         'M:mam5_mode5:/global/cfs/cdirs/e3sm/inputdata/atm/cam/physprops/mam5_mode5_rrtmg_sig1.2_dgnl.40_c03072023.nc'
+/
+&radiation_nl
+ do_spa_optics		=  .false.
+ iradlw		= 9
+ iradsw		= 9
+ use_rad_dt_cosz		= .true.
+/
+&ref_pres_nl
+ clim_modal_aero_top_press		=  1.D-4 
+ do_molec_press		=  0.1D0 
+ molec_diff_bot_press		=  50.D0 
+ trop_cloud_top_press		=       1.D2 
+/
+&solar_inparm
+ solar_data_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/solar/Solar_2010control_input4MIPS_c20181017.nc'
+ solar_data_type		= 'FIXED'
+ solar_data_ymd		= 20100101
+ solar_htng_spctrl_scl		= .true.
+/
+&subcol_nl
+ subcol_scheme		= 'off'
+/
+&tropopause_nl
+ tropopause_climo_file		= '/global/cfs/cdirs/e3sm/inputdata/atm/cam/chem/trop_mozart/ub/clim_p_trop.nc'
+ tropopause_e90_thrd		=  80.0e-9 
+/
+&vert_diff_nl
+ diff_cnsrv_mass_check		=  .false. 
+ do_iss		=  .true.  
+ eddy_lbulk_max		= 40.D3
+ eddy_leng_max		= 40.D3
+ eddy_max_bot_pressure		= 100.D3
+ eddy_moist_entrain_a2l		= 30.D0
+ kv_freetrop_scale		= 1.D0
+ kv_top_pressure		= 0.D0
+ kv_top_scale		= 1.D0
+/
+&wetdep_inparm
+ gas_wetdep_list		= 'C2H5OOH', 'CH2O', 'CH3CHO', 'CH3OOH', 'H2O2', 'H2SO4', 'HNO3', 'HO2NO2', 'SO2', 'SOAG0', 'SOAG15',
+         'SOAG24', 'SOAG35', 'SOAG34', 'SOAG33', 'SOAG32', 'SOAG31'
+ gas_wetdep_method		= 'NEU'
+/
+&zmconv_nl
+ zmconv_accr_fac		= 1.5D0 
+ zmconv_alfa		=  0.14D0     
+ zmconv_auto_fac		= 7.0D0 
+ zmconv_c0_lnd		=  0.0020D0   
+ zmconv_c0_ocn		=  0.0020D0   
+ zmconv_cape_cin		=  1         
+ zmconv_clos_dyn_adj		=  .true.         
+ zmconv_dmpdz		= -0.7e-3    
+ zmconv_ke		=  2.5E-6      
+ zmconv_mcsp_heat_coeff		=  0.3         
+ zmconv_mcsp_moisture_coeff		= 0.0D0
+ zmconv_mcsp_uwind_coeff		= 0.0D0
+ zmconv_mcsp_vwind_coeff		= 0.0D0
+ zmconv_micro_dcs		= 150.E-6
+ zmconv_microp		=  .true.         
+ zmconv_mx_bot_lyr_adj		=  1          
+ zmconv_tau		=  3600
+ zmconv_tiedke_add		=  0.8D0     
+ zmconv_tp_fac		=  2.0D0      
+ zmconv_tpert_fix		=  .true.         
+ zmconv_trigdcape_ull		=  .true.     
+/

@@ -1,0 +1,138 @@
+2026-09-21 08:56:53: case.setup starting 
+ ---------------------------------------------------
+2026-09-21 08:56:59: case.setup success 
+ ---------------------------------------------------
+2026-09-21 08:56:59: xmlchange success <command> ./xmlchange RUN_STARTDATE=1964-12-13  </command>
+ ---------------------------------------------------
+2026-09-21 08:57:00: case.build starting 
+ ---------------------------------------------------
+2026-09-21 09:01:07: case.build success 
+ ---------------------------------------------------
+2026-09-22 17:18:42: case.submit starting 58774329
+ ---------------------------------------------------
+2026-09-22 17:18:42: case.submit success 58774329
+ ---------------------------------------------------
+2026-09-22 19:03:21: case.run starting 58774329
+ ---------------------------------------------------
+2026-09-22 19:03:26: model execution starting 58774329
+ ---------------------------------------------------
+2026-09-22 23:57:15: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-09-22 23:57:15: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.58774329.260922-190321
+ ---------------------------------------------------
+2026-09-24 07:57:10: case.submit starting 58824797
+ ---------------------------------------------------
+2026-09-24 07:57:10: case.submit success 58824797
+ ---------------------------------------------------
+2026-09-24 09:08:44: case.run starting 58824797
+ ---------------------------------------------------
+2026-09-24 09:08:49: model execution starting 58824797
+ ---------------------------------------------------
+2026-09-24 10:27:00: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-09-24 10:27:00: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.58824797.260924-090844
+ ---------------------------------------------------
+2026-10-02 12:58:38: case.submit starting 
+ ---------------------------------------------------
+2026-10-02 12:58:38: case.submit error 
+ERROR: module command /usr/share/lmod/lmod/libexec/lmod python unload cray-hdf5-parallel cray-netcdf-hdf5parallel cray-parallel-netcdf cray-netcdf cray-hdf5 PrgEnv-gnu PrgEnv-intel PrgEnv-nvidia PrgEnv-cray PrgEnv-aocc gcc-native intel intel-oneapi nvidia aocc cudatoolkit climate-utils cray-libsci matlab craype-accel-nvidia80 craype-accel-host perftools-base perftools darshan failed with message:
+/bin/sh: /usr/share/lmod/lmod/libexec/lmod: No such file or directory
+ ---------------------------------------------------
+2026-10-02 14:25:10: case.submit starting 
+ ---------------------------------------------------
+2026-10-02 14:25:10: case.submit error 
+ERROR: module command /usr/share/lmod/lmod/libexec/lmod python unload cray-hdf5-parallel cray-netcdf-hdf5parallel cray-parallel-netcdf cray-netcdf cray-hdf5 PrgEnv-gnu PrgEnv-intel PrgEnv-nvidia PrgEnv-cray PrgEnv-aocc gcc-native intel intel-oneapi nvidia aocc cudatoolkit climate-utils cray-libsci matlab craype-accel-nvidia80 craype-accel-host perftools-base perftools darshan failed with message:
+/bin/sh: /usr/share/lmod/lmod/libexec/lmod: No such file or directory
+ ---------------------------------------------------
+2026-10-02 14:27:08: case.submit starting 
+ ---------------------------------------------------
+2026-10-02 14:27:08: case.submit error 
+ERROR: module command /usr/share/lmod/lmod/libexec/lmod python unload cray-hdf5-parallel cray-netcdf-hdf5parallel cray-parallel-netcdf cray-netcdf cray-hdf5 PrgEnv-gnu PrgEnv-intel PrgEnv-nvidia PrgEnv-cray PrgEnv-aocc gcc-native intel intel-oneapi nvidia aocc cudatoolkit climate-utils cray-libsci matlab craype-accel-nvidia80 craype-accel-host perftools-base perftools darshan failed with message:
+/bin/sh: /usr/share/lmod/lmod/libexec/lmod: No such file or directory
+ ---------------------------------------------------
+2026-10-02 14:28:30: case.submit starting 59228728
+ ---------------------------------------------------
+2026-10-02 14:28:30: case.submit success 59228728
+ ---------------------------------------------------
+2026-10-02 21:01:36: case.run starting 59228728
+ ---------------------------------------------------
+2026-10-02 21:01:41: model execution starting 59228728
+ ---------------------------------------------------
+2026-10-02 22:20:21: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-02 22:20:21: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59228728.261002-210136
+ ---------------------------------------------------
+2026-10-03 07:27:49: case.submit starting 59267875
+ ---------------------------------------------------
+2026-10-03 07:27:49: case.submit success 59267875
+ ---------------------------------------------------
+2026-10-03 17:52:24: case.run starting 59267875
+ ---------------------------------------------------
+2026-10-03 17:52:33: model execution starting 59267875
+ ---------------------------------------------------
+2026-10-03 19:11:13: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-03 19:11:13: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59267875.261003-175224
+ ---------------------------------------------------
+2026-10-05 09:10:01: case.submit starting 59379356
+ ---------------------------------------------------
+2026-10-05 09:10:01: case.submit success 59379356
+ ---------------------------------------------------
+2026-10-05 10:33:59: case.run starting 59379356
+ ---------------------------------------------------
+2026-10-05 10:34:16: model execution starting 59379356
+ ---------------------------------------------------
+2026-10-05 11:53:50: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-05 11:53:50: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59379356.261005-103359
+ ---------------------------------------------------
+2026-10-05 12:07:17: xmlchange success <command> ./xmlchange REST_N=2  </command>
+ ---------------------------------------------------
+2026-10-05 12:08:19: case.submit starting 59386350
+ ---------------------------------------------------
+2026-10-05 12:08:19: case.submit success 59386350
+ ---------------------------------------------------
+2026-10-05 14:56:45: case.submit starting 59392971
+ ---------------------------------------------------
+2026-10-05 14:56:45: case.submit success 59392971
+ ---------------------------------------------------
+2026-10-05 21:56:41: case.run starting 59392971
+ ---------------------------------------------------
+2026-10-05 21:56:47: model execution starting 59392971
+ ---------------------------------------------------
+2026-10-05 22:34:17: model execution error 
+ERROR: Command: 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed with error '' from dir '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run'
+ ---------------------------------------------------
+2026-10-05 22:34:17: case.run error 
+ERROR: RUN FAIL: Command 'srun  --label  -n 3072 -N 24 -c 2  --cpu_bind=cores   -m plane=128 /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/bld/e3sm.exe   >> e3sm.log.$LID 2>&1 ' failed
+See log file for details: /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run/e3sm.log.59392971.261005-215641
+ ---------------------------------------------------
+2026-10-06 06:45:37: xmlchange success <command> ./xmlchange REST_N=1  </command>
+ ---------------------------------------------------
+2026-10-06 06:45:54: case.submit starting 59427573
+ ---------------------------------------------------
+2026-10-06 06:45:54: case.submit success 59427573
+ ---------------------------------------------------
+2026-10-06 09:52:18: case.run starting 59427573
+ ---------------------------------------------------
+2026-10-06 09:52:23: model execution starting 59427573
+ ---------------------------------------------------
+2026-10-06 21:18:45: model execution success 59427573
+ ---------------------------------------------------
+2026-10-06 21:18:45: case.run success 59427573
+ ---------------------------------------------------

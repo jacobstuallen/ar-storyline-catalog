@@ -1,0 +1,427 @@
+Currently Loaded Modules:
+  1) craype-x86-milan
+  2) libfabric/2.3.1
+  3) craype-network-ofi
+  4) xpmem/2.11.5-1.3_g73ade43320bc
+  5) cpe/26.03
+  6) gpu/1.0
+  7) sqs/2.0
+  8) cray-dsmml/0.3.1
+  9) PrgEnv-gnu/8.5.0                  (prgenv)
+ 10) gcc-native/13.2                   (c)
+ 11) cray-libsci/24.07.0
+ 12) craype-accel-host
+ 13) craype/2.7.32                     (c)
+ 14) cray-mpich/8.1.30                 (mpi)
+ 15) cray-hdf5-parallel/1.14.3.9
+ 16) cray-netcdf-hdf5parallel/4.9.0.13
+ 17) cray-parallel-netcdf/1.12.3.13
+ 18) cmake/3.30.2
+
+  Where:
+   c:       Compiler
+   mpi:     MPI Providers
+   prgenv:  Programming Environment Modules
+
+HYDRA_LAUNCHER_EXTRA_ARGS=--external-launcher
+__LMOD_REF_COUNT_PE_LIBSCI_REQUIRED_PRODUCTS=PE_MPICH:1
+CRAY_LMOD_MPI=cray-mpich/8.0
+LMOD_FAMILY_CRAYPE_NETWORK_VERSION=false
+PYTHONUNBUFFERED=1
+MPICH_GPU_SUPPORT_ENABLED=0
+CRAYPE_LINK_TYPE=dynamic
+LS_COLORS=bd=38;5;68:ca=38;5;17:cd=38;5;113;1:di=38;5;30:do=38;5;127:ex=38;5;208;1:pi=38;5;126:fi=0:ln=target:mh=38;5;222;1:no=0:or=48;5;196;38;5;232;1:ow=38;5;220;1:sg=48;5;3;38;5;0:su=38;5;220;1;3;100;1:so=38;5;197:st=38;5;86;48;5;234:tw=48;5;235;38;5;139;3:*LS_COLORS=48;5;89;38;5;197;1;3;4;7:*.txt=38;5;253:*README=38;5;220;1:*README.rst=38;5;220;1:*README.md=38;5;220;1:*LICENSE=38;5;220;1:*COPYING=38;5;220;1:*INSTALL=38;5;220;1:*COPYRIGHT=38;5;220;1:*AUTHORS=38;5;220;1:*HISTORY=38;5;220;1:*CONTRIBUTORS=38;5;220;1:*PATENTS=38;5;220;1:*VERSION=38;5;220;1:*NOTICE=38;5;220;1:*CHANGES=38;5;220;1:*.log=38;5;190:*.adoc=38;5;184:*.asciidoc=38;5;184:*.etx=38;5;184:*.info=38;5;184:*.markdown=38;5;184:*.md=38;5;253:*.mkd=38;5;184:*.nfo=38;5;184:*.org=38;5;184:*.pod=38;5;184:*.rst=38;5;184:*.tex=38;5;184:*.textile=38;5;184:*.bib=38;5;178:*.json=38;5;178:*.jsonl=38;5;178:*.jsonnet=38;5;178:*.libsonnet=38;5;142:*.ndjson=38;5;178:*.msg=38;5;178:*.pgn=38;5;178:*.rss=38;5;178:*.xml=38;5;178:*.fxml=38;5;178:*.toml=38;5;178:*.yaml=38;5;178:*.yml=38;5;178:*.RData=38;5;178:*.rdata=38;5;178:*.xsd=38;5;178:*.dtd=38;5;178:*.sgml=38;5;178:*.rng=38;5;178:*.rnc=38;5;178:*.accdb=38;5;60:*.accde=38;5;60:*.accdr=38;5;60:*.accdt=38;5;60:*.db=38;5;60:*.fmp12=38;5;60:*.fp7=38;5;60:*.localstorage=38;5;60:*.mdb=38;5;60:*.mde=38;5;60:*.sqlite=38;5;60:*.typelib=38;5;60:*.nc=38;5;203:*.cbr=38;5;141:*.cbz=38;5;141:*.chm=38;5;141:*.djvu=38;5;141:*.pdf=38;5;141:*.PDF=38;5;141:*.mobi=38;5;141:*.epub=38;5;141:*.docm=38;5;111;4:*.doc=38;5;111:*.docx=38;5;111:*.odb=38;5;111:*.odt=38;5;111:*.rtf=38;5;111:*.pages=38;5;111:*.odp=38;5;166:*.pps=38;5;166:*.ppt=38;5;166:*.pptx=38;5;166:*.ppts=38;5;166:*.pptxm=38;5;166;4:*.pptsm=38;5;166;4:*.csv=38;5;78:*.tsv=38;5;78:*.numbers=38;5;112:*.ods=38;5;112:*.xla=38;5;76:*.xls=38;5;112:*.xlsx=38;5;112:*.xlsxm=38;5;112;4:*.xltm=38;5;73;4:*.xltx=38;5;73:*.key=38;5;166:*config=1:*cfg=1:*conf=1:*rc=1:*authorized_keys=1:*known_hosts=1:*.ini=1:*.plist=1:*.profile=1:*.bash_profile=1:*.bash_login=1:*.bash_logout=1:*.zshenv=1:*.zprofile=1:*.zlogin=1:*.zlogout=1:*.viminfo=1:*.pcf=1:*.psf=1:*.hidden-color-scheme=1:*.hidden-tmTheme=1:*.last-run=1:*.merged-ca-bundle=1:*.sublime-build=1:*.sublime-commands=1:*.sublime-keymap=1:*.sublime-settings=1:*.sublime-snippet=1:*.sublime-project=1:*.sublime-workspace=1:*.tmTheme=1:*.user-ca-bundle=1:*.rstheme=1:*.epf=1:*.git=38;5;197:*.gitignore=38;5;240:*.gitattributes=38;5;240:*.gitmodules=38;5;240:*.awk=38;5;172:*.bash=38;5;172:*.bat=38;5;172:*.BAT=38;5;172:*.sed=38;5;172:*.sh=38;5;172:*.zsh=38;5;172:*.vim=38;5;172:*.kak=38;5;172:*.ahk=38;5;41:*.py=38;5;172:*.ipynb=38;5;172:*.xsh=38;5;41:*.rb=38;5;41:*.gemspec=38;5;41:*.pl=38;5;208:*.PL=38;5;160:*.pm=38;5;203:*.t=38;5;114:*.msql=38;5;222:*.mysql=38;5;222:*.pgsql=38;5;222:*.sql=38;5;222:*.tcl=38;5;64;1:*.r=38;5;49:*.R=38;5;49:*.gs=38;5;81:*.clj=38;5;41:*.cljs=38;5;41:*.cljc=38;5;41:*.cljw=38;5;41:*.scala=38;5;41:*.sc=38;5;41:*.dart=38;5;51:*.asm=38;5;81:*.cl=38;5;81:*.lisp=38;5;81:*.rkt=38;5;81:*.el=38;5;81:*.elc=38;5;241:*.eln=38;5;241:*.lua=38;5;81:*.moon=38;5;81:*.c=38;5;81:*.C=38;5;81:*.h=38;5;110:*.H=38;5;110:*.tcc=38;5;110:*.c++=38;5;81:*.h++=38;5;110:*.hpp=38;5;110:*.hxx=38;5;110:*.ii=38;5;110:*.M=38;5;110:*.m=38;5;110:*.cc=38;5;81:*.cs=38;5;81:*.cp=38;5;81:*.cpp=38;5;81:*.cxx=38;5;81:*.cr=38;5;81:*.go=38;5;81:*.f=38;5;81:*.F=38;5;81:*.for=38;5;81:*.ftn=38;5;81:*.f90=38;5;81:*.F90=38;5;81:*.f95=38;5;81:*.F95=38;5;81:*.f03=38;5;81:*.F03=38;5;81:*.f08=38;5;81:*.F08=38;5;81:*.nim=38;5;81:*.nimble=38;5;81:*.s=38;5;110:*.S=38;5;110:*.rs=38;5;81:*.scpt=38;5;219:*.swift=38;5;219:*.sx=38;5;81:*.vala=38;5;81:*.vapi=38;5;81:*.hi=38;5;110:*.hs=38;5;81:*.lhs=38;5;81:*.agda=38;5;81:*.lagda=38;5;81:*.lagda.tex=38;5;81:*.lagda.rst=38;5;81:*.lagda.md=38;5;81:*.agdai=38;5;110:*.zig=38;5;81:*.v=38;5;81:*.pyc=38;5;240:*.tf=38;5;168:*.tfstate=38;5;168:*.tfvars=38;5;168:*.css=38;5;125;1:*.less=38;5;125;1:*.sass=38;5;125;1:*.scss=38;5;125;1:*.htm=38;5;125;1:*.html=38;5;125;1:*.jhtm=38;5;125;1:*.mht=38;5;125;1:*.eml=38;5;125;1:*.mustache=38;5;125;1:*.coffee=38;5;074;1:*.java=38;5;074;1:*.js=38;5;074;1:*.mjs=38;5;074;1:*.jsm=38;5;074;1:*.jsp=38;5;074;1:*.php=38;5;81:*.ctp=38;5;81:*.twig=38;5;81:*.vb=38;5;81:*.vba=38;5;81:*.vbs=38;5;81:*Dockerfile=38;5;155:*.dockerignore=38;5;240:*Makefile=38;5;155:*MANIFEST=38;5;243:*pm_to_blib=38;5;240:*.nix=38;5;155:*.dhall=38;5;178:*.rake=38;5;155:*.am=38;5;242:*.in=38;5;242:*.hin=38;5;242:*.scan=38;5;242:*.m4=38;5;242:*.old=38;5;242:*.out=38;5;242:*.SKIP=38;5;244:*.diff=48;5;197;38;5;232:*.patch=48;5;197;38;5;232;1:*.bmp=38;5;97:*.dicom=38;5;97:*.tiff=38;5;97:*.tif=38;5;97:*.TIFF=38;5;97:*.cdr=38;5;97:*.flif=38;5;97:*.gif=38;5;97:*.icns=38;5;97:*.ico=38;5;97:*.jpeg=38;5;97:*.JPG=38;5;97:*.jpg=38;5;97:*.jxl=38;5;97:*.nth=38;5;97:*.png=38;5;97:*.psd=38;5;97:*.pxd=38;5;97:*.pxm=38;5;97:*.xpm=38;5;97:*.webp=38;5;97:*.ai=38;5;99:*.eps=38;5;99:*.epsf=38;5;99:*.drw=38;5;99:*.ps=38;5;99:*.svg=38;5;99:*.avi=38;5;114:*.divx=38;5;114:*.IFO=38;5;114:*.m2v=38;5;114:*.m4v=38;5;114:*.mkv=38;5;114:*.MOV=38;5;114:*.mov=38;5;114:*.mp4=38;5;114:*.mpeg=38;5;114:*.mpg=38;5;114:*.ogm=38;5;114:*.rmvb=38;5;114:*.sample=38;5;114:*.wmv=38;5;114:*.3g2=38;5;115:*.3gp=38;5;115:*.gp3=38;5;115:*.webm=38;5;115:*.gp4=38;5;115:*.asf=38;5;115:*.flv=38;5;115:*.ts=38;5;115:*.ogv=38;5;115:*.f4v=38;5;115:*.VOB=38;5;115;1:*.vob=38;5;115;1:*.ass=38;5;117:*.srt=38;5;117:*.ssa=38;5;117:*.sub=38;5;117:*.sup=38;5;117:*.vtt=38;5;117:*.3ga=38;5;137;1:*.S3M=38;5;137;1:*.aac=38;5;137;1:*.amr=38;5;137;1:*.au=38;5;137;1:*.caf=38;5;137;1:*.dat=38;5;137;1:*.dts=38;5;137;1:*.fcm=38;5;137;1:*.m4a=38;5;137;1:*.mod=38;5;137;1:*.mp3=38;5;137;1:*.mp4a=38;5;137;1:*.oga=38;5;137;1:*.ogg=38;5;137;1:*.opus=38;5;137;1:*.s3m=38;5;137;1:*.sid=38;5;137;1:*.wma=38;5;137;1:*.ape=38;5;136;1:*.aiff=38;5;136;1:*.cda=38;5;136;1:*.flac=38;5;136;1:*.alac=38;5;136;1:*.mid=38;5;136;1:*.midi=38;5;136;1:*.pcm=38;5;136;1:*.wav=38;5;136;1:*.wv=38;5;136;1:*.wvc=38;5;136;1:*.afm=38;5;66:*.fon=38;5;66:*.fnt=38;5;66:*.pfb=38;5;66:*.pfm=38;5;66:*.ttf=38;5;66:*.otf=38;5;66:*.woff=38;5;66:*.woff2=38;5;66:*.PFA=38;5;66:*.pfa=38;5;66:*.7z=38;5;40:*.a=38;5;40:*.arj=38;5;40:*.bz2=38;5;40:*.cpio=38;5;40:*.gz=38;5;40:*.lrz=38;5;40:*.lz=38;5;40:*.lzma=38;5;40:*.lzo=38;5;40:*.rar=38;5;40:*.s7z=38;5;40:*.sz=38;5;40:*.tar=38;5;40:*.tbz=38;5;40:*.tgz=38;5;40:*.warc=38;5;40:*.WARC=38;5;40:*.xz=38;5;40:*.z=38;5;40:*.zip=38;5;40:*.zipx=38;5;40:*.zoo=38;5;40:*.zpaq=38;5;40:*.zst=38;5;40:*.zstd=38;5;40:*.zz=38;5;40:*.apk=38;5;215:*.ipa=38;5;215:*.deb=38;5;215:*.rpm=38;5;215:*.jad=38;5;215:*.jar=38;5;215:*.ear=38;5;215:*.war=38;5;215:*.cab=38;5;215:*.pak=38;5;215:*.pk3=38;5;215:*.vdf=38;5;215:*.vpk=38;5;215:*.bsp=38;5;215:*.dmg=38;5;215:*.crx=38;5;215:*.xpi=38;5;215:*.iso=38;5;124:*.img=38;5;124:*.bin=38;5;124:*.nrg=38;5;124:*.qcow=38;5;124:*.fvd=38;5;124:*.sparseimage=38;5;124:*.toast=38;5;124:*.vcd=38;5;124:*.vdi=38;5;124:*.vhd=38;5;124:*.vhdx=38;5;124:*.vfd=38;5;124:*.vmdk=38;5;124:*.swp=38;5;244:*.swo=38;5;244:*.tmp=38;5;244:*.sassc=38;5;244:*.pacnew=38;5;33:*.un~=38;5;241:*.orig=38;5;241:*.BUP=38;5;241:*.bak=38;5;241:*.o=38;5;241:*core=38;5;241:*.mdump=38;5;241:*.rlib=38;5;241:*.dll=38;5;241:*.aria2=38;5;241:*.dump=38;5;241:*.stackdump=38;5;241:*.zcompdump=38;5;241:*.zwc=38;5;241:*.part=38;5;239:*.r[0-9]{0,2}=38;5;239:*.zx[0-9]{0,2}=38;5;239:*.z[0-9]{0,2}=38;5;239:*.pid=38;5;248:*.state=38;5;248:*lockfile=38;5;248:*lock=38;5;248:*.err=38;5;160;1:*.error=38;5;160;1:*.stderr=38;5;160;1:*.pcap=38;5;29:*.cap=38;5;29:*.dmp=38;5;29:*.allow=38;5;112:*.deny=38;5;196:*.service=38;5;45:*@.service=38;5;45:*.socket=38;5;45:*.swap=38;5;45:*.device=38;5;45:*.mount=38;5;45:*.automount=38;5;45:*.target=38;5;45:*.path=38;5;45:*.timer=38;5;45:*.snapshot=38;5;45:*.lnk=38;5;39:*.application=38;5;115:*.cue=38;5;115:*.description=38;5;115:*.directory=38;5;115:*.m3u=38;5;115:*.m3u8=38;5;115:*.md5=38;5;116:*.properties=38;5;116:*.sfv=38;5;116:*.theme=38;5;116:*.torrent=38;5;116:*.urlview=38;5;116:*.webloc=38;5;116:*.asc=38;5;192;3:*.bfe=38;5;192;3:*.enc=38;5;192;3:*.gpg=38;5;192;3:*.signature=38;5;192;3:*.sig=38;5;192;3:*.p12=38;5;192;3:*.pem=38;5;192;3:*.pgp=38;5;192;3:*.p7s=38;5;192;3:*id_dsa=38;5;192;3:*id_rsa=38;5;192;3:*id_ecdsa=38;5;192;3:*id_ed25519=38;5;192;3:*.32x=38;5;213:*.cdi=38;5;213:*.fm2=38;5;213:*.rom=38;5;213:*.sav=38;5;213:*.st=38;5;213:*.a00=38;5;213:*.a52=38;5;213:*.A64=38;5;213:*.a64=38;5;213:*.a78=38;5;213:*.adf=38;5;213:*.atr=38;5;213:*.gb=38;5;213:*.gba=38;5;213:*.gbc=38;5;213:*.gel=38;5;213:*.gg=38;5;213:*.ggl=38;5;213:*.ipk=38;5;213:*.j64=38;5;213:*.nds=38;5;213:*.nes=38;5;213:*.sms=38;5;213:*.8xp=38;5;121:*.8eu=38;5;121:*.82p=38;5;121:*.83p=38;5;121:*.8xe=38;5;121:*.stl=38;5;216:*.dwg=38;5;216:*.ply=38;5;216:*.wrl=38;5;216:*.xib=38;5;208:*.iml=38;5;166:*.DS_Store=38;5;239:*.localized=38;5;239:*.CFUserTextEncoding=38;5;239:*CodeResources=38;5;239:*PkgInfo=38;5;239:*.nib=38;5;57:*.car=38;5;57:*.dylib=38;5;241:*.entitlements=1:*.pbxproj=1:*.strings=1:*.storyboard=38;5;196:*.xcconfig=1:*.xcsettings=1:*.xcuserstate=1:*.xcworkspacedata=1:*.pot=38;5;7:*.pcb=38;5;7:*.mm=38;5;7:*.gbr=38;5;7:*.scm=38;5;7:*.xcf=38;5;7:*.spl=38;5;7:*.Rproj=38;5;11:*.sis=38;5;7:*.1p=38;5;7:*.3p=38;5;7:*.cnc=38;5;7:*.def=38;5;7:*.ex=38;5;7:*.example=38;5;7:*.feature=38;5;7:*.ger=38;5;7:*.ics=38;5;7:*.map=38;5;7:*.mf=38;5;7:*.mfasl=38;5;7:*.mi=38;5;7:*.mtx=38;5;7:*.pc=38;5;7:*.pi=38;5;7:*.plt=38;5;7:*.rdf=38;5;7:*.ru=38;5;7:*.sch=38;5;7:*.sty=38;5;7:*.sug=38;5;7:*.tdy=38;5;7:*.tfm=38;5;7:*.tfnt=38;5;7:*.tg=38;5;7:*.vcard=38;5;7:*.vcf=38;5;7:*.xln=38;5;7:
+LD_LIBRARY_PATH=/opt/cray/libfabric/2.3.1/lib64:/opt/cray/libfabric/default/lib64
+CSHRCREAD=true
+LDAPTLS_REQCERT=never
+HOSTTYPE=x86_64
+CRAY_DSMML_ROOTDIR=/opt/cray/pe/dsmml/0.3.1
+_ModuleTable017_=Z251LzEyLjAvb2ZpLzEuMC9jcmF5LW1waWNoLzguMC9jcmF5LWhkZjUtcGFyYWxsZWwvMS4xNC4zIgosICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9tcGkvZ251LzEyLjAvb2ZpLzEuMC9jcmF5LW1waWNoLzguMCIKLCAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29tbmV0L2dudS8xMi4wL29maS8xLjAiCiwgIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL21peF9jb21waWxlcnMiCiwgIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvbXBpbGVyL2dudS8xMi4wIgosICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9uZXQvb2ZpLzEuMCIKLCAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY3B1L3g4Ni1taWxhbi8xLjAi
+LMOD_FAMILY_CRAYPE_ACCEL=craype-accel-host
+CRAY_DSMML_DIR=/opt/cray/pe/dsmml/0.3.1/dsmml
+SLURM_NODEID=0
+SLURM_TASK_PID=404208
+__LMOD_REF_COUNT_PATH=/global/common/software/nersc9/cmake/3.30.2/bin:1;/opt/cray/pe/parallel-netcdf/1.12.3.13/bin:1;/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/bin:1;/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3/bin:1;/opt/cray/pe/hdf5/1.14.3.9/bin:1;/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/bin:1;/opt/cray/pe/mpich/8.1.30/bin:1;/opt/cray/pe/craype/2.7.32/bin:1;/opt/cray/pe/gcc-native/13/bin:1;/opt/nersc/pe/bin:1;/global/common/software/nersc/bin:1;/global/common/software/nersc9/sqs/2.0/bin:1;/opt/cray/libfabric/2.3.1/bin:1;/usr/local/bin:1;/usr/bin:1;/bin:1;/usr/lib/mit/bin:1;/usr/lib/mit/sbin:1;/opt/cray/pe/bin:1
+_ModuleTable002_=cmF5LW1waWNoIiwKbmV0Y2RmID0gImNyYXktbmV0Y2RmLWhkZjVwYXJhbGxlbCIsCnBhcmFsbGVsX25ldGNkZiA9ICJjcmF5LXBhcmFsbGVsLW5ldGNkZiIsCnBuZXRjZGYgPSAiY3JheS1wYXJhbGxlbC1uZXRjZGYiLAp9LAptVCA9IHsKWyJQcmdFbnYtZ251Il0gPSB7CmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvcmUvUHJnRW52LWdudS84LjUuMC5sdWEiLApmdWxsTmFtZSA9ICJQcmdFbnYtZ251LzguNS4wIiwKbG9hZE9yZGVyID0gOSwKcHJvcFQgPSB7CnR5cGVfID0gewpwcmdlbnYgPSAxLAp9LAp9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gIlByZ0Vudi1nbnUvOC41LjAiLAp3ViA9ICIwMDAwMDAwMDgu
+PE_MPICH_GTL_DIR_amd_gfx90a=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+PE_LIBSCI_OMP_REQUIRES= 
+SSH_CONNECTION=73.243.236.162 57481 128.55.126.5 22
+NERSC_FAMILY_CRAYPE_ACCEL_VERSION=false
+CRAY_NETCDF_HDF5PARALLEL_VERSION=4.9.0.13
+LESSCLOSE=lessclose.sh %s %s
+CRAY_LD_LIBRARY_PATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3/lib:/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3/lib:/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3/lib:/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/lib:/opt/cray/pe/mpich/8.1.30/gtl/lib:/opt/cray/pe/libsci/24.07.0/GNU/12.3/x86_64/lib:/opt/cray/pe/dsmml/0.3.1/dsmml/lib
+PE_NETCDF_HDF5PARALLEL_DIR=/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13
+NERSC_FAMILY_CRAYPE_ACCEL=craype-accel-host
+NERSC_FAMILY_NETCDF_VERSION=4.9.0.13
+SLURM_PRIO_PROCESS=0
+XKEYSYMDB=/usr/X11R6/lib/X11/XKeysymDB
+PE_ENV=GNU
+__LMOD_REF_COUNT_PE_DSMML_PKGCONFIG_LIBS=dsmml:1
+OMP_STACKSIZE=128M
+__LMOD_REF_COUNT_PE_FORTRAN_PKGCONFIG_LIBS=hdf5hl_fortran_parallel:1;hdf5_fortran_parallel:1;mpichf90:1
+LMOD_FAMILY_CRAYPE_CPU=craype-x86-milan
+GCC_PREFIX=/usr/lib64/gcc/x86_64-suse-linux/13
+CRAY_LMOD_COMPILER=gnu/12.0
+LMOD_MODULERCFILE=/opt/nersc/pe/etc/lmod/modulerc.lua
+CRAY_DSMML_PREFIX=/opt/cray/pe/dsmml/0.3.1/dsmml
+PE_PRODUCT_LIST=CRAYPE:CRAYPE_X86_MILAN:CRAY_ACCEL
+LMOD_IGNORE_CACHE=1
+LMOD_FAMILY_MPI_VERSION=8.1.30
+LIBGL_ALWAYS_INDIRECT=1
+PE_PERFTOOLS_MPICH_LIBDIR=/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/lib
+PE_MPICH_GTL_DIR_amd_gfx906=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+PE_LIBSCI_MODULE_NAME=cray-libsci/24.07.0
+I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS=--external-launcher
+LANG=en_US.UTF-8
+TZ=America/Los_Angeles
+LMOD_SYSTEM_NAME=perlmutter
+_ModuleTable019_=eS9wZS9tb2R1bGVmaWxlcy9Db3JlOi9vcHQvY3JheS9wZS9sbW9kL2xtb2QvbW9kdWxlZmlsZXMvQ29yZTovb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlOi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQ6L2dsb2JhbC9jb21tb24vc29mdHdhcmUvbmVyc2MvcGUvbW9kdWxlZmlsZXNfaG90Zml4ZXM6L29wdC9uZXJzYy9wZS9tb2R1bGVmaWxlczovb3B0L2NyYXkvbW9kdWxlZmlsZXMiLAp9Cg==
+SLURM_SUBMIT_DIR=/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2
+NERSC_FAMILY_PRGENV=PrgEnv-gnu
+PE_MPICH_GTL_DIR_amd_gfx908=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+NETCDF_DIR=/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3
+PE_DSMML_MODULE_NAME=cray-dsmml
+WINDOWMANAGER=xterm
+_ModuleTable008_=ewpmbiA9ICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9oZGY1LXBhcmFsbGVsL2dudS8xMi4wL29maS8xLjAvY3JheS1tcGljaC84LjAvY3JheS1oZGY1LXBhcmFsbGVsLzEuMTQuMy9jcmF5LW5ldGNkZi1oZGY1cGFyYWxsZWwvNC45LjAuMTMubHVhIiwKZnVsbE5hbWUgPSAiY3JheS1uZXRjZGYtaGRmNXBhcmFsbGVsLzQuOS4wLjEzIiwKbG9hZE9yZGVyID0gMTYsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3JheS1uZXRjZGYtaGRmNXBhcmFsbGVsLzQuOS4wLjEzIiwKd1YgPSAiXjAwMDAwMDA0LjAwMDAwMDAwOS4wMDAwMDAwMDAuMDAwMDAwMDEzLip6ZmluYWwiLAp9LApbImNyYXktcGFyYWxsZWwt
+MPICH_ENV_DISPLAY=1
+OMPI_MCA_plm_slurm_args=--external-launcher
+LESS=-M -I -R
+PE_MPICH_GTL_LIBS_nvidia70=-lmpi_gtl_cuda
+DISPLAY=login15:17.0
+LMOD_FAMILY_COMPILER_VERSION=13.2
+HOSTNAME=nid004511
+LMOD_SYSTEM_DEFAULT_MODULES=craype-x86-milan:craype-network-ofi:perftools-base:xpmem:PrgEnv-gnu:cpe:gpu:sqs:darshan
+OLDPWD=/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2
+CRAY_HDF5_PARALLEL_VERSION=1.14.3.9
+CSHEDIT=emacs
+SLURM_JOB_LICENSES=scratch:1
+HDF5_ROOT=/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3
+PNETCDF_PATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3
+ENVIRONMENT=BATCH
+OMP_PROC_BIND=spread
+GPG_TTY=/dev/pts/11
+BLA_VENDOR=Generic
+LMOD_CASE_INDEPENDENT_SORTING=yes
+LESS_ADVANCED_PREPROCESSOR=no
+__LMOD_REF_COUNT_PE_MPICH_GENCOMPILERS_GNU=12.3:1
+COLORTERM=1
+FPATH=/opt/cray/pe/lmod/lmod/init/ksh_funcs
+_ModuleTable007_=L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9tcGkvZ251LzEyLjAvb2ZpLzEuMC9jcmF5LW1waWNoLzguMFwiKSIsCn0sCmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NvbW5ldC9nbnUvMTIuMC9vZmkvMS4wL2NyYXktbXBpY2gvOC4xLjMwLmx1YSIsCmZ1bGxOYW1lID0gImNyYXktbXBpY2gvOC4xLjMwIiwKbG9hZE9yZGVyID0gMTQsCnByb3BUID0gewp0eXBlXyA9IHsKbXBpID0gMSwKfSwKfSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5LW1waWNoLzguMS4zMCIsCndWID0gIjAwMDAwMDAwOC4wMDAwMDAwMDEuMDAwMDAwMDMwLip6ZmluYWwiLAp9LApbImNyYXktbmV0Y2RmLWhkZjVwYXJhbGxlbCJdID0g
+NERSC_FAMILY_PARALLEL_NETCDF_VERSION=1.12.3.13
+PE_HDF5_PARALLEL_FORTRAN_PKGCONFIG_LIBS=hdf5hl_fortran_parallel:hdf5_fortran_parallel
+LMOD_FAMILY_CRAYPE_NETWORK=craype-network-ofi
+JAVA_HOME=/usr/lib64/jvm/java-11-openjdk-11
+NERSC_FAMILY_NETCDF=cray-netcdf-hdf5parallel
+LMOD_FAMILY_CRAYPE_VERSION=2.7.32
+PE_XPMEM_PKGCONFIG_LIBS=cray-xpmem
+CRAY_HDF5_PARALLEL_DIR=/opt/cray/pe/hdf5-parallel/1.14.3.9
+SLURM_PROCID=0
+LMOD_FAMILY_HDF5=cray-hdf5-parallel
+LMOD_FAMILY_GCC_COMPILER=gcc-native
+SLURM_JOB_GID=100603
+MACHTYPE=x86_64-suse-linux
+I_MPI_HYDRA_BOOTSTRAP=slurm
+LMOD_RC=/opt/nersc/pe/etc/lmod/lmodrc.lua
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/opt/cray/libfabric/2.3.1/lib64:1
+__LMOD_REF_COUNT_PKG_CONFIG_PATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3/lib/pkgconfig:1;/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3/lib/pkgconfig:1;/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3/lib/pkgconfig:1;/opt/cray/pe/craype/2.7.32/pkg-config:1;/opt/cray/pe/dsmml/0.3.1/dsmml/lib/pkgconfig:1;/opt/cray/libfabric/2.3.1/lib64/pkgconfig:1
+NERSC_FAMILY_CRAYPE=craype
+GNU_VERSION=13.2
+SLURMD_NODENAME=nid004511
+PE_PKGCONFIG_PRODUCTS=PE_PARALLEL_NETCDF:PE_NETCDF_HDF5PARALLEL:PE_MPICH:PE_LIBSCI:PE_DSMML:PE_XPMEM
+_ModuleTable015_=CmZuID0gIi9vcHQvY3JheS9tb2R1bGVmaWxlcy9saWJmYWJyaWMvMi4zLjEiLApmdWxsTmFtZSA9ICJsaWJmYWJyaWMvMi4zLjEiLApsb2FkT3JkZXIgPSAyLApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImxpYmZhYnJpYyIsCndWID0gIl4wMDAwMDAwMi4wMDAwMDAwMDMuMDAwMDAwMDAxLip6ZmluYWwiLAp9LApzcXMgPSB7CmZuID0gIi9vcHQvbmVyc2MvcGUvbW9kdWxlZmlsZXMvc3FzLzIuMC5sdWEiLApmdWxsTmFtZSA9ICJzcXMvMi4wIiwKbG9hZE9yZGVyID0gNywKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJzcXMiLAp3ViA9ICIwMDAwMDAwMDIu
+SLURM_JOB_END_TIME=1791118343
+CRAY_MPICH_BASEDIR=/opt/cray/pe/mpich/8.1.30/ofi
+HUGETLB_VERBOSE=0
+PE_MPICH_GTL_DIR_nvidia80=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+_ModuleTable004_=YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcGUiLAp3ViA9ICJeMDAwMDAwMjYuMDAwMDAwMDAzLip6ZmluYWwiLAp9LApbImNyYXktZHNtbWwiXSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9jcmF5LWRzbW1sLzAuMy4xLmx1YSIsCmZ1bGxOYW1lID0gImNyYXktZHNtbWwvMC4zLjEiLApsb2FkT3JkZXIgPSA4LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMSwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImNyYXktZHNtbWwiLAp3ViA9ICJeMDAwMDAwMDAuMDAwMDAwMDAzLjAwMDAwMDAwMS4qemZpbmFsIiwKfSwKWyJjcmF5LWhkZjUtcGFyYWxsZWwiXSA9IHsKYWN0aW9uQSA9IHsKInByZXBlbmRfcGF0aChcIk1PRFVM
+PE_LIBSCI_GENCOMPILERS_GNU_x86_64=12.3
+CRAY_HDF5_PARALLEL_PREFIX=/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3
+MINICOM=-c on
+SLURM_TASKS_PER_NODE=256(x24)
+MOAB_ROOT=/global/cfs/cdirs/e3sm/software/moab/gnu
+PRTE_MCA_plm_slurm_args=--external-launcher
+PE_MPICH_PKGCONFIG_VARIABLES=PE_MPICH_GTL_DIR_@accelerator@:PE_MPICH_GTL_LIBS_@accelerator@
+PE_MPICH_PKGCONFIG_LIBS=mpich
+OSTYPE=linux
+NERSC_FAMILY_LIBSCI=cray-libsci
+XDG_SESSION_ID=59682
+CRAY_DSMML_VER=0.3.1
+NERSC_FAMILY_HDF5_VERSION=1.14.3.9
+SLURM_NNODES=24
+USER=jsallen
+NERSC_FAMILY_HDF5=cray-hdf5-parallel
+PAGER=less
+NERSC_FAMILY_GCC_COMPILER=gcc-native
+NERSC_FAMILY_COMPILER_VERSION=13.2
+LMOD_FAMILY_PRGENV_VERSION=8.5.0
+LMOD_FAMILY_LIBSCI=cray-libsci
+MAN_POSIXLY_CORRECT=1
+_ModuleTable012_=aXZlIiwKdXNlck5hbWUgPSAiY3JheXBlLW5ldHdvcmstb2ZpIiwKd1YgPSAiTS4qemZpbmFsIiwKfSwKWyJjcmF5cGUteDg2LW1pbGFuIl0gPSB7CmFjdGlvbkEgPSB7CiJwcmVwZW5kX3BhdGgoXCJNT0RVTEVQQVRIXCIsXCIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jcHUveDg2LW1pbGFuLzEuMFwiKSIsCn0sCmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQvY3JheXBlLXg4Ni1taWxhbi5sdWEiLApmdWxsTmFtZSA9ICJjcmF5cGUteDg2LW1pbGFuIiwKbG9hZE9yZGVyID0gMSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5cGUteDg2LW1p
+PE_MPICH_GTL_LIBS_ponteVecchio=-lmpi_gtl_ze
+CRAY_CPU_TARGET=x86-milan
+PE_GCC_LEVEL=13
+PE_LIBSCI_VOLATILE_PRGENV=GNU
+SLURM_JOB_START_TIME=1791075143
+PKGCONFIG_ENABLED=1
+__LMOD_REF_COUNT_MODULEPATH=/opt/cray/pe/lmod/modulefiles/hdf5-parallel/gnu/12.0/ofi/1.0/cray-mpich/8.0/cray-hdf5-parallel/1.14.3:1;/opt/cray/pe/lmod/modulefiles/mpi/gnu/12.0/ofi/1.0/cray-mpich/8.0:4;/opt/cray/pe/lmod/modulefiles/comnet/gnu/12.0/ofi/1.0:1;/opt/cray/pe/lmod/modulefiles/mix_compilers:1;/opt/cray/pe/lmod/modulefiles/compiler/gnu/12.0:1;/opt/cray/pe/lmod/modulefiles/net/ofi/1.0:1;/opt/cray/pe/lmod/modulefiles/cpu/x86-milan/1.0:1;/opt/cray/pe/modulefiles/Linux:1;/opt/cray/pe/modulefiles/Core:1;/opt/cray/pe/lmod/lmod/modulefiles/Core:1;/opt/cray/pe/lmod/modulefiles/core:1;/opt/cray/pe/lmod/modulefiles/craype-targets/default:1;/global/common/software/nersc/pe/modulefiles_hotfixes:1;/opt/nersc/pe/modulefiles:1;/opt/cray/modulefiles:1
+MORE=-sl
+PE_FORTRAN_PKGCONFIG_LIBS=hdf5hl_fortran_parallel:hdf5_fortran_parallel:mpichf90
+__LMOD_REF_COUNT_CRAY_LD_LIBRARY_PATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3/lib:1;/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3/lib:1;/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3/lib:1;/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/lib:1;/opt/cray/pe/mpich/8.1.30/gtl/lib:1;/opt/cray/pe/libsci/24.07.0/GNU/12.3/x86_64/lib:1;/opt/cray/pe/dsmml/0.3.1/dsmml/lib:1
+GCC_VERSION=13.2
+CRAY_LIBSCI_BASE_DIR=/opt/cray/pe/libsci/24.07.0
+PWD=/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2
+PE_MPICH_GTL_DIR_ponteVecchio=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+PE_MPICH_GTL_DIR_nvidia70=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+CRAY_TCMALLOC_MEMFS_FORCE=1
+SLURM_JOB_NODELIST=nid[004511-004513,005771,006628-006631,006692-006695,006933-006936,007104-007107,007131-007134]
+HOME=/global/homes/j/jsallen
+SLURM_CLUSTER_NAME=perlmutter
+PELOCAL_PRGENV=true
+NERSC_HOST=perlmutter
+CMAKE_PREFIX_PATH=/global/common/software/nersc9/cmake/3.30.2
+PE_LIBSCI_REQUIRED_PRODUCTS=PE_MPICH
+Trilinos_ROOT=/global/common/software/e3sm/trilinos/15.1.1/gcc/11.2.0
+PE_MPICH_GTL_LIBS_amd_gfx942=-lmpi_gtl_hsa
+SLURM_NODELIST=nid[004511-004513,005771,006628-006631,006692-006695,006933-006936,007104-007107,007131-007134]
+LMOD_SYSHOST=perlmutter
+PE_MPICH_GTL_LIBS_amd_gfx940=-lmpi_gtl_hsa
+HOST=login15
+SSH_CLIENT=73.243.236.162 57481 22
+__LMOD_REF_COUNT_PE_GNU_FIXED_PKGCONFIG_PATH=/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/lib/pkgconfig:1
+__LMOD_REF_COUNT_LMOD_MODULERCFILE=/opt/cray/pe/cpe/26.03/modulerc.lua:1
+LMOD_VERSION=8.7.60
+XNLSPATH=/usr/X11R6/lib/X11/nls
+NERSC_FAMILY_MPI=cray-mpich
+PE_MPICH_FORTRAN_PKGCONFIG_LIBS=mpichf90
+MPICH_OFI_CXI_COUNTER_REPORT=0
+LMOD_FAMILY_HARDWARE_VERSION=1.0
+PE_LIBSCI_PKGCONFIG_LIBS=libsci_mpi:libsci
+NERSC_FAMILY_GCC_COMPILER_VERSION=13.2
+XDG_SESSION_TYPE=tty
+NERSC_LMOD_CONFIGDIR=/opt/nersc/pe/etc/lmod
+SDK_HOME=/usr/lib64/jvm/java-11-openjdk-11
+CRAY_LMOD_CPU=x86-milan/1.0
+PE_MPICH_GTL_LIBS_nvidia80=-lmpi_gtl_cuda
+PE_LIBSCI_OMP_REQUIRES_openmp=_mp
+LMOD_FAMILY_CRAYPE_CPU_VERSION=false
+NERSC_FAMILY_LIBSCI_VERSION=24.07.0
+SLURM_JOB_CPUS_PER_NODE=256(x24)
+GCC_PATH=/opt/cray/pe/gcc-native/13/bin
+BASH_ENV=/opt/cray/pe/lmod/lmod/init/bash
+XDG_DATA_DIRS=/usr/share
+__LMOD_REF_COUNT_PE_MPICH_FORTRAN_PKGCONFIG_LIBS=mpichf90:1
+SLURM_TOPOLOGY_ADDR=global.group30.nid004511
+MPICH_COLL_SYNC=MPI_Bcast
+LMOD_FAMILY_HDF5_VERSION=1.14.3.9
+LMOD_FAMILY_GCC_COMPILER_VERSION=13.2
+CRAY_LMOD_NET=ofi/1.0
+__LMOD_REF_COUNT_PE_PKGCONFIG_PRODUCTS=PE_PARALLEL_NETCDF:1;PE_NETCDF_HDF5PARALLEL:1;PE_MPICH:1;PE_LIBSCI:1;PE_DSMML:1;PE_XPMEM:1
+PE_MPICH_MODULE_NAME=cray-mpich
+LIBGL_DEBUG=quiet
+PNETCDF_DIR=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3
+MPICH_VERSION_DISPLAY=1
+GATOR_INITIAL_MB=4000MB
+LMOD_FAMILY_CRAYPE_ACCEL_VERSION=false
+PE_LIBSCI_VOLATILE_PKGCONFIG_PATH=/opt/cray/pe/libsci/24.07.0/@PRGENV@/@PE_LIBSCI_GENCOMPS@/@PE_LIBSCI_TARGET@/lib/pkgconfig
+JDK_HOME=/usr/lib64/jvm/java-11-openjdk-11
+__LMOD_REF_COUNT_PE_MPICH_FIXED_PRGENV=GNU:1
+CRAY_PARALLEL_NETCDF_PREFIX=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3
+PE_MPICH_GTL_DIR_amd_gfx940=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+PE_MPICH_GTL_DIR_amd_gfx942=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+FI_CXI_RX_MATCH_MODE=software
+SLURM_JOB_NAME=run.Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2
+PROFILEREAD=true
+TMPDIR=/tmp
+__LMOD_REF_COUNT_CMAKE_PREFIX_PATH=/global/common/software/nersc9/cmake/3.30.2:1
+LMOD_sys=Linux
+_ModuleTable010_=ZS9jcmF5cGUvMi43LjMyLmx1YSIsCmZ1bGxOYW1lID0gImNyYXlwZS8yLjcuMzIiLApsb2FkT3JkZXIgPSAxMywKcHJvcFQgPSB7CnR5cGVfID0gewpjb21waWxlciA9IDEsCn0sCn0sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY3JheXBlLzIuNy4zMiIsCndWID0gIjAwMDAwMDAwMi4wMDAwMDAwMDcuMDAwMDAwMDMyLip6ZmluYWwiLAp9LApbImNyYXlwZS1hY2NlbC1ob3N0Il0gPSB7CmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQvY3JheXBlLWFjY2VsLWhvc3QubHVhIiwKZnVsbE5hbWUgPSAiY3JheXBlLWFjY2VsLWhvc3QiLApsb2FkT3JkZXIgPSAxMiwKcHJvcFQgPSB7
+PE_PKGCONFIG_LIBS=hdf5_hl_parallel:hdf5_parallel:mpich:libsci_mpi:libsci:dsmml
+LID=59267875.261003-175224
+CRAY_ACCEL_TARGET=host
+SLURM_JOBID=59267875
+CMAKE_DIR=/global/common/software/nersc9/cmake/3.30.2
+PE_NETCDF_HDF5PARALLEL_CXX_PKGCONFIG_LIBS=netcdf-cxx4_parallel
+PE_NETCDF_HDF5PARALLEL_PKGCONFIG_LIBS=netcdf_parallel
+LMOD_FAMILY_PARALLEL_NETCDF_VERSION=1.12.3.13
+_ModuleTable001_=X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IGZhbHNlLApjX3Nob3J0VGltZSA9IGZhbHNlLApkZXB0aFQgPSB7fSwKZmFtaWx5ID0gewpQcmdFbnYgPSAiUHJnRW52LWdudSIsCmNvbXBpbGVyID0gImdjYy1uYXRpdmUiLApjcmF5cGUgPSAiY3JheXBlIiwKY3JheXBlX2FjY2VsID0gImNyYXlwZS1hY2NlbC1ob3N0IiwKY3JheXBlX2NwdSA9ICJjcmF5cGUteDg2LW1pbGFuIiwKY3JheXBlX25ldHdvcmsgPSAiY3JheXBlLW5ldHdvcmstb2ZpIiwKZ2NjX2NvbXBpbGVyID0gImdjYy1uYXRpdmUiLApoYXJkd2FyZSA9ICJncHUiLApoZGY1ID0gImNyYXktaGRmNS1wYXJhbGxlbCIsCmxpYnNjaSA9ICJjcmF5LWxpYnNjaSIsCm1waSA9ICJj
+LMOD_FAMILY_HARDWARE=gpu
+LOADEDMODULES=craype-x86-milan:libfabric/2.3.1:craype-network-ofi:xpmem/2.11.5-1.3_g73ade43320bc:cpe/26.03:gpu/1.0:sqs/2.0:cray-dsmml/0.3.1:PrgEnv-gnu/8.5.0:gcc-native/13.2:cray-libsci/24.07.0:craype-accel-host:craype/2.7.32:cray-mpich/8.1.30:cray-hdf5-parallel/1.14.3.9:cray-netcdf-hdf5parallel/4.9.0.13:cray-parallel-netcdf/1.12.3.13:cmake/3.30.2
+LMOD_AVAIL_STYLE=grouped:system
+CRAYPE_NETWORK_TARGET=ofi
+__LMOD_REF_COUNT_ACLOCAL_PATH=/global/common/software/nersc9/cmake/3.30.2/share/aclocal:1
+_ModuleTable006_=MDAwMS4wMDAwMDAwMTQuMDAwMDAwMDAzLjAwMDAwMDAwOS4qemZpbmFsIiwKfSwKWyJjcmF5LWxpYnNjaSJdID0gewpmbiA9ICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb21waWxlci9nbnUvMTIuMC9jcmF5LWxpYnNjaS8yNC4wNy4wLmx1YSIsCmZ1bGxOYW1lID0gImNyYXktbGlic2NpLzI0LjA3LjAiLApsb2FkT3JkZXIgPSAxMSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5LWxpYnNjaS8yNC4wNy4wIiwKd1YgPSAiMDAwMDAwMDI0LjAwMDAwMDAwNy4qemZpbmFsIiwKfSwKWyJjcmF5LW1waWNoIl0gPSB7CmFjdGlvbkEgPSB7CiJwcmVwZW5kX3BhdGgoXCJNT0RVTEVQQVRIXCIsXCIvb3B0
+__LMOD_REF_COUNT_MANPATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/share/man:1;/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/share/man:1;/opt/cray/pe/mpich/8.1.30/ofi/man:1;/opt/cray/pe/mpich/8.1.30/man/mpich:1;/opt/cray/pe/craype/2.7.32/man:1;/opt/cray/pe/libsci/24.07.0/share/man:1;/opt/cray/pe/dsmml/0.3.1/dsmml/man:1;/opt/cray/libfabric/2.3.1/share/man:1;/opt/cray/pe/lmod/lmod/share/man:1;/usr/local/man:1;/usr/share/man:1
+PE_PARALLEL_NETCDF_DIR=/opt/cray/pe/parallel-netcdf/1.12.3.13
+CFS=/global/cfs/cdirs
+SCRATCH=/pscratch/sd/j/jsallen
+HDF5_DIR=/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3
+_ModuleTable003_=MDAwMDAwMDA1Lip6ZmluYWwiLAp9LApjbWFrZSA9IHsKZm4gPSAiL29wdC9uZXJzYy9wZS9tb2R1bGVmaWxlcy9jbWFrZS8zLjMwLjIubHVhIiwKZnVsbE5hbWUgPSAiY21ha2UvMy4zMC4yIiwKbG9hZE9yZGVyID0gMTgsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiY21ha2UvMy4zMC4yIiwKd1YgPSAiMDAwMDAwMDAzLjAwMDAwMDAzMC4wMDAwMDAwMDIuKnpmaW5hbCIsCn0sCmNwZSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29yZS9jcGUvMjYuMDMubHVhIiwKZnVsbE5hbWUgPSAiY3BlLzI2LjAzIiwKbG9hZE9yZGVyID0gNSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0
+SLURM_JOB_QOS=regular_1
+LMOD_ROOT=/opt/cray/pe/lmod
+SLURM_TOPOLOGY_ADDR_PATTERN=switch.switch.node
+SSH_TTY=/dev/pts/11
+FROM_HEADER=
+CRAY_MPICH_ROOTDIR=/opt/cray/pe/mpich/8.1.30
+NERSC_PYMON_UUID=0b9ca947-86ce-4d80-95fa-a0b5b7e89bde
+_ModuleTable013_=bGFuIiwKd1YgPSAiTS4qemZpbmFsIiwKfSwKWyJnY2MtbmF0aXZlIl0gPSB7CmFjdGlvbkEgPSB7CgoicHJlcGVuZF9wYXRoKFwiTU9EVUxFUEFUSFwiLFwiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29tcGlsZXIvZ251LzEyLjBcIikiCiwgInByZXBlbmRfcGF0aChcIk1PRFVMRVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL21peF9jb21waWxlcnNcIikiLCAicHJlcGVuZF9wYXRoKFwiTU9EVUxFUEFUSFwiLFwiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29tbmV0L2dudS8xMi4wL29maS8xLjBcIikiLAp9LApmbiA9ICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlL2djYy1uYXRpdmUvMTMuMi5sdWEiLApmdWxs
+MOTD_SHOWN=pam
+MAIL=/var/spool/mail/jsallen
+SLURM_CPUS_ON_NODE=256
+NERSC_FAMILY_MPI_VERSION=8.1.30
+SLURM_JOB_NUM_NODES=24
+OMP_PLACES=threads
+_ModuleTable016_=KnpmaW5hbCIsCn0sCnhwbWVtID0gewpmbiA9ICIvb3B0L2NyYXkvbW9kdWxlZmlsZXMveHBtZW0vMi4xMS41LTEuM19nNzNhZGU0MzMyMGJjIiwKZnVsbE5hbWUgPSAieHBtZW0vMi4xMS41LTEuM19nNzNhZGU0MzMyMGJjIiwKbG9hZE9yZGVyID0gNCwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJ4cG1lbSIsCndWID0gIjAwMDAwMDAwMi4wMDAwMDAwMTEuMDAwMDAwMDA1Lip6ZmluYWwtLjAwMDAwMDAwMS4wMDAwMDAwMDMuKl8uKmcuMDAwMDAwMDczLiphZGUuMDAwMDQzMzIwLipiYy4qemZpbmFsIiwKfSwKfSwKbXBhdGhBID0gewoKIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2hkZjUtcGFyYWxsZWwv
+LESSKEY=/etc/lesskey.bin
+_ModuleTable009_=bmV0Y2RmIl0gPSB7CmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL21waS9nbnUvMTIuMC9vZmkvMS4wL2NyYXktbXBpY2gvOC4wL2NyYXktcGFyYWxsZWwtbmV0Y2RmLzEuMTIuMy4xMy5sdWEiLApmdWxsTmFtZSA9ICJjcmF5LXBhcmFsbGVsLW5ldGNkZi8xLjEyLjMuMTMiLApsb2FkT3JkZXIgPSAxNywKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5LXBhcmFsbGVsLW5ldGNkZi8xLjEyLjMuMTMiLAp3ViA9ICJeMDAwMDAwMDEuMDAwMDAwMDEyLjAwMDAwMDAwMy4wMDAwMDAwMTMuKnpmaW5hbCIsCn0sCmNyYXlwZSA9IHsKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvY29y
+TERM=xterm-256color
+SHELL=/bin/bash
+CRAY_PARALLEL_NETCDF_VERSION=1.12.3.13
+CRAY_MPICH_VER=8.1.30
+LMOD_ADMIN_FILE=/opt/nersc/pe/etc/lmod/admin.list
+XDG_SESSION_CLASS=user
+PE_MPICH_FIXED_PRGENV=GNU
+CRAY_NETCDF_HDF5PARALLEL_DIR=/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13
+CRAY_LIBSCI_PREFIX=/opt/cray/pe/libsci/24.07.0/GNU/12.3/x86_64
+LMOD_SITE_NAME=NERSC
+NERSC_FAMILY_COMPILER=gcc-native
+LMOD_FAMILY_PRGENV=PrgEnv-gnu
+SLURM_JOB_UID=100603
+_ModuleTable_Sz_=19
+CRAY_LIBSCI_VERSION=24.07.0
+FI_MR_CACHE_MONITOR=kdreg2
+SLURM_JOB_PARTITION=regular_milan_ss11
+MPICH_SMP_SINGLE_COPY_MODE=CMA
+LMOD_FAMILY_COMPILER=gcc-native
+SLURM_SCRIPT_CONTEXT=prolog_task
+_ModuleTable018_=CiwgIi9vcHQvY3JheS9wZS9tb2R1bGVmaWxlcy9MaW51eCIsICIvb3B0L2NyYXkvcGUvbW9kdWxlZmlsZXMvQ29yZSIKLCAiL29wdC9jcmF5L3BlL2xtb2QvbG1vZC9tb2R1bGVmaWxlcy9Db3JlIgosICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jb3JlIgosICIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9jcmF5cGUtdGFyZ2V0cy9kZWZhdWx0IgosICIvZ2xvYmFsL2NvbW1vbi9zb2Z0d2FyZS9uZXJzYy9wZS9tb2R1bGVmaWxlc19ob3RmaXhlcyIKLCAiL29wdC9uZXJzYy9wZS9tb2R1bGVmaWxlcyIsICIvb3B0L2NyYXkvbW9kdWxlZmlsZXMiLAp9LApzeXN0ZW1CYXNlTVBBVEggPSAiL29wdC9jcmF5L3BlL21vZHVsZWZpbGVzL0xpbnV4Oi9vcHQvY3Jh
+CRAY_DSMML_BASEDIR=/opt/cray/pe/dsmml/0.3.1
+NERSC_FAMILY_PNETCDF=cray-parallel-netcdf
+CIME_MODEL=e3sm
+CRAY_XPMEM_POST_LINK_OPTS=-L/usr/lib64
+PERL5LIB=/global/cfs/cdirs/e3sm/perl/lib/perl5-only-switch
+Albany_ROOT=/global/common/software/e3sm/albany/2024.03.26/gcc/11.2.0
+PE_MPICH_GENCOMPILERS_GNU=12.3
+LMOD_FAMILY_PNETCDF_VERSION=1.12.3.13
+SLURM_JOB_USER=jsallen
+SLURM_STEPMGR=nid004511
+ADIOS2_ROOT=/global/cfs/cdirs/e3sm/3rdparty/adios2/2.9.1/cray-mpich-8.1.25/gcc-11.2.0
+SHLVL=3
+SLURM_SUBMIT_HOST=login15
+CRAY_LIBSCI_PREFIX_DIR=/opt/cray/pe/libsci/24.07.0/GNU/12.3/x86_64
+PYTHONPATH=/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cime:/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cime/CIME/Tools
+G_FILENAME_ENCODING=@locale,UTF-8,ISO-8859-15,CP1252
+SLURM_JOB_ACCOUNT=m2637
+ACLOCAL_PATH=/global/common/software/nersc9/cmake/3.30.2/share/aclocal
+PE_HDF5_PARALLEL_DIR=/opt/cray/pe/hdf5-parallel/1.14.3.9
+NCCL_NET_GDR_LEVEL=PHB
+MANPATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/share/man:/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/share/man:/opt/cray/pe/mpich/8.1.30/ofi/man:/opt/cray/pe/mpich/8.1.30/man/mpich:/opt/cray/pe/craype/2.7.32/man:/opt/cray/pe/libsci/24.07.0/share/man:/opt/cray/pe/dsmml/0.3.1/dsmml/man:/opt/cray/libfabric/2.3.1/share/man:/opt/cray/pe/lmod/lmod/share/man:/usr/local/man:/usr/share/man
+NERSC_FAMILY_CRAYPE_VERSION=2.7.32
+CRAY_DSMML_VERSION=0.3.1
+MPICH_DIR=/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3
+HYDRA_BOOTSTRAP=slurm
+PE_MPICH_GTL_LIBS_nvidia90=-lmpi_gtl_cuda
+PE_HDF5_PARALLEL_PKGCONFIG_LIBS=hdf5_hl_parallel:hdf5_parallel
+PE_PARALLEL_NETCDF_PKGCONFIG_LIBS=pnetcdf
+LMOD_FAMILY_NETCDF=cray-netcdf-hdf5parallel
+MODULEPATH=/opt/cray/pe/lmod/modulefiles/hdf5-parallel/gnu/12.0/ofi/1.0/cray-mpich/8.0/cray-hdf5-parallel/1.14.3:/opt/cray/pe/lmod/modulefiles/mpi/gnu/12.0/ofi/1.0/cray-mpich/8.0:/opt/cray/pe/lmod/modulefiles/comnet/gnu/12.0/ofi/1.0:/opt/cray/pe/lmod/modulefiles/mix_compilers:/opt/cray/pe/lmod/modulefiles/compiler/gnu/12.0:/opt/cray/pe/lmod/modulefiles/net/ofi/1.0:/opt/cray/pe/lmod/modulefiles/cpu/x86-milan/1.0:/opt/cray/pe/modulefiles/Linux:/opt/cray/pe/modulefiles/Core:/opt/cray/pe/lmod/lmod/modulefiles/Core:/opt/cray/pe/lmod/modulefiles/core:/opt/cray/pe/lmod/modulefiles/craype-targets/default:/global/common/software/nersc/pe/modulefiles_hotfixes:/opt/nersc/pe/modulefiles:/opt/cray/modulefiles
+CIMEROOT=/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cime
+CRAY_MPICH_DIR=/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3
+SLURM_GTIDS=0
+LMOD_FAMILY_CRAYPE=craype
+LOGNAME=jsallen
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/100603/bus
+CRAY_MPICH_VERSION=8.1.30
+XDG_RUNTIME_DIR=/run/user/100603
+CRAY_NETCDF_HDF5PARALLEL_PREFIX=/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3
+NERSC_FAMILY_PNETCDF_VERSION=1.12.3.13
+MODULEPATH_ROOT=/opt/cray/pe/modulefiles
+LMOD_PACKAGE_PATH=/opt/nersc/pe/etc/lmod/sitepackages
+PSCRATCH=/pscratch/sd/j/jsallen
+PE_MPICH_GTL_LIBS_amd_gfx906=-lmpi_gtl_hsa
+PE_DSMML_PKGCONFIG_LIBS=dsmml
+JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
+PE_LIBSCI_PKGCONFIG_VARIABLES=PE_LIBSCI_OMP_REQUIRES_@openmp@:PE_SCI_EXT_LIBPATH:PE_SCI_EXT_LIBNAME
+MPICH_MPIIO_DVS_MAXNODES=1
+LMOD_FAMILY_PNETCDF=cray-parallel-netcdf
+XDG_CONFIG_DIRS=/etc/xdg
+PATH=/global/common/software/nersc9/cmake/3.30.2/bin:/opt/cray/pe/parallel-netcdf/1.12.3.13/bin:/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/bin:/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3/bin:/opt/cray/pe/hdf5/1.14.3.9/bin:/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/bin:/opt/cray/pe/mpich/8.1.30/bin:/opt/cray/pe/craype/2.7.32/bin:/opt/cray/pe/gcc-native/13/bin:/opt/nersc/pe/bin:/global/common/software/nersc/bin:/global/common/software/nersc9/sqs/2.0/bin:/opt/cray/libfabric/2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/cray/pe/bin
+PE_MPICH_GTL_LIBS_amd_gfx908=-lmpi_gtl_hsa
+_ModuleTable014_=TmFtZSA9ICJnY2MtbmF0aXZlLzEzLjIiLApsb2FkT3JkZXIgPSAxMCwKcHJvcFQgPSB7CnR5cGVfID0gewpjb21waWxlciA9IDEsCn0sCn0sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiZ2NjLW5hdGl2ZS8xMy4yIiwKd1YgPSAiMDAwMDAwMDEzLjAwMDAwMDAwMi4qemZpbmFsIiwKfSwKZ3B1ID0gewpmbiA9ICIvb3B0L25lcnNjL3BlL21vZHVsZWZpbGVzL2dwdS8xLjAubHVhIiwKZnVsbE5hbWUgPSAiZ3B1LzEuMCIsCmxvYWRPcmRlciA9IDYsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0aXZlIiwKdXNlck5hbWUgPSAiZ3B1IiwKd1YgPSAiMDAwMDAwMDAxLip6ZmluYWwiLAp9LApsaWJmYWJyaWMgPSB7
+SLURM_JOB_ID=59267875
+JAVA_BINDIR=/usr/lib64/jvm/java-11-openjdk-11/bin
+PE_MPICH_GTL_DIR_nvidia90=-L/opt/cray/pe/mpich/8.1.30/gtl/lib
+__LMOD_REF_COUNT_PE_PRODUCT_LIST=CRAYPE:1;CRAYPE_X86_MILAN:1;CRAY_ACCEL:1
+_LMFILES_=/opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-x86-milan.lua:/opt/cray/modulefiles/libfabric/2.3.1:/opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-network-ofi.lua:/opt/cray/modulefiles/xpmem/2.11.5-1.3_g73ade43320bc:/opt/cray/pe/lmod/modulefiles/core/cpe/26.03.lua:/opt/nersc/pe/modulefiles/gpu/1.0.lua:/opt/nersc/pe/modulefiles/sqs/2.0.lua:/opt/cray/pe/lmod/modulefiles/core/cray-dsmml/0.3.1.lua:/opt/cray/pe/lmod/modulefiles/core/PrgEnv-gnu/8.5.0.lua:/opt/cray/pe/lmod/modulefiles/core/gcc-native/13.2.lua:/opt/cray/pe/lmod/modulefiles/compiler/gnu/12.0/cray-libsci/24.07.0.lua:/opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-accel-host.lua:/opt/cray/pe/lmod/modulefiles/core/craype/2.7.32.lua:/opt/cray/pe/lmod/modulefiles/comnet/gnu/12.0/ofi/1.0/cray-mpich/8.1.30.lua:/opt/cray/pe/lmod/modulefiles/mpi/gnu/12.0/ofi/1.0/cray-mpich/8.0/cray-hdf5-parallel/1.14.3.9.lua:/opt/cray/pe/lmod/modulefiles/hdf5-parallel/gnu/12.0/ofi/1.0/cray-mpich/8.0/cray-hdf5-parallel/1.14.3/cray-netcdf-hdf5parallel/4.9.0.13.lua:/opt/cray/pe/lmod/modulefiles/mpi/gnu/12.0/ofi/1.0/cray-mpich/8.0/cray-parallel-netcdf/1.12.3.13.lua:/opt/nersc/pe/modulefiles/cmake/3.30.2.lua
+LMOD_FAMILY_LIBSCI_VERSION=24.07.0
+NERSC_FAMILY_PRGENV_VERSION=8.5.0
+NETCDF_PATH=/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3
+MODULESHOME=/opt/cray/pe/lmod/lmod
+PKG_CONFIG_PATH=/opt/cray/pe/parallel-netcdf/1.12.3.13/gnu/12.3/lib/pkgconfig:/opt/cray/pe/netcdf-hdf5parallel/4.9.0.13/gnu/12.3/lib/pkgconfig:/opt/cray/pe/hdf5-parallel/1.14.3.9/gnu/12.3/lib/pkgconfig:/opt/cray/pe/craype/2.7.32/pkg-config:/opt/cray/pe/dsmml/0.3.1/dsmml/lib/pkgconfig:/opt/cray/libfabric/2.3.1/lib64/pkgconfig
+LMOD_SETTARG_FULL_SUPPORT=no
+LMOD_CACHED_LOADS=no
+G_BROKEN_FILENAMES=1
+_ModuleTable011_=fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjcmF5cGUtYWNjZWwtaG9zdCIsCndWID0gIk0uKnpmaW5hbCIsCn0sClsiY3JheXBlLW5ldHdvcmstb2ZpIl0gPSB7CmFjdGlvbkEgPSB7CiJwcmVwZW5kX3BhdGgoXCJNT0RVTEVQQVRIXCIsXCIvb3B0L2NyYXkvcGUvbG1vZC9tb2R1bGVmaWxlcy9uZXQvb2ZpLzEuMFwiKSIsCn0sCmZuID0gIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2NyYXlwZS10YXJnZXRzL2RlZmF1bHQvY3JheXBlLW5ldHdvcmstb2ZpLmx1YSIsCmZ1bGxOYW1lID0gImNyYXlwZS1uZXR3b3JrLW9maSIsCmxvYWRPcmRlciA9IDMsCnByb3BUID0ge30sCnN0YWNrRGVwdGggPSAwLApzdGF0dXMgPSAiYWN0
+PE_GNU_FIXED_PKGCONFIG_PATH=/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3/lib/pkgconfig
+PE_MPICH_GTL_LIBS_amd_gfx90a=-lmpi_gtl_hsa
+NCCL_SOCKET_IFNAME=hsn
+HISTSIZE=1000
+CRAYPE_DIR=/opt/cray/pe/craype/2.7.32
+LMOD_PKG=/opt/cray/pe/lmod/lmod
+__LMOD_REF_COUNT_PE_MPICH_PKGCONFIG_LIBS=mpich:1
+CASEROOT=/pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2
+NERSC_FAMILY_PARALLEL_NETCDF=cray-parallel-netcdf
+PE_NETCDF_HDF5PARALLEL_FORTRAN_PKGCONFIG_LIBS=netcdf-fortran_parallel
+LMOD_FAMILY_PARALLEL_NETCDF=cray-parallel-netcdf
+HDF5_USE_FILE_LOCKING=FALSE
+__LMOD_REF_COUNT_PE_PKGCONFIG_LIBS=hdf5_hl_parallel:1;hdf5_parallel:1;mpich:1;libsci_mpi:1;libsci:1;dsmml:1
+CPU=x86_64
+SLURM_OOM_KILL_STEP=0
+LMOD_FAMILY_NETCDF_VERSION=4.9.0.13
+CRAYPE_VERSION=2.7.32
+_ModuleTable005_=RVBBVEhcIixcIi9vcHQvY3JheS9wZS9sbW9kL21vZHVsZWZpbGVzL2hkZjUtcGFyYWxsZWwvZ251LzEyLjAvb2ZpLzEuMC9jcmF5LW1waWNoLzguMC9jcmF5LWhkZjUtcGFyYWxsZWwvMS4xNC4zXCIpIiwKfSwKZm4gPSAiL29wdC9jcmF5L3BlL2xtb2QvbW9kdWxlZmlsZXMvbXBpL2dudS8xMi4wL29maS8xLjAvY3JheS1tcGljaC84LjAvY3JheS1oZGY1LXBhcmFsbGVsLzEuMTQuMy45Lmx1YSIsCmZ1bGxOYW1lID0gImNyYXktaGRmNS1wYXJhbGxlbC8xLjE0LjMuOSIsCmxvYWRPcmRlciA9IDE1LApwcm9wVCA9IHt9LApzdGFja0RlcHRoID0gMCwKc3RhdHVzID0gImFjdGl2ZSIsCnVzZXJOYW1lID0gImNyYXktaGRmNS1wYXJhbGxlbC8xLjE0LjMuOSIsCndWID0gIjAwMDAw
+LMOD_CMD=/opt/cray/pe/lmod/lmod/libexec/lmod
+SLURM_LOCALID=0
+CRAY_MPICH_PREFIX=/opt/cray/pe/mpich/8.1.30/ofi/gnu/12.3
+PE_GCC_EXTERNAL=native
+LESSOPEN=lessopen.sh %s
+OMP_NUM_THREADS=1
+CRAY_PARALLEL_NETCDF_DIR=/opt/cray/pe/parallel-netcdf/1.12.3.13
+CRAY_XPMEM_INCLUDE_OPTS=-I/usr/include
+PE_LIBSCI_GENCOMPS_GNU_x86_64=123
+LMOD_DIR=/opt/cray/pe/lmod/lmod/libexec
+LMOD_FAMILY_MPI=cray-mpich
+BASH_FUNC_module%%=() {  if [ -z "${LMOD_SH_DBG_ON+x}" ]; then
+ case "$-" in 
+ *v*x*)
+ __lmod_sh_dbg='vx'
+ ;;
+ *v*)
+ __lmod_sh_dbg='v'
+ ;;
+ *x*)
+ __lmod_sh_dbg='x'
+ ;;
+ esac;
+ fi;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ set +$__lmod_sh_dbg;
+ echo "Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output" 1>&2;
+ fi;
+ eval "$($LMOD_CMD shell "$@")" && eval "$(${LMOD_SETTARG_CMD:-:} -s sh)";
+ __lmod_my_status=$?;
+ if [ -n "${__lmod_sh_dbg:-}" ]; then
+ echo "Shell debugging restarted" 1>&2;
+ set -$__lmod_sh_dbg;
+ fi;
+ unset __lmod_sh_dbg;
+ return $__lmod_my_status
+}
+BASH_FUNC_load_nco%%=() {  module load e4s && spack env activate gcc && spack load nco && module load gpu
+}
+BASH_FUNC_load_ncl%%=() {  module load e4s && spack env activate gcc && spack load --only package ncl
+}
+BASH_FUNC_load_cdo%%=() {  module load e4s && spack env activate -V gcc && spack load cdo
+}
+BASH_FUNC_ml%%=() {  eval "$($LMOD_DIR/ml_cmd "$@")"
+}
+_=/usr/bin/env

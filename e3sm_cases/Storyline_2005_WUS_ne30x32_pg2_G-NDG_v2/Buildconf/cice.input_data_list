@@ -1,0 +1,5 @@
+stream_fldfilename = /pscratch/sd/j/jsallen/betacast/grids/sst_reynolds_daily_180x360_1982_2024_timeseries.nc
+stream_domfilename = /pscratch/sd/j/jsallen/betacast/grids/domains/domain.ocn.180x360.nc
+fsnowoptics = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc
+kmt_file = /global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/domains/domain.ocn.SnowEater_WUS_30x32_pg2_oRRS15to5.250118.nc
+grid_file = /global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/domains/domain.ocn.SnowEater_WUS_30x32_pg2_oRRS15to5.250118.nc

@@ -1,0 +1,21 @@
+&comp_inparm 
+
+ atm_gustiness = .true. 
+
+do_transient_pfts = .false.
+
+hist_avgflag_pertape='A','I'
+
+hist_nhtfrq = 0,-1
+
+hist_mfilt = 1,24
+
+hist_fincl2 = 'FSNO','H2OSNO','H2OSNO_TOP','QSNOMELT','QSNOFRZ','SNOW','SNOWDP','SNOWLIQ','SNOTTOPL','ERRH2OSNO','QSNWCPICE','FGR','FSM','QDRIP','ZBOT','TG','TV','TSA','SWup','SWdown','FIRA','FIRE','LWdown','LWup','TREFMNAV','TREFMXAV','Q2M','FPSN','FSH','Rnet','TLAI','FCTR','QOVER','RH','RH2M','SOILWATER_10CM','ZWT','TSOI_10CM','QSOIL','QVEGE','QVEGT','QTOPSOIL','Qstor','H2OCAN','H2OSFC','QH2OSFC','TWS','HC','SNOdTdzL','SNOW_SINKS','SNOW_SOURCES','SNOLIQFL','TH2OSFC','U10','QFLOOD','QRUNOFF','Qle','Qh','Qair','Tair','RAIN','SNO_Z','SNO_T','H2OSOI','SOILICE','SOILLIQ','TSOI'
+
+finidat = '/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/I_spinup_storyline_WUS_ne30_pg2_20051218_036_01/run/landstart/I_spinup_storyline_WUS_ne30_pg2_20051218_036_01.elm.r.2005-12-18-00000.nc'
+
+check_finidat_fsurdat_consistency = .false.
+
+check_finidat_pct_consistency = .false.
+
+/ 

@@ -1,0 +1,48 @@
+2026-10-03 07:53:07: ./create_newcase --case /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/cases/Storyline_2019_WUS_ne30_pg2_G-NDG_v2 --compset F2010-CICE --res ne30_g16 --mach pm-cpu --project m2637 --compiler=gnu
+ ---------------------------------------------------
+2026-10-03 07:53:07: Compset longname is 2010_EAM%CMIP6_ELM%SPBC_CICE%PRES_DOCN%DOM_SROF_SGLC_SWAV_SIAC_SESP
+ ---------------------------------------------------
+2026-10-03 07:53:07: Compset specification file is /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/eam//cime_config/config_compsets.xml
+ ---------------------------------------------------
+2026-10-03 07:53:07: Pes     specification file is /pscratch/sd/j/jsallen/E3SM-v3.0.2-fresh/components/eam/cime_config/config_pes.xml
+ ---------------------------------------------------
+2026-10-03 07:53:07: Forcing is 
+ ---------------------------------------------------
+2026-10-03 07:53:07: Using None coupler instances
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component ATM is EAM with complete set of E3SM atmospheric mods for V3 (80 layers, P3, ZM  with convective microphysics, chemUCI, Linozv3, MAM5 and VBS SOA): CMIP6 forcings:
+ ---------------------------------------------------
+2026-10-03 07:53:07: ATM_GRID is ne30np4
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component LND is ELM with :Satellite phenology :Satellite phenology with black carbon deposition :
+ ---------------------------------------------------
+2026-10-03 07:53:07: LND_GRID is ne30np4
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component ICE is prescribed cice:
+ ---------------------------------------------------
+2026-10-03 07:53:07: ICE_GRID is gx1v6
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component OCN is DOCN   prescribed ocean mode
+ ---------------------------------------------------
+2026-10-03 07:53:07: OCN_GRID is gx1v6
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component ROF is Stub river component
+ ---------------------------------------------------
+2026-10-03 07:53:07: ROF_GRID is null
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component GLC is Stub glacier (land ice) component
+ ---------------------------------------------------
+2026-10-03 07:53:07: GLC_GRID is null
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component WAV is Stub wave component
+ ---------------------------------------------------
+2026-10-03 07:53:07: WAV_GRID is null
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component IAC is Stub iac component
+ ---------------------------------------------------
+2026-10-03 07:53:07: IAC_GRID is null
+ ---------------------------------------------------
+2026-10-03 07:53:07: Component ESP is Stub external system processing (ESP) component
+ ---------------------------------------------------
+2026-10-03 07:53:08: ESP_GRID is None
+ ---------------------------------------------------

@@ -1,0 +1,13 @@
+&modelio
+  diri = "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2/bld/rof"
+  diro = "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2/run"
+  logfile = "rof.log.58754720.260922-112859"
+/
+&pio_inparm
+  pio_netcdf_format = "64bit_data"
+  pio_numiotasks = -99
+  pio_rearranger = 1
+  pio_root = 0
+  pio_stride = 128
+  pio_typename = "pnetcdf"
+/

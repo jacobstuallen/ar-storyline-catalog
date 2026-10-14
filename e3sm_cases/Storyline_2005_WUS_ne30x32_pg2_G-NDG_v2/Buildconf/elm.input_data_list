@@ -1,0 +1,8 @@
+stream_fldfilename_lai = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/lai_streams/MODISPFTLAI_0.5x0.5_c140711.nc
+paramfile = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/paramdata/clm_params_c180301.nc
+fsoilordercon = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/paramdata/CNP_parameters_c131108.nc
+fatmlndfrc = /global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/domains/domain.lnd.SnowEater_WUS_30x32_pg2_oRRS15to5.250118.nc
+fsnowaging = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/snicardata/snicar_drdt_bst_fit_60_c070416.nc
+fsurdat = /global/cfs/cdirs/m2637/E3SM_SCREAM_files/fsurdat/surfdata_SnowEater_WUS_30x32_pg2_simyr2010_c250307.nc
+finidat = /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/I_spinup_storyline_WUS_30x32_pg2_20051218_036_01/run/landstart/I_spinup_storyline_WUS_30x32_pg2_20051218_036_01.elm.r.2005-12-18-00000.nc
+fsnowoptics = /global/cfs/cdirs/e3sm/inputdata/lnd/clm2/snicardata/snicar_optics_5bnd_mam_c160322.nc
