@@ -31,7 +31,7 @@ EVENTS = [
 ]
 
 PER_EVENT = [                      # run in this order (overlay needs the netCDFs)
-    "build_comparison_nc.py",
+    #"build_comparison_nc.py",
     "plot_multicase_overlay.py",
     "plot_accum_precip.py",
     "plot_max_precip.py",
