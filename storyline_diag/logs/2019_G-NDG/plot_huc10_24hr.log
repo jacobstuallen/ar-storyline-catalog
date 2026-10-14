@@ -1,0 +1,53 @@
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+24-hr window: 2019-02-26 08:00:00 to 2019-02-27 08:00:00 UTC, per-watershed stat: max
+Reading HUC-10 watersheds ...
+Reading AORC ...
+    1/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2 ...
+    171/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2 ...
+    14/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2 ...
+    4/506 polygons had no points inside; nearest point used.
+
+Watersheds with 24-hr max >= 5 in:
+  AORC: 55
+      1801011005  Dry Creek                           12.9 in
+      1801011008  Austin Creek                        12.5 in
+      1801010901  Gualala River                       11.7 in
+      1801011009  Lower Russian River                 10.3 in
+      1801010902  Salmon Creek-Frontal Pacific Ocean  9.5 in
+      1802015401  Clear Creek                         9.5 in
+      1802015403  Churn Creek-Sacramento River        9.3 in
+      1802000504  Sacramento River Arm-Shasta Lake    9.0 in
+      1802011603  Kelsey Creek-Clear Lake             8.4 in
+      1801011006  Middle Russian River                8.3 in
+  E3SM ~14 km: 5
+      1802012106  Middle North Fork Feather River     6.1 in
+      1802012108  Lower North Fork Feather River      6.1 in
+      1802012307  Lower Middle Fork Feather River     5.6 in
+      1802012306  South Fork Feather River            5.6 in
+      1802015803  Angel Slough                        5.1 in
+  E3SM ~7 km: 25
+      1802012504  Lower North Yuba River              6.8 in
+      1802012307  Lower Middle Fork Feather River     6.3 in
+      1801010805  Garcia River                        6.0 in
+      1802012503  Middle North Yuba River             6.0 in
+      1802015802  Middle Butte Creek                  5.9 in
+      1802012106  Middle North Fork Feather River     5.8 in
+      1802012108  Lower North Fork Feather River      5.8 in
+      1801011008  Austin Creek                        5.8 in
+      1801010901  Gualala River                       5.8 in
+      1802012306  South Fork Feather River            5.8 in
+  E3SM ~3.5 km: 55
+      1801011003  Big Sulphur Creek                   8.4 in
+      1802016203  Upper Putah Creek                   7.9 in
+      1802012107  West Branch Feather River           7.8 in
+      1802015802  Middle Butte Creek                  7.7 in
+      1802012106  Middle North Fork Feather River     7.6 in
+      1802012307  Lower Middle Fork Feather River     7.3 in
+      1801011008  Austin Creek                        7.3 in
+      1802012504  Lower North Yuba River              6.8 in
+      1801010702  Mattole River                       6.8 in
+      1801010805  Garcia River                        6.8 in
+Written: plots/2019_G-NDG/huc10_24hr_20190226.png

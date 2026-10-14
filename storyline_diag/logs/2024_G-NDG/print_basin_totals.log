@@ -1,0 +1,28 @@
+Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+Storm window: 2024-11-19 08:00:00 to 2024-11-23 08:00:00 UTC
+
+Russian: 1 WBDHU8 polygon(s) matched:
+    18010110  Russian
+
+Napa: 1 WBDHU10 polygon(s) matched:
+    1805000202  Napa River
+
+Reading AORC ...
+Reading E3SM: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2 ...
+
+Storm totals, 2024-11-19 08:00 to 2024-11-23 08:00 UTC
+Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
+------------------------------------------------------------------------------
+Russian   AORC                        13.7      25.6   38.533  -123.134   5745
+Russian   E3SM ~14 km                  9.5      11.7   38.744  -122.972      9
+Russian   E3SM ~7 km                   9.3      16.5   38.862  -123.168     36
+Russian   E3SM ~3.5 km                 9.0      24.1   38.613  -123.101    146
+
+Napa      AORC                        11.5      16.3   38.658  -122.617    807
+Napa      E3SM ~14 km                  6.5       6.5   38.428  -122.449      1
+Napa      E3SM ~7 km                   5.1       6.7   38.560  -122.527      3
+Napa      E3SM ~3.5 km                 5.1       8.0   38.626  -122.567     20
+
+Written: plots/2024_G-NDG/basin_storm_totals.csv

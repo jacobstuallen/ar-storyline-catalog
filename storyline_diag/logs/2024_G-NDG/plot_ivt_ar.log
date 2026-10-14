@@ -1,0 +1,21 @@
+Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+Reading E3SM TUQ/TVQ: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM TUQ/TVQ: Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM TUQ/TVQ: Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2 ...
+  Lake_Mendocino / E3SM ~14 km: max 847, 114 hr > 250, AR5
+  Lake_Mendocino / E3SM ~7 km: max 874, 123 hr > 250, AR5
+  Lake_Mendocino / E3SM ~3.5 km: max 851, 117 hr > 250, AR5
+  Lake_Sonoma / E3SM ~14 km: max 837, 123 hr > 250, AR5
+  Lake_Sonoma / E3SM ~7 km: max 844, 132 hr > 250, AR5
+  Lake_Sonoma / E3SM ~3.5 km: max 774, 120 hr > 250, AR5
+  Guerneville / E3SM ~14 km: max 858, 126 hr > 250, AR5
+  Guerneville / E3SM ~7 km: max 878, 141 hr > 250, AR5
+  Guerneville / E3SM ~3.5 km: max 821, 123 hr > 250, AR5
+  Santa_Rosa_Creek_Downtown / E3SM ~14 km: max 827, 132 hr > 250, AR5
+  Santa_Rosa_Creek_Downtown / E3SM ~7 km: max 852, 135 hr > 250, AR5
+  Santa_Rosa_Creek_Downtown / E3SM ~3.5 km: max 822, 123 hr > 250, AR5
+  Laguna_de_Santa_Rosa / E3SM ~14 km: max 827, 132 hr > 250, AR5
+  Laguna_de_Santa_Rosa / E3SM ~7 km: max 852, 135 hr > 250, AR5
+  Laguna_de_Santa_Rosa / E3SM ~3.5 km: max 821, 126 hr > 250, AR5
+Written: plots/2024_G-NDG/ivt_ar_timeseries.png
+Written: plots/2024_G-NDG/ivt_ar_peakmap.png

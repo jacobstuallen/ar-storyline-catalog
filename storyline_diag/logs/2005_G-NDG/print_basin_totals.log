@@ -1,0 +1,28 @@
+Event config: config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
+Storm window: 2005-12-24 08:00:00 to 2006-01-03 08:00:00 UTC
+
+Russian: 1 WBDHU8 polygon(s) matched:
+    18010110  Russian
+
+Napa: 1 WBDHU10 polygon(s) matched:
+    1805000202  Napa River
+
+Reading AORC ...
+Reading E3SM: Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2 ...
+
+Storm totals, 2005-12-24 08:00 to 2006-01-03 08:00 UTC
+Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
+------------------------------------------------------------------------------
+Russian   AORC                        13.9      22.4   38.491  -123.100   5745
+Russian   E3SM ~14 km                 14.1      15.5   39.295  -123.053      9
+Russian   E3SM ~7 km                  19.0      25.0   38.810  -122.802     36
+Russian   E3SM ~3.5 km                19.7      38.6   38.790  -122.769    146
+
+Napa      AORC                        12.0      16.4   38.658  -122.617    807
+Napa      E3SM ~14 km                 12.2      12.2   38.428  -122.449      1
+Napa      E3SM ~7 km                  19.1      20.0   38.389  -122.384      3
+Napa      E3SM ~3.5 km                14.4      18.6   38.362  -122.410     20
+
+Written: plots/2005_G-NDG/basin_storm_totals.csv

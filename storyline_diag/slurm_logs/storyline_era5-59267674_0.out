@@ -1,0 +1,9 @@
+loading compute pixi env...
+   pixi env loaded.
+activating spack env...
+   spack env activated.
+loading e3sm-unified environment variables...
+   e3sm-unified environment variables loaded.
+Job 59278151, config config.1964.WUS.G-NDG.yaml, on nid006381 at Sat Oct  3 01:11:49 PM PDT 2026
+python: can't open file '/global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03/storyline_diagnostics.py': [Errno 2] No such file or directory
+Finished at Sat Oct  3 01:11:50 PM PDT 2026, exit 2

@@ -1,0 +1,44 @@
+Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
+24-hr window: 1964-12-22 08:00:00 to 1964-12-23 08:00:00 UTC, per-watershed stat: max
+Reading HUC-10 watersheds ...
+Reading AORC ...
+  AORC n/a for 1964 (record starts 1979).
+Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
+    171/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 ...
+    14/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
+    4/506 polygons had no points inside; nearest point used.
+
+Watersheds with 24-hr max >= 10 in:
+  E3SM ~14 km: 7
+      1802012106  Middle North Fork Feather River     11.2 in
+      1802012307  Lower Middle Fork Feather River     11.0 in
+      1802012306  South Fork Feather River            11.0 in
+      1801010101  North Fork Smith River              10.7 in
+      1801020908  Bluff Creek-Klamath River           10.5 in
+      1801020907  Rock Creek-Klamath River            10.5 in
+      1801021003  Wooley Creek                        10.4 in
+  E3SM ~7 km: 36
+      1801020905  Dillon Creek                        16.4 in
+      1801020909  Blue Creek                          16.3 in
+      1801010101  North Fork Smith River              16.2 in
+      1802012307  Lower Middle Fork Feather River     15.4 in
+      1801020908  Bluff Creek-Klamath River           15.4 in
+      1802012504  Lower North Yuba River              15.3 in
+      1801010103  South Fork Smith River              15.2 in
+      1802012503  Middle North Yuba River             14.8 in
+      1802012306  South Fork Feather River            14.8 in
+      1801010102  Middle Fork Smith River             14.6 in
+  E3SM ~3.5 km: 71
+      1802012307  Lower Middle Fork Feather River     23.1 in
+      1802012306  South Fork Feather River            19.9 in
+      1801010103  South Fork Smith River              19.6 in
+      1801010101  North Fork Smith River              17.5 in
+      1801020904  Clear Creek                         17.2 in
+      1802012504  Lower North Yuba River              17.0 in
+      1801020905  Dillon Creek                        16.7 in
+      1802012803  Upper Middle Fork American River    16.2 in
+      1802012804  North Fork Middle Fork American River 16.1 in
+      1801020804  Kidder Creek-Scott River            15.9 in
+Written: plots/1964_G-NDG/huc10_24hr_19641222.png

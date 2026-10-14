@@ -1,0 +1,20 @@
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+Reading E3SM: Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 3.7 in
+  Lake_Sonoma: 24-hr max 5.0 in
+  Guerneville: 24-hr max 4.4 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 3.8 in
+  Laguna_de_Santa_Rosa: 24-hr max 3.8 in
+Reading E3SM: Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 3.4 in
+  Lake_Sonoma: 24-hr max 5.9 in
+  Guerneville: 24-hr max 5.3 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 4.3 in
+  Laguna_de_Santa_Rosa: 24-hr max 4.3 in
+Reading E3SM: Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 2.6 in
+  Lake_Sonoma: 24-hr max 5.2 in
+  Guerneville: 24-hr max 4.4 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 2.7 in
+  Laguna_de_Santa_Rosa: 24-hr max 3.0 in
+Written: plots/2019_G-NDG/idf_overlay.png

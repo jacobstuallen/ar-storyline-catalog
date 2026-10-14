@@ -1,0 +1,37 @@
+Event config: config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
+24-hr window: 2005-12-30 08:00:00 to 2005-12-31 08:00:00 UTC, per-watershed stat: max
+Reading HUC-10 watersheds ...
+Reading AORC ...
+    1/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2 ...
+    171/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2 ...
+    14/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2 ...
+    4/506 polygons had no points inside; nearest point used.
+
+Watersheds with 24-hr max >= 10 in:
+  AORC: 6
+      1801020806  Canyon Creek-Scott River            13.1 in
+      1801020903  Elk Creek                           12.4 in
+      1801020611  Seiad Creek-Klamath River           11.7 in
+      1801021003  Wooley Creek                        10.5 in
+      1801020801  East Fork Scott River               10.2 in
+      1801020802  French Creek-Scott River            10.1 in
+  E3SM ~14 km: 0
+  E3SM ~7 km: 3
+      1801010601  Upper South Fork Eel River          11.3 in
+      1801010507  Upper Van Duzen River               10.6 in
+      1801020909  Blue Creek                          10.3 in
+  E3SM ~3.5 km: 17
+      1801021002  North Fork Salmon River             12.7 in
+      1801020908  Bluff Creek-Klamath River           12.5 in
+      1801021112  Horse Linto Creek-Trinity River     11.7 in
+      1801010601  Upper South Fork Eel River          11.6 in
+      1801010507  Upper Van Duzen River               11.6 in
+      1801010202  Upper Mad River                     11.3 in
+      1801010602  East Branch South Fork Eel River    11.1 in
+      1801010103  South Fork Smith River              10.8 in
+      1801010603  Middle South Fork Eel River         10.6 in
+      1801021003  Wooley Creek                        10.5 in
+Written: plots/2005_G-NDG/huc10_24hr_20051230.png

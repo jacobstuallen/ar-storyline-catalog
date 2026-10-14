@@ -1,0 +1,12 @@
+loading compute pixi env...
+   pixi env loaded.
+activating spack env...
+   spack env activated.
+loading e3sm-unified environment variables...
+   e3sm-unified environment variables loaded.
+
+===== multi-event =====
+  plot_county_timeseries.py      ok                   4.6 min   logs/multi_event/plot_county_timeseries.log
+
+===== summary =====
+  multi_event    plot_county_timeseries.py      ok        4.6 min

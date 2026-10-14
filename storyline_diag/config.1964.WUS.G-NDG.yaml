@@ -1,0 +1,31 @@
+# 1964 Christmas flood. VERIFY time: against the eam.h0 dates on disk (old config said Feb 4, copied from 1986).
+# Everything not set here comes from defaults.yaml.
+event_label: "1964_G-NDG"
+
+cases:
+  - name: "Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2"
+    resolution: "30x8"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2/run"
+  - name: "Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2"
+    resolution: "30x16"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2/run"
+  - name: "Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2"
+    resolution: "30x32"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2/run"
+
+time:
+  start_year: 1964
+  start_month: 12
+  start_day: 13
+  num_days: 18
+  hours_step: 3
+
+active_regions: ["NOR_PAC", "WUS"]
+
+# All times UTC. PST calendar day D = D 08:00 to D+1 08:00 UTC.
+observed_comparison:
+  storm_window: {start: "1964-12-20 08:00", end: "1964-12-26 08:00"}
+  day_window:   {start: "1964-12-22 08:00", end: "1964-12-23 08:00"}
+  observed_storm_total_in: null   # station max, inches (unknown)
+  # VERIFY day_window is the peak 24-hr day.
+  # No AORC before 1979: AORC panels show 'n/a' and obs comparisons are E3SM-only.

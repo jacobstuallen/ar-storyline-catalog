@@ -1,0 +1,97 @@
+loading compute pixi env...
+   pixi env loaded.
+activating spack env...
+   spack env activated.
+loading e3sm-unified environment variables...
+   e3sm-unified environment variables loaded.
+Job 59743517, array task 1, on nid004394 at Tue Oct 13 11:25:04 AM PDT 2026
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+
+===== 1986_G-NDG (config.1986.WUS.G-NDG.yaml) =====
+  window 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+    30x8  Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: 1986-02-04 00:00:00 to 1986-02-27 00:00:00, 185 records  PARTIAL (skipped by the plots)
+   30x16  Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: 1986-02-04 00:00:00 to 1986-02-27 00:00:00, 185 records  PARTIAL (skipped by the plots)
+   30x32  Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: 1986-02-04 00:00:00 to 1986-02-27 00:00:00, 185 records  PARTIAL (skipped by the plots)
+  build_comparison_nc.py         FAILED (exit 1)      0.1 min   logs/1986_G-NDG/build_comparison_nc.log
+  plot_multicase_overlay.py      ok                   0.2 min   logs/1986_G-NDG/plot_multicase_overlay.log
+  plot_accum_precip.py           FAILED (exit 1)      2.5 min   logs/1986_G-NDG/plot_accum_precip.log
+  plot_max_precip.py             FAILED (exit 1)      2.3 min   logs/1986_G-NDG/plot_max_precip.log
+  plot_county_accum.py           FAILED (exit 1)      4.3 min   logs/1986_G-NDG/plot_county_accum.log
+  plot_huc10_accum.py            FAILED (exit 1)      4.5 min   logs/1986_G-NDG/plot_huc10_accum.log
+  plot_huc10_24hr.py             ok                   0.5 min   logs/1986_G-NDG/plot_huc10_24hr.log
+  print_basin_totals.py          ok                   0.8 min   logs/1986_G-NDG/print_basin_totals.log
+  plot_idf_overlay.py            FAILED (exit 1)      0.1 min   logs/1986_G-NDG/plot_idf_overlay.log
+  plot_ivt_ar.py                 FAILED (exit 1)      0.1 min   logs/1986_G-NDG/plot_ivt_ar.log
+
+===== summary =====
+  1986_G-NDG     build_comparison_nc.py         FAILED    0.1 min
+  1986_G-NDG     plot_multicase_overlay.py      ok        0.2 min
+  1986_G-NDG     plot_accum_precip.py           FAILED    2.5 min
+  1986_G-NDG     plot_max_precip.py             FAILED    2.3 min
+  1986_G-NDG     plot_county_accum.py           FAILED    4.3 min
+  1986_G-NDG     plot_huc10_accum.py            FAILED    4.5 min
+  1986_G-NDG     plot_huc10_24hr.py             ok        0.5 min
+  1986_G-NDG     print_basin_totals.py          ok        0.8 min
+  1986_G-NDG     plot_idf_overlay.py            FAILED    0.1 min
+  1986_G-NDG     plot_ivt_ar.py                 FAILED    0.1 min
+
+7 failed. Last lines of each log:
+
+--- 1986_G-NDG / build_comparison_nc.py (logs/1986_G-NDG/build_comparison_nc.log) ---
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+
+--- 1986_G-NDG / plot_accum_precip.py (logs/1986_G-NDG/plot_accum_precip.log) ---
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+Window 1986-02-04 00:00:00 to 1986-02-28 00:00:00, data bbox (35.0, -125.0, 43.0, -118.0)
+Reading AORC ...
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+
+--- 1986_G-NDG / plot_max_precip.py (logs/1986_G-NDG/plot_max_precip.log) ---
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+Reading AORC ...
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+
+--- 1986_G-NDG / plot_county_accum.py (logs/1986_G-NDG/plot_county_accum.log) ---
+Accumulation window: 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+Reading county boundaries ...
+  419 counties
+Reading AORC ...
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+
+--- 1986_G-NDG / plot_huc10_accum.py (logs/1986_G-NDG/plot_huc10_accum.log) ---
+Reading HUC-10 watersheds ...
+  6416 watersheds
+Reading AORC ...
+    1/6416 polygons had no points inside; nearest point used.
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+
+--- 1986_G-NDG / plot_idf_overlay.py (logs/1986_G-NDG/plot_idf_overlay.log) ---
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+
+--- 1986_G-NDG / plot_ivt_ar.py (logs/1986_G-NDG/plot_ivt_ar.log) ---
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+  SKIP case Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+  SKIP case Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: output covers 1986-02-04 00:00:00 to 1986-02-27 00:00:00, window is 1986-02-04 00:00:00 to 1986-02-28 00:00:00
+No case has output covering 1986-02-04 00:00:00 to 1986-02-28 00:00:00; check `time:` and e3sm_dir.
+Finished at Tue Oct 13 11:40:35 AM PDT 2026, exit 1

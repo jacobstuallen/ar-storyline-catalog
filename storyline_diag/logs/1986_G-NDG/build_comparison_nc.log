@@ -1,0 +1,16 @@
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+
+== Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2 / WUS ==
+  E3SM: 185 records, 11120 cells
+  AORC valid at 9806/11120 cells
+  Written: plots/1986_G-NDG/comparison/comparison_ne30x8np4pg2_WUS.nc
+
+== Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2 / WUS ==
+  E3SM: 185 records, 41796 cells
+  AORC valid at 36550/41796 cells
+  Written: plots/1986_G-NDG/comparison/comparison_ne30x16np4pg2_WUS.nc
+
+== Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2 / WUS ==
+  E3SM: 185 records, 145018 cells
+  AORC valid at 126540/145018 cells
+  Written: plots/1986_G-NDG/comparison/comparison_ne30x32np4pg2_WUS.nc

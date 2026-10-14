@@ -1,0 +1,43 @@
+# Options for plot_county_timeseries.py (multi-event; runs once, after the
+# per-event jobs). Each event's cases/time come from its own config, merged
+# over defaults.yaml. Config paths are relative to THIS file.
+
+events:
+  - config: config.1964.WUS.G-NDG.yaml
+    title: "1964: Christmas flood"
+  - config: config.1986.WUS.G-NDG.yaml
+    title: "1986: Valentine's Day flood"
+  - config: config.2005.WUS.G-NDG.yaml
+    title: "2005: New Year's flood"
+  - config: config.2019.WUS.G-NDG.yaml
+    title: "2019: February flood"
+  - config: config.2024.WUS.G-NDG.yaml
+    title: "2024: November bomb cyclone"
+    # Optional per-event window override, same keys as a config's time: block:
+    # time: {start_year: 2024, start_month: 11, start_day: 17, num_days: 9}
+
+# Only cases with these resolutions are plotted. Legend names come from
+# resolution_labels in defaults.yaml.
+resolutions: ["30x8", "30x16"]
+
+# Line colors. Omit to use defaults.yaml overlay.styles.
+# colors: {"30x8": "#d95f02", "30x16": "#1b9e77"}
+
+# Counties (Census names; California = state_fips "06").
+counties: ["Sonoma", "Napa", "Marin"]
+state_fips: "06"
+
+# separate: one figure per county | combined: union of all | both
+region_mode: "separate"
+share_ylim_across_regions: true
+
+aorc:
+  enabled: true
+  rate_hours: 3        # average hourly AORC into N-hr blocks to match E3SM's 3-hourly output
+
+units: "in"            # "in" or "mm"
+rate_ymax: null        # shared y-limits; null = from the data
+accum_ymax: null
+show_totals: true
+ncols: 2               # 5 events at 2 columns -> legend in the empty 6th panel
+out_dir: "plots/multi_event"

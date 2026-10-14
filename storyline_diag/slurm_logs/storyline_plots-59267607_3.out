@@ -1,0 +1,127 @@
+loading compute pixi env...
+   pixi env loaded.
+activating spack env...
+   spack env activated.
+loading e3sm-unified environment variables...
+   e3sm-unified environment variables loaded.
+Job 59292150, array task 3, on nid006426 at Sat Oct  3 07:08:19 PM PDT 2026
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+
+===== 2019_G-NDG (config.2019.WUS.G-NDG.yaml) =====
+  window 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+    30x8  Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: NO OUTPUT in window (skipped by the plots)
+   30x16  Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: NO OUTPUT in window (skipped by the plots)
+   30x32  Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: NO OUTPUT in window (skipped by the plots)
+  build_comparison_nc.py         FAILED (exit 1)      0.1 min   logs/2019_G-NDG/build_comparison_nc.log
+  plot_multicase_overlay.py      FAILED (exit 1)      0.1 min   logs/2019_G-NDG/plot_multicase_overlay.log
+  plot_accum_precip.py           FAILED (exit 1)      2.2 min   logs/2019_G-NDG/plot_accum_precip.log
+  plot_max_precip.py             FAILED (exit 1)      2.1 min   logs/2019_G-NDG/plot_max_precip.log
+  plot_county_accum.py           FAILED (exit 1)      2.8 min   logs/2019_G-NDG/plot_county_accum.log
+  plot_huc10_accum.py            FAILED (exit 1)      3.9 min   logs/2019_G-NDG/plot_huc10_accum.log
+  plot_huc10_24hr.py             FAILED (exit 1)      0.3 min   logs/2019_G-NDG/plot_huc10_24hr.log
+  print_basin_totals.py          FAILED (exit 1)      0.4 min   logs/2019_G-NDG/print_basin_totals.log
+  plot_idf_overlay.py            FAILED (exit 1)      0.1 min   logs/2019_G-NDG/plot_idf_overlay.log
+  plot_ivt_ar.py                 FAILED (exit 1)      0.1 min   logs/2019_G-NDG/plot_ivt_ar.log
+
+===== summary =====
+  2019_G-NDG     build_comparison_nc.py         FAILED    0.1 min
+  2019_G-NDG     plot_multicase_overlay.py      FAILED    0.1 min
+  2019_G-NDG     plot_accum_precip.py           FAILED    2.2 min
+  2019_G-NDG     plot_max_precip.py             FAILED    2.1 min
+  2019_G-NDG     plot_county_accum.py           FAILED    2.8 min
+  2019_G-NDG     plot_huc10_accum.py            FAILED    3.9 min
+  2019_G-NDG     plot_huc10_24hr.py             FAILED    0.3 min
+  2019_G-NDG     print_basin_totals.py          FAILED    0.4 min
+  2019_G-NDG     plot_idf_overlay.py            FAILED    0.1 min
+  2019_G-NDG     plot_ivt_ar.py                 FAILED    0.1 min
+
+10 failed. Last lines of each log:
+
+--- 2019_G-NDG / build_comparison_nc.py (logs/2019_G-NDG/build_comparison_nc.log) ---
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_multicase_overlay.py (logs/2019_G-NDG/plot_multicase_overlay.log) ---
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+
+== WUS ==
+  SKIP Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no comparison file plots/2019_G-NDG/comparison/comparison_ne30x8np4pg2_WUS.nc
+  SKIP Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no comparison file plots/2019_G-NDG/comparison/comparison_ne30x16np4pg2_WUS.nc
+  SKIP Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no comparison file plots/2019_G-NDG/comparison/comparison_ne30x32np4pg2_WUS.nc
+  No comparison files for WUS; skipped.
+No overlay figures made (run build_comparison_nc.py first).
+
+--- 2019_G-NDG / plot_accum_precip.py (logs/2019_G-NDG/plot_accum_precip.log) ---
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+Window 2019-02-22 00:00:00 to 2019-03-02 00:00:00, data bbox (35.0, -125.0, 43.0, -118.0)
+Reading AORC ...
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_max_precip.py (logs/2019_G-NDG/plot_max_precip.log) ---
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+Reading AORC ...
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_county_accum.py (logs/2019_G-NDG/plot_county_accum.log) ---
+Accumulation window: 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+Reading county boundaries ...
+  419 counties
+Reading AORC ...
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_huc10_accum.py (logs/2019_G-NDG/plot_huc10_accum.log) ---
+Reading HUC-10 watersheds ...
+  6416 watersheds
+Reading AORC ...
+    1/6416 polygons had no points inside; nearest point used.
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_huc10_24hr.py (logs/2019_G-NDG/plot_huc10_24hr.log) ---
+24-hr window: 2019-02-26 08:00:00 to 2019-02-27 08:00:00 UTC, per-watershed stat: max
+Reading HUC-10 watersheds ...
+Reading AORC ...
+    1/506 polygons had no points inside; nearest point used.
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-26 08:00:00 to 2019-02-27 08:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-26 08:00:00 to 2019-02-27 08:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-26 08:00:00 to 2019-02-27 08:00:00
+No case has output covering 2019-02-26 08:00:00 to 2019-02-27 08:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / print_basin_totals.py (logs/2019_G-NDG/print_basin_totals.log) ---
+Napa: 1 WBDHU10 polygon(s) matched:
+    1805000202  Napa River
+
+Reading AORC ...
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-25 08:00:00 to 2019-02-28 08:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-25 08:00:00 to 2019-02-28 08:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-25 08:00:00 to 2019-02-28 08:00:00
+No case has output covering 2019-02-25 08:00:00 to 2019-02-28 08:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_idf_overlay.py (logs/2019_G-NDG/plot_idf_overlay.log) ---
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+
+--- 2019_G-NDG / plot_ivt_ar.py (logs/2019_G-NDG/plot_ivt_ar.log) ---
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+  SKIP case Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+  SKIP case Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: no output in 2019-02-22 00:00:00 to 2019-03-02 00:00:00
+No case has output covering 2019-02-22 00:00:00 to 2019-03-02 00:00:00; check `time:` and e3sm_dir.
+Finished at Sat Oct  3 07:20:31 PM PDT 2026, exit 1

@@ -1,0 +1,29 @@
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+Storm window: 2019-02-25 08:00:00 to 2019-02-28 08:00:00 UTC
+
+Russian: 1 WBDHU8 polygon(s) matched:
+    18010110  Russian
+
+Napa: 1 WBDHU10 polygon(s) matched:
+    1805000202  Napa River
+
+Reading AORC ...
+Reading E3SM: Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2 ...
+
+Storm totals, 2019-02-25 08:00 to 2019-02-28 08:00 UTC
+Observed (station max): ~20 in
+Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
+------------------------------------------------------------------------------
+Russian   AORC                         9.7      20.0   38.641  -123.025   5745
+Russian   E3SM ~14 km                  7.4       8.9   38.744  -122.972      9
+Russian   E3SM ~7 km                   8.5      11.9   38.718  -122.789     36
+Russian   E3SM ~3.5 km                 7.7      17.0   38.790  -122.769    146
+
+Napa      AORC                         7.8      11.7   38.366  -122.417    807
+Napa      E3SM ~14 km                  6.1       6.1   38.428  -122.449      1
+Napa      E3SM ~7 km                   7.6       8.4   38.560  -122.527      3
+Napa      E3SM ~3.5 km                 5.8       7.6   38.408  -122.417     20
+
+Written: plots/2019_G-NDG/basin_storm_totals.csv

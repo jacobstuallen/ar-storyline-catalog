@@ -1,0 +1,37 @@
+loading compute pixi env...
+   pixi env loaded.
+activating spack env...
+   spack env activated.
+loading e3sm-unified environment variables...
+   e3sm-unified environment variables loaded.
+Job 59743515, array task 4, on nid006832 at Tue Oct 13 04:29:15 PM PDT 2026
+Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+
+===== 2024_G-NDG (config.2024.WUS.G-NDG.yaml) =====
+  window 2024-11-14 00:00:00 to 2024-11-27 00:00:00
+    30x8  Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2: 2024-11-14 00:00:00 to 2024-11-27 00:00:00, 105 records
+   30x16  Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2: 2024-11-14 00:00:00 to 2024-11-27 00:00:00, 105 records
+   30x32  Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2: 2024-11-14 00:00:00 to 2024-11-27 00:00:00, 105 records
+  build_comparison_nc.py         ok                   6.1 min   logs/2024_G-NDG/build_comparison_nc.log
+  plot_multicase_overlay.py      ok                   0.1 min   logs/2024_G-NDG/plot_multicase_overlay.log
+  plot_accum_precip.py           ok                   1.0 min   logs/2024_G-NDG/plot_accum_precip.log
+  plot_max_precip.py             ok                   0.9 min   logs/2024_G-NDG/plot_max_precip.log
+  plot_county_accum.py           ok                   1.7 min   logs/2024_G-NDG/plot_county_accum.log
+  plot_huc10_accum.py            ok                   6.7 min   logs/2024_G-NDG/plot_huc10_accum.log
+  plot_huc10_24hr.py             ok                   0.4 min   logs/2024_G-NDG/plot_huc10_24hr.log
+  print_basin_totals.py          ok                   0.4 min   logs/2024_G-NDG/print_basin_totals.log
+  plot_idf_overlay.py            ok                   0.1 min   logs/2024_G-NDG/plot_idf_overlay.log
+  plot_ivt_ar.py                 ok                   0.4 min   logs/2024_G-NDG/plot_ivt_ar.log
+
+===== summary =====
+  2024_G-NDG     build_comparison_nc.py         ok        6.1 min
+  2024_G-NDG     plot_multicase_overlay.py      ok        0.1 min
+  2024_G-NDG     plot_accum_precip.py           ok        1.0 min
+  2024_G-NDG     plot_max_precip.py             ok        0.9 min
+  2024_G-NDG     plot_county_accum.py           ok        1.7 min
+  2024_G-NDG     plot_huc10_accum.py            ok        6.7 min
+  2024_G-NDG     plot_huc10_24hr.py             ok        0.4 min
+  2024_G-NDG     print_basin_totals.py          ok        0.4 min
+  2024_G-NDG     plot_idf_overlay.py            ok        0.1 min
+  2024_G-NDG     plot_ivt_ar.py                 ok        0.4 min
+Finished at Tue Oct 13 04:47:19 PM PDT 2026, exit 0

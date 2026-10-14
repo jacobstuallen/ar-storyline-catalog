@@ -1,0 +1,27 @@
+Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
+Storm window: 1964-12-20 08:00:00 to 1964-12-26 08:00:00 UTC
+
+Russian: 1 WBDHU8 polygon(s) matched:
+    18010110  Russian
+
+Napa: 1 WBDHU10 polygon(s) matched:
+    1805000202  Napa River
+
+Reading AORC ...
+  AORC n/a for 1964 (record starts 1979).
+Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
+
+Storm totals, 1964-12-20 08:00 to 1964-12-26 08:00 UTC
+Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
+------------------------------------------------------------------------------
+Russian   E3SM ~14 km                 12.9      20.1   39.295  -123.053      9
+Russian   E3SM ~7 km                  14.1      24.8   39.307  -123.355     36
+Russian   E3SM ~3.5 km                13.1      27.1   39.333  -123.329    146
+
+Napa      E3SM ~14 km                  6.6       6.6   38.428  -122.449      1
+Napa      E3SM ~7 km                   7.8      10.4   38.560  -122.527      3
+Napa      E3SM ~3.5 km                 7.8      10.4   38.580  -122.560     20
+
+Written: plots/1964_G-NDG/basin_storm_totals.csv

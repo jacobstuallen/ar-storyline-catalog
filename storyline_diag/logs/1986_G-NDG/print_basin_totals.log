@@ -1,0 +1,29 @@
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+Storm window: 1986-02-11 08:00:00 to 1986-02-21 08:00:00 UTC
+
+Russian: 1 WBDHU8 polygon(s) matched:
+    18010110  Russian
+
+Napa: 1 WBDHU10 polygon(s) matched:
+    1805000202  Napa River
+
+Reading AORC ...
+Reading E3SM: Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2 ...
+
+Storm totals, 1986-02-11 08:00 to 1986-02-21 08:00 UTC
+Observed (station max): ~40 in
+Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
+------------------------------------------------------------------------------
+Russian   AORC                        19.6      38.1   38.666  -122.625   5745
+Russian   E3SM ~14 km                 21.1      23.9   38.744  -122.972      9
+Russian   E3SM ~7 km                  13.8      19.9   38.810  -122.802     36
+Russian   E3SM ~3.5 km                19.4      37.6   38.790  -122.769    146
+
+Napa      AORC                        21.3      36.7   38.658  -122.617    807
+Napa      E3SM ~14 km                 20.2      20.2   38.428  -122.449      1
+Napa      E3SM ~7 km                  14.5      15.4   38.389  -122.384      3
+Napa      E3SM ~3.5 km                18.5      23.0   38.415  -122.358     20
+
+Written: plots/1986_G-NDG/basin_storm_totals.csv

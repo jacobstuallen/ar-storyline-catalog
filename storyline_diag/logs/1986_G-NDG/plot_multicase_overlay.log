@@ -1,0 +1,17 @@
+Event config: config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+
+== file region WUS ==
+  Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: area weights from 'area' in /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2/run/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2.eam.h0.1986-02-04-00000.nc
+  Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: area weights from 'area' in /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2/run/Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2.eam.h0.1986-02-04-00000.nc
+  Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: area weights from 'area' in /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2/run/Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2.eam.h0.1986-02-04-00000.nc
+
+== NORCAL (cells from WUS files) ==
+  Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2: 424 cells
+  Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2: 1695 cells
+  Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2: 6798 cells
+  Event totals, area-weighted mean over NORCAL:
+    AORC               344.4 mm
+    E3SM ~14 km        374.1 mm
+    E3SM ~7 km         298.1 mm
+    E3SM ~3.5 km       343.8 mm
+Written: plots/1986_G-NDG/multicase_overlay_NORCAL.png

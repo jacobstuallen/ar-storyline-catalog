@@ -1,0 +1,11 @@
+Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
+AORC n/a for 1964 (record starts 1979); writing E3SM only.
+  SKIP case Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2: output covers 1964-12-13 00:00:00 to 1964-12-29 21:00:00, window is 1964-12-13 00:00:00 to 1964-12-31 00:00:00
+
+== Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 / WUS ==
+  E3SM: 145 records, 11120 cells
+  Written: plots/1964_G-NDG/comparison/comparison_ne30x8np4pg2_WUS.nc
+
+== Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 / WUS ==
+  E3SM: 145 records, 145018 cells
+  Written: plots/1964_G-NDG/comparison/comparison_ne30x32np4pg2_WUS.nc

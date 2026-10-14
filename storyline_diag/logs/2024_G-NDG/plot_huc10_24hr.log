@@ -1,0 +1,28 @@
+Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+24-hr window: 2024-11-21 08:00:00 to 2024-11-22 08:00:00 UTC, per-watershed stat: max
+Reading HUC-10 watersheds ...
+Reading AORC ...
+    1/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 ...
+    171/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 ...
+    14/506 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2 ...
+    4/506 polygons had no points inside; nearest point used.
+
+Watersheds with 24-hr max >= 10 in:
+  AORC: 2
+      1801010702  Mattole River                       11.4 in
+      1801010704  Cooksie Creek-Frontal Pacific Ocean 10.7 in
+  E3SM ~14 km: 0
+  E3SM ~7 km: 0
+  E3SM ~3.5 km: 8
+      1801010402  Upper Middle Fork Eel River         12.7 in
+      1801010302  Corbin Creek-Eel River              11.1 in
+      1801010202  Upper Mad River                     11.0 in
+      1801010805  Garcia River                        11.0 in
+      1801011005  Dry Creek                           10.8 in
+      1802015604  Upper Thomes Creek                  10.6 in
+      1802015706  Mud Creek                           10.4 in
+      1801010901  Gualala River                       10.3 in
+Written: plots/2024_G-NDG/huc10_24hr_20241121.png

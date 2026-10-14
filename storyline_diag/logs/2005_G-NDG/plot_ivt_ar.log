@@ -1,0 +1,21 @@
+Event config: config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
+Reading E3SM TUQ/TVQ: Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM TUQ/TVQ: Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2 ...
+Reading E3SM TUQ/TVQ: Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2 ...
+  Lake_Mendocino / E3SM ~14 km: max 744, 321 hr > 250, AR4
+  Lake_Mendocino / E3SM ~7 km: max 801, 294 hr > 250, AR5
+  Lake_Mendocino / E3SM ~3.5 km: max 846, 300 hr > 250, AR5
+  Lake_Sonoma / E3SM ~14 km: max 745, 309 hr > 250, AR4
+  Lake_Sonoma / E3SM ~7 km: max 891, 279 hr > 250, AR5
+  Lake_Sonoma / E3SM ~3.5 km: max 882, 294 hr > 250, AR5
+  Guerneville / E3SM ~14 km: max 774, 306 hr > 250, AR5
+  Guerneville / E3SM ~7 km: max 928, 279 hr > 250, AR5
+  Guerneville / E3SM ~3.5 km: max 943, 300 hr > 250, AR5
+  Santa_Rosa_Creek_Downtown / E3SM ~14 km: max 802, 294 hr > 250, AR5
+  Santa_Rosa_Creek_Downtown / E3SM ~7 km: max 951, 276 hr > 250, AR5
+  Santa_Rosa_Creek_Downtown / E3SM ~3.5 km: max 892, 297 hr > 250, AR5
+  Laguna_de_Santa_Rosa / E3SM ~14 km: max 802, 294 hr > 250, AR5
+  Laguna_de_Santa_Rosa / E3SM ~7 km: max 951, 276 hr > 250, AR5
+  Laguna_de_Santa_Rosa / E3SM ~3.5 km: max 910, 303 hr > 250, AR5
+Written: plots/2005_G-NDG/ivt_ar_timeseries.png
+Written: plots/2005_G-NDG/ivt_ar_peakmap.png

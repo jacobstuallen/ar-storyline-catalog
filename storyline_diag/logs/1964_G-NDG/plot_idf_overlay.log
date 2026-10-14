@@ -1,0 +1,15 @@
+Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
+  SKIP case Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2: output covers 1964-12-13 00:00:00 to 1964-12-29 21:00:00, window is 1964-12-13 00:00:00 to 1964-12-31 00:00:00
+Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 5.7 in
+  Lake_Sonoma: 24-hr max 4.5 in
+  Guerneville: 24-hr max 4.0 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 2.6 in
+  Laguna_de_Santa_Rosa: 24-hr max 2.6 in
+Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 4.8 in
+  Lake_Sonoma: 24-hr max 3.0 in
+  Guerneville: 24-hr max 7.0 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 2.3 in
+  Laguna_de_Santa_Rosa: 24-hr max 2.7 in
+Written: plots/1964_G-NDG/idf_overlay.png

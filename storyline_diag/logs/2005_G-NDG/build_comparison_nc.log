@@ -1,0 +1,85 @@
+Event config: config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
+
+== Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2 / WUS ==
+  E3SM: 169 records, 11120 cells
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051218.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051219.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051220.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051221.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051222.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051223.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051224.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051225.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051226.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051227.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051228.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051229.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051230.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051231.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060101.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060102.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060103.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060104.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060105.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060106.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060107.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060108.nc
+  Stage IV SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/StageIV for 2005-12-18 00:00:00 to 2006-01-08 00:00:00.)
+  AORC valid at 9806/11120 cells
+  Written: plots/2005_G-NDG/comparison/comparison_ne30x8np4pg2_WUS.nc
+
+== Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2 / WUS ==
+  E3SM: 169 records, 41796 cells
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051218.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051219.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051220.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051221.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051222.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051223.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051224.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051225.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051226.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051227.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051228.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051229.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051230.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051231.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060101.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060102.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060103.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060104.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060105.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060106.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060107.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060108.nc
+  Stage IV SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/StageIV for 2005-12-18 00:00:00 to 2006-01-08 00:00:00.)
+  AORC valid at 36550/41796 cells
+  Written: plots/2005_G-NDG/comparison/comparison_ne30x16np4pg2_WUS.nc
+
+== Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2 / WUS ==
+  E3SM: 169 records, 145018 cells
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051218.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051219.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051220.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051221.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051222.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051223.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051224.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051225.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051226.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051227.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051228.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051229.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051230.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20051231.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060101.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060102.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060103.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060104.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060105.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060106.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060107.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/StageIV/PrecipitationST4_20060108.nc
+  Stage IV SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/StageIV for 2005-12-18 00:00:00 to 2006-01-08 00:00:00.)
+  AORC valid at 126540/145018 cells
+  Written: plots/2005_G-NDG/comparison/comparison_ne30x32np4pg2_WUS.nc

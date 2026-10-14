@@ -1,0 +1,184 @@
+# ===========================================================================
+# Shared defaults for every storyline event. Each config.<year>.WUS.G-NDG.yaml
+# is deep-merged on top (event wins key by key; dicts merge, lists replace).
+# An event config normally holds only: event_label, cases, time,
+# active_regions, and its observed_comparison windows.
+# ===========================================================================
+
+# --- data locations ---------------------------------------------------------
+data:
+  aorc_dir: "/global/cfs/projectdirs/m3522/datalake/AORC/APCP_surface"
+  st4_dir:  "/global/cfs/projectdirs/m3522/datalake/Stage_IV"   # used for events from 2002 on
+
+era5:
+  base: "/global/cfs/projectdirs/m3522/cmip6/ERA5"
+
+# Resolution string (case.resolution) -> SCRIP grid file (storyline_diagnostics.py).
+resolution_scrip_files:
+  "30x8":  "/global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/scrip/SnowEater_WUS_30x8_pg2_scrip.nc"
+  "30x16": "/global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/scrip/SnowEater_WUS_30x16_pg2_scrip.nc"   # confirmed via ncdump
+  "30x32": "/global/cfs/cdirs/m2637/E3SM_SCREAM_files/grids/scrip/SnowEater_WUS_30x32_pg2_scrip.nc"   # <verify>, follows the x16 naming pattern
+
+# Legend/title name for each resolution. A case's own `label:` overrides this.
+resolution_labels:
+  "30x8":  "E3SM ~14 km"
+  "30x16": "E3SM ~7 km"
+  "30x32": "E3SM ~3.5 km"
+
+# ===========================================================================
+# OVERLAY: build_comparison_nc.py writes, plot_multicase_overlay.py reads.
+# ===========================================================================
+overlay:
+  # Whose resampled obs are drawn (each case's netCDF has obs sampled at its own cells).
+  ref_resolution: "30x8"
+  # {event_label}, {resolution_tag}, {region}, {year} are filled in.
+  comparison_nc_tmpl: "plots/{event_label}/comparison/comparison_{resolution_tag}_{region}.nc"
+  resolution_tag_map:
+    "30x8":  "ne30x8np4pg2"
+    "30x16": "ne30x16np4pg2"
+    "30x32": "ne30x32np4pg2"
+  # line styling per resolution; color is [r,g,b] 0-255
+  styles:
+    "30x8":  {color: [0, 255, 1],     lw: 1.2, zorder: 7, alpha_ci: 0.18}
+    "30x16": {color: [173, 216, 230], lw: 1.2, zorder: 8, alpha_ci: 0.18}
+    "30x32": {color: [0, 104, 139],   lw: 1.5, zorder: 9, alpha_ci: 0.20}
+
+output:
+  filetype: "png"
+  make_video: true
+  video_fps: 4
+  figdir_root: "figs"
+
+# --- regions: [min_lat, min_lon, max_lat, max_lon] ---
+regions:
+  GLOBE:   [-90, -180, 90, 180]
+  NOR_PAC: [20, -180, 60, -100]
+  WUS:     [30, -125, 50, -100]
+  CONUS:   [20, -130, 55, -60]
+  NA:      [10, -170, 75, -50]
+  NORCAL:  [37.0, -124.5, 42.0, -120.0]   # [min_lat, min_lon, max_lat, max_lon]
+
+active_regions: ["ALL"]
+
+# ===========================================================================
+# PRODUCTS (storyline_diagnostics.py only)
+# ===========================================================================
+products:
+  precip_mslp:
+    enabled: true
+    shaded_levels: [0.5, 1, 2, 4, 8, 16, 32, 48, 64, 80, 96, 128]
+    shaded_cmap: "YlGnBu"
+    contour_start: 960
+    contour_stop: 1044
+    contour_step: 4
+    contour_color: "black"
+  ivt:
+    enabled: true
+    shaded_levels: [0, 50, 100, 150, 250, 400, 600, 800, 1000, 1250, 1500]
+    shaded_cmap: "magma_r"
+    quiver_deg: 1.5
+    quiver_scale: 12000
+    quiver_min_mag: 200
+  z500_tmq:
+    enabled: true
+    shaded_levels: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+    shaded_cmap: "viridis"
+    contour_start: 4800
+    contour_stop: 6000
+    contour_step: 60
+    contour_color: "black"
+
+# ===========================================================================
+# PLOT OPTIONS: one block per script. Any of these can be overridden in an
+# event config under the same `plots:` key. vmax-style options set to null
+# are computed from the data (a round number near the 99.5th percentile).
+# Extents are [min_lon, max_lon, min_lat, max_lat].
+# ===========================================================================
+plots:
+  overlay:                   # build_comparison_nc.py + plot_multicase_overlay.py
+    regions: ["WUS"]
+    mean_regions: ["NORCAL"]  # boxes to average over; names in regions:
+    show_spread: false        # true adds the 2.5-97.5 percentile band
+
+  accum_precip:              # plot_accum_precip.py
+    region: WUS
+    extent: [-124.0, -119.0, 36.0, 42.0]    # null = whole region. Data are read for extent + 1 deg.
+    boundary: [county, huc8]
+    county: Sonoma
+    vmax: null               # mm
+
+  max_precip:                # plot_max_precip.py
+    region: WUS
+    extent: [-124.0, -119.0, 36.0, 42.0]
+    boundary: [county, huc8]
+    county: Sonoma
+    vmax_hourly: null        # mm
+    vmax_daily: null         # mm
+
+  county_accum:              # plot_county_accum.py
+    extent: [-125.0, -104.0, 32.0, 49.0]
+    start_day: 0             # 0-based offset into the event
+    window_days: null        # null = to the end of the event
+    aorc_stride: 4           # subsample AORC before the polygon join, for speed
+    vmax: null
+    diffmax: null
+
+  huc10_accum:               # plot_huc10_accum.py
+    extent: [-125.0, -102.0, 32.0, 51.0]
+    display_extent: null     # null = same as extent
+    # <verify> best-guess HU2 regions covering the extent. Test with ["18"] first.
+    hu2_regions: ["10", "11", "13", "14", "15", "16", "17", "18"]
+    start_day: 0
+    window_days: null
+    aorc_stride: 6
+    vmax: null
+    diffmax: null
+
+  idf_overlay:               # plot_idf_overlay.py
+    locations: null          # null = all in `locations:`
+    return_periods: [2, 10, 25, 100, 500, 1000]
+
+  ivt_ar:                    # plot_ivt_ar.py
+    region: WUS              # peak-IVT map
+    extent: null             # null = whole region
+    locations: null
+
+# ===========================================================================
+# OBSERVED COMPARISON (print_basin_totals.py, plot_huc10_24hr.py). Each event
+# config adds storm_window, day_window and observed_storm_total_in, and can
+# override huc10_24hr.threshold_in / bins_in. All times UTC; a PST calendar
+# day D is D 08:00 UTC to D+1 08:00 UTC.
+# ===========================================================================
+observed_comparison:
+  basins:
+    Russian: {hu2: "18", layer: WBDHU8,  name_contains: "Russian"}
+    Napa:    {hu2: "18", layer: WBDHU10, name_contains: "Napa"}
+  huc10_24hr:
+    extent: [-124.6, -119.5, 36.5, 42.1]
+    hu2_regions: ["18"]
+    stat: max                # max = wettest cell per watershed (point-like); or mean
+    threshold_in: 10         # must be one of bins_in
+    bins_in: [0, 1, 2, 3, 4, 6, 8, 10, 12, 15]
+    aorc_stride: 1           # keep 1 for stat: max
+
+# ===========================================================================
+# LOCATIONS: point locations [lat, lon]. Approximate (read off public maps);
+# check against Sonoma Water gauge metadata before showing water managers.
+# ===========================================================================
+locations:
+  Lake_Mendocino:             [39.1553, -123.1997]
+  Lake_Sonoma:                [38.7189, -123.0083]
+  Guerneville:                [38.5013, -122.9997]
+  Santa_Rosa_Creek_Downtown:  [38.4405, -122.7144]
+  Laguna_de_Santa_Rosa:       [38.4180, -122.7930]
+# Uncomment and correct as they're confirmed:
+#  Alexander_Valley:                [38.6350, -122.8940]
+#  Estuary:                         [38.4430, -123.1090]
+#  Copeland_Creek_Breakouts:        null
+#  MWC_RR_Confluence_Laguna_Detn:   null
+#  Old_Redwood_Hwy_Lichau_Cr:       null
+#  Santa_Rosa_Creek_Pierson_St:     null
+#  Schellville:                     [38.2510, -122.4130]
+#  Sebastopol:                      [38.4021, -122.8241]
+#  Sonoma_Water_Diversion:          null
+#  Spring_Lake:                     [38.4530, -122.6540]

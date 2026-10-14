@@ -1,0 +1,20 @@
+Event config: config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
+Reading E3SM: Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 4.5 in
+  Lake_Sonoma: 24-hr max 4.4 in
+  Guerneville: 24-hr max 4.0 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 3.2 in
+  Laguna_de_Santa_Rosa: 24-hr max 3.2 in
+Reading E3SM: Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 4.7 in
+  Lake_Sonoma: 24-hr max 5.3 in
+  Guerneville: 24-hr max 6.6 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 5.2 in
+  Laguna_de_Santa_Rosa: 24-hr max 5.2 in
+Reading E3SM: Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2 ...
+  Lake_Mendocino: 24-hr max 6.4 in
+  Lake_Sonoma: 24-hr max 5.3 in
+  Guerneville: 24-hr max 7.6 in
+  Santa_Rosa_Creek_Downtown: 24-hr max 4.5 in
+  Laguna_de_Santa_Rosa: 24-hr max 4.8 in
+Written: plots/2005_G-NDG/idf_overlay.png
