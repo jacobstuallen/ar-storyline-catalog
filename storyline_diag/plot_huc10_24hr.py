@@ -2,8 +2,9 @@
 plot_huc10_24hr.py
 
 HUC-10 watershed map of precipitation (inches) over one 24-hr window
-(observed_comparison.day_window), for AORC and every E3SM case that covers
-it. Watersheds at or above huc10_24hr.threshold_in switch from the blue
+(observed_comparison.day_window), for each obs product and every E3SM case
+that covers it. NClimGrid uses the one day whose period best matches the
+window (printed). Watersheds at or above huc10_24hr.threshold_in switch from the blue
 scale to the red scale and get a black outline.
 
 Station reports ("N stations over 10 inches") are point values, so the
@@ -22,7 +23,7 @@ import matplotlib.cm as cm
 import cartopy.crs as ccrs
 
 from obs_compare import (MM_PER_IN, load_obs_cfg, parse_window, e3sm_window_accum,
-                         aorc_window_accum)
+                         obs_window_accum)
 from storyline_io import available_cases
 
 cfg, oc = load_obs_cfg()
@@ -44,15 +45,10 @@ print("Reading HUC-10 watersheds ...")
 hucs = sp.wbd_in_extent('WBDHU10', opt.get('hu2_regions', ['18']), extent)
 
 panels = []
-print("Reading AORC ...")
-a = aorc_window_accum(cfg, t0, t1, bbox)
-if a is None:
-    panels.append(("AORC", None))
-else:
-    a_lat, a_lon, a_acc = a
-    a_lon2d, a_lat2d = np.meshgrid(a_lon, a_lat)
-    panels.append(("AORC", sp.zonal_stat(a_lat2d[::stride, ::stride], a_lon2d[::stride, ::stride],
-                                         a_acc[::stride, ::stride] / MM_PER_IN, hucs, how=stat)))
+for o in obs_window_accum(cfg, t0, t1, bbox):
+    k = stride if o['name'] == 'AORC' else 1
+    panels.append((o['label'], sp.zonal_stat(o['lat'][::k, ::k], o['lon'][::k, ::k],
+                                             o['val'][::k, ::k] / MM_PER_IN, hucs, how=stat)))
 
 for case in available_cases(cfg, t0, t1):
     print(f"Reading E3SM: {case['name']} ...")
@@ -77,10 +73,6 @@ axes = axes[0]
 print(f"\nWatersheds with 24-hr {stat} >= {thresh:g} in:")
 for ax, (label, hw) in zip(axes, panels):
     sp.plot_background(ax, extent)
-    if hw is None:
-        sp.na_panel(ax, "AORC n/a (pre-1979)")
-        ax.set_title(label, loc='left')
-        continue
     hw.plot(ax=ax, column='value', cmap=cmap, norm=norm, edgecolor='white', linewidth=0.05,
             missing_kwds={'color': 'lightgrey'}, transform=ccrs.PlateCarree())
     hit = hw[hw['value'] >= thresh]

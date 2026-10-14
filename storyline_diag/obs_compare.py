@@ -12,9 +12,9 @@ from datetime import date, datetime, timedelta
 
 import numpy as np
 
-from storyline_config import load_event, data_dir
-from storyline_io import (read_e3sm_precip, window_depth, read_aorc_sum,
-                          aorc_available, available_cases)
+from storyline_config import load_event
+from storyline_io import (read_e3sm_precip, window_depth, read_obs_sum, obs_products,
+                          available_cases)
 
 MM_PER_IN = 25.4
 
@@ -51,13 +51,14 @@ def e3sm_window_accum(case, t0, t1, region_bbox):
     return lat, lon, window_depth(times, prect, t0, t1)
 
 
-def aorc_window_accum(cfg, t0, t1, region_bbox):
-    """(lat1d, lon1d, depth_mm_2d), or None if AORC isn't available."""
-    if not aorc_available(t0):
-        print(f"  AORC n/a for {t0.year} (record starts 1979).")
-        return None
-    try:
-        return read_aorc_sum(data_dir(cfg, 'aorc_dir'), t0, t1, region_bbox)
-    except Exception as e:
-        print(f"  AORC SKIPPED ({type(e).__name__}: {e})")
-        return None
+def obs_window_accum(cfg, t0, t1, region_bbox):
+    """[obs panel dict] (see read_obs_sum) for every obs product the event
+    uses. A product that fails to read is skipped with the reason."""
+    out = []
+    for name in obs_products(cfg, t0, t1):
+        try:
+            print(f"Reading {name} ...")
+            out.append(read_obs_sum(cfg, name, t0, t1, region_bbox))
+        except Exception as e:
+            print(f"  {name} SKIPPED ({type(e).__name__}: {e})")
+    return out

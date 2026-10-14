@@ -17,7 +17,7 @@
 # Walltime is a placeholder: check the per-script minutes in the summary at
 # the end of each task's log and tighten it.
 
-SCRIPT_DIR="/global/homes/j/jsallen/projects/ar_storylines_2026/storyline_diag_03"
+SCRIPT_DIR="/global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag"
 
 source /global/common/software/e3sm/anaconda_envs/load_latest_e3sm_unified_pm-cpu.sh
 module load conda

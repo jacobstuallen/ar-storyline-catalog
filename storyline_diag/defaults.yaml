@@ -9,6 +9,31 @@
 data:
   aorc_dir: "/global/cfs/projectdirs/m3522/datalake/AORC/APCP_surface"
   st4_dir:  "/global/cfs/projectdirs/m3522/datalake/Stage_IV"   # used for events from 2002 on
+  nclimgrid_dir: "/pscratch/sd/j/jsallen/NClimGrid-Daily_v1-0-0"   # v1.0.0, prcp only
+
+# --- observations -----------------------------------------------------------
+# Products: AORC (hourly, 1979-02 on), StageIV (hourly, 2002 on),
+# NClimGrid (daily, 1951 on). A product is used only if its record covers
+# the window start and its data.*_dir is set.
+obs:
+  primary: ["AORC", "StageIV"]   # order = panel order; the first one read is the
+                                 # reference for E3SM-minus-obs difference figures
+  backup: ["NClimGrid"]          # used only when no primary covers the window
+  always_show_backup: true       # true = also plot backups next to the primaries
+  # NClimGrid days end "in the early morning" of their date (GHCN-D morning
+  # and midnight observers). Taken here as this hour UTC (12 UTC = 04 PST).
+  nclimgrid_day_end_utc: 12
+  # The Stage IV daily files have no time variable. Record k of
+  # PrecipitationST4_YYYYMMDD.nc is taken as the hour ending YYYYMMDD 00Z +
+  # (first_hour_end_utc + k) h. 1 = hours ending 01Z..00Z next day; 0 = 00Z..23Z.
+  # VERIFY against combine.sh in the Stage_IV directory.
+  stageiv:
+    first_hour_end_utc: 1
+    flip_rows: false               # true if Stage IV maps come out upside down vs AORC
+  styles:                        # line styles where obs are drawn as lines
+    AORC:      {color: "black",   ls: "-"}
+    StageIV:   {color: "dimgray", ls: "--"}
+    NClimGrid: {color: "#8c510a", ls: ":"}
 
 era5:
   base: "/global/cfs/projectdirs/m3522/cmip6/ERA5"
@@ -119,7 +144,7 @@ plots:
     extent: [-125.0, -104.0, 32.0, 49.0]
     start_day: 0             # 0-based offset into the event
     window_days: null        # null = to the end of the event
-    aorc_stride: 4           # subsample AORC before the polygon join, for speed
+    aorc_stride: 4           # subsample AORC (~1 km) before the polygon join, for speed; other obs are ~4 km and not subsampled
     vmax: null
     diffmax: null
 

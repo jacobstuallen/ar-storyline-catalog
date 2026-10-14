@@ -2,8 +2,9 @@
 plot_multicase_overlay.py
 
 Area-weighted mean cumulative precipitation for each E3SM resolution against
-AORC (and Stage IV from 2002 on), one figure per box in
-plots.overlay.mean_regions.
+the event's obs products (obs: in defaults.yaml), one figure per box in
+plots.overlay.mean_regions. Daily NClimGrid is drawn through its day-end
+points, starting at the start of its first day (up to 12 hr off the window).
 
 Reads the netCDFs from build_comparison_nc.py (one per case and file region
 in plots.overlay.regions), so run that first (the runner does). Each
@@ -13,9 +14,9 @@ add or change a mean_region.
 
 Weights are E3SM cell areas, read from the case's first eam.h0 file
 ('area'), else from the SCRIP file ('grid_area'). Obs were sampled onto the
-E3SM cells, so they use the same weights. When AORC is present, every series
-is restricted to cells where AORC has data, so all lines describe the same
-land area.
+E3SM cells, so they use the same weights. When obs are present, every series
+is restricted to cells where all obs have data (obs_valid), so all lines
+describe the same land area.
 
 show_spread: true adds the (unweighted) 2.5-97.5 percentile spread across
 cells as shading. It is a spatial spread, not a confidence interval.
@@ -36,7 +37,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 from storyline_config import load_event, event_window, plot_opts
-from storyline_io import cumulative_depth
+from storyline_io import cumulative_depth, obs_label
 
 DEFAULT_STYLE = {'color': [31, 119, 180], 'lw': 1.5, 'zorder': 3, 'alpha_ci': 0.15}
 AREA_MATCH_TOL_DEG = 1e-3      # max lat/lon mismatch when matching cells to area sources
@@ -96,11 +97,19 @@ def spread(cum):
     return np.nanpercentile(cum, 2.5, axis=1), np.nanpercentile(cum, 97.5, axis=1)
 
 
-def obs_cum(vals, name):
-    n_bad = int(np.sum(~np.isfinite(vals[1:]).all(axis=1)))
+def obs_cum(vals, name, skip_first=True):
+    rows = vals[1:] if skip_first else vals
+    n_bad = int(np.sum(~np.isfinite(rows).all(axis=1)))
     if n_bad:
-        print(f"  WARNING: {name} has {n_bad} intervals with no data; they count as 0.")
+        print(f"  WARNING: {name} has {n_bad} records with no data; they count as 0.")
     return np.nancumsum(vals, axis=0)
+
+
+def to_dt(seconds):
+    return np.array([datetime(1970, 1, 1) + timedelta(seconds=float(s)) for s in seconds])
+
+
+obs_styles = (cfg.get('obs', {}) or {}).get('styles', {}) or {}
 
 
 # ── load each case's comparison file(s) ──────────────────────────────────
@@ -114,24 +123,39 @@ for region in file_regions:
             print(f"  SKIP {case['name']}: no comparison file {path}")
             continue
         with nc.Dataset(path) as ds:
-            times = np.array([datetime(1970, 1, 1) + timedelta(seconds=float(s))
-                              for s in ds.variables['time'][:]])
-            d = {'case': case, 'times': times,
+            d = {'case': case, 'times': to_dt(ds.variables['time'][:]),
                  'lat': np.asarray(ds.variables['lat'][:], dtype=float),
                  'lon': np.asarray(ds.variables['lon'][:], dtype=float),
-                 'e3sm': np.asarray(ds.variables['e3sm_prect_mmhr'][:], dtype=float)}
-            for k, v in (('aorc', 'aorc_precip_mm'), ('st4', 'st4_precip_mm'), ('valid', 'aorc_valid')):
-                d[k] = np.asarray(ds.variables[v][:], dtype=float) if v in ds.variables else None
+                 'e3sm': np.asarray(ds.variables['e3sm_prect_mmhr'][:], dtype=float),
+                 'valid': (np.asarray(ds.variables['obs_valid'][:]) if 'obs_valid' in ds.variables
+                           else None),
+                 'obs': []}     # (name, times, values, own_axis)
+            names = [n for n in getattr(ds, 'obs_products', '').split(',') if n]
+            for name in names:
+                key = name.lower()
+                vals = np.asarray(ds.variables[f"{key}_precip_mm"][:], dtype=float)
+                if f"{key}_time" in ds.variables:
+                    d['obs'].append((name, to_dt(ds.variables[f"{key}_time"][:]), vals, True))
+                else:
+                    d['obs'].append((name, d['times'], vals, False))
         keep = d['valid'] > 0 if d['valid'] is not None else np.ones(len(d['lat']), dtype=bool)
         for k in ('lat', 'lon'):
             d[k] = d[k][keep]
-        for k in ('e3sm', 'aorc', 'st4'):
-            if d[k] is not None:
-                d[k] = d[k][:, keep]
+        d['e3sm'] = d['e3sm'][:, keep]
         d['area'] = cell_areas(case, d['lat'], d['lon'])
         d['e3sm_cum'] = cumulative_depth(d['times'], d['e3sm'])
-        for k, label in (('aorc', 'AORC'), ('st4', 'Stage IV')):
-            d[k + '_cum'] = obs_cum(d[k], f"{case['name']} {label}") if d[k] is not None else None
+        cums = []
+        for name, otimes, vals, own in d['obs']:
+            vals = vals[:, keep]
+            label = f"{case['name']} {obs_label(name)}"
+            if own:      # daily: prepend the start of the first day at 0
+                otimes = np.concatenate([[otimes[0] - (otimes[1] - otimes[0] if len(otimes) > 1
+                                                       else timedelta(hours=24))], otimes])
+                cum = np.vstack([np.zeros((1, vals.shape[1])), obs_cum(vals, label, False)])
+            else:
+                cum = obs_cum(vals, label)
+            cums.append((name, otimes, cum))
+        d['obs_cum'] = cums
         loaded[region].append(d)
 
 
@@ -156,15 +180,15 @@ for mreg in mean_regions:
     fig, ax = plt.subplots(figsize=(9, 5.5))
     totals = []
     ref, ref_m = next(((d, m) for d, m in series if d['case']['resolution'] == ref_res), series[0])
-    for key, label, color, ls in (('aorc', 'AORC', 'black', '-'), ('st4', 'Stage IV', 'dimgray', '--')):
-        cum = ref[key + '_cum']
-        if cum is None:
-            continue
+    for name, otimes, cum in ref['obs_cum']:
+        st = obs_styles.get(name, {})
+        color, ls, label = st.get('color', 'black'), st.get('ls', '-'), obs_label(name)
         cum, w = cum[:, ref_m], ref['area'][ref_m]
         mean = area_mean(cum, w)
-        ax.plot(ref['times'], mean, color=color, lw=1.8, ls=ls, zorder=10, label=label)
+        ax.plot(otimes, mean, color=color, lw=1.8, ls=ls, zorder=10, label=label,
+                marker='o' if len(otimes) < len(ref['times']) else None, ms=3)
         if show_spread:
-            ax.fill_between(ref['times'], *spread(cum), color=color, alpha=0.1, zorder=1)
+            ax.fill_between(otimes, *spread(cum), color=color, alpha=0.1, zorder=1)
         totals.append((label, mean[-1]))
 
     styles = ov.get('styles', {})

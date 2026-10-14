@@ -31,9 +31,12 @@ state_fips: "06"
 region_mode: "separate"
 share_ylim_across_regions: true
 
-aorc:
+# Which obs each event gets comes from obs: in defaults.yaml (AORC/Stage IV,
+# NClimGrid when neither covers the event).
+obs:
   enabled: true
-  rate_hours: 3        # average hourly AORC into N-hr blocks to match E3SM's 3-hourly output
+  rate_hours: 3        # average hourly obs into N-hr blocks to match E3SM's 3-hourly output
+                       # (daily NClimGrid is drawn as 24-hr blocks)
 
 units: "in"            # "in" or "mm"
 rate_ymax: null        # shared y-limits; null = from the data

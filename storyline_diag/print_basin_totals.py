@@ -2,14 +2,15 @@
 print_basin_totals.py
 
 Storm-total precipitation (inches) in each basin under
-observed_comparison.basins, over observed_comparison.storm_window, for AORC
-and every E3SM case that covers the window.
+observed_comparison.basins, over observed_comparison.storm_window, for each
+obs product and every E3SM case that covers the window. NClimGrid totals
+cover whole days, so their period can be offset from the window (printed).
 
   mean   simple (not area-weighted) mean of grid cells inside the basin
   max    wettest grid cell inside the basin, and where it is
 
 Station observations are point maxima, so compare them to `max`. Grid cells
-average over their area, so expect models and AORC to fall short.
+average over their area, so expect models and gridded obs to fall short.
 
 Run:  python print_basin_totals.py      (event: STORYLINE_CONFIG, see storyline_config.py)
 Writes plots/<event_label>/basin_storm_totals.csv
@@ -21,7 +22,7 @@ import numpy as np
 
 import storyline_plot as sp
 from obs_compare import (MM_PER_IN, load_obs_cfg, parse_window, e3sm_window_accum,
-                         aorc_window_accum)
+                         obs_window_accum)
 from storyline_io import available_cases
 
 cfg, oc = load_obs_cfg()
@@ -57,12 +58,9 @@ region_bbox = (bounds[:, 1].min() - pad, bounds[:, 0].min() - pad,
 
 # ── data ─────────────────────────────────────────────────────────────────
 sources = []   # (label, lat_flat, lon_flat, depth_in_flat)
-print("\nReading AORC ...")
-a = aorc_window_accum(cfg, t0, t1, region_bbox)
-if a is not None:
-    a_lat, a_lon, a_acc = a
-    a_lon2d, a_lat2d = np.meshgrid(a_lon, a_lat)
-    sources.append(("AORC", a_lat2d.ravel(), a_lon2d.ravel(), a_acc.ravel() / MM_PER_IN))
+print()
+for o in obs_window_accum(cfg, t0, t1, region_bbox):
+    sources.append((o['label'], o['lat'].ravel(), o['lon'].ravel(), o['val'].ravel() / MM_PER_IN))
 
 for case in available_cases(cfg, t0, t1):
     print(f"Reading E3SM: {case['name']} ...")

@@ -230,7 +230,8 @@ def add_boundaries(ax, boundaries):
 
 def draw_field(ax, panel, levels, cmap):
     """panel: {'kind': 'grid'|'mesh', 'lat', 'lon', 'val'}. Regular grids
-    (AORC) use contourf, the unstructured E3SM mesh uses tricontourf."""
+    (obs, 1-D or 2-D lat/lon) use contourf, the unstructured E3SM mesh uses
+    tricontourf."""
     import cartopy.crs as ccrs
     from matplotlib.tri import Triangulation
     if panel['kind'] == 'grid':

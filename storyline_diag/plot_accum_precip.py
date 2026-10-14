@@ -1,8 +1,10 @@
 """
 plot_accum_precip.py
 
-Map of total event precipitation: AORC plus each E3SM case, one row.
-E3SM: trapezoidal integral of instantaneous PRECT. AORC: sum of hourly values.
+Map of total event precipitation: each obs product (obs: in defaults.yaml)
+plus each E3SM case, one row.
+E3SM: trapezoidal integral of instantaneous PRECT. Obs: sum of hourly (AORC,
+Stage IV) or daily (NClimGrid) values.
 Options: plots.accum_precip in defaults.yaml (region, extent, boundary, vmax).
 
 Run:  python plot_accum_precip.py      (event: STORYLINE_CONFIG, see storyline_config.py)
@@ -14,8 +16,8 @@ import storyline_plot as sp
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 
-from storyline_config import load_event, event_window, plot_opts, data_dir
-from storyline_io import (read_e3sm_precip, total_depth, read_aorc_sum, aorc_available,
+from storyline_config import load_event, event_window, plot_opts
+from storyline_io import (read_e3sm_precip, total_depth, read_obs_sum, obs_products, obs_label,
                           available_cases)
 
 cfg = load_event()
@@ -36,16 +38,13 @@ boundaries = sp.load_boundaries(opt, extent)
 
 # ── data ─────────────────────────────────────────────────────────────────
 panels = []
-if aorc_available(t0):
+for name in obs_products(cfg, t0, t1):
     try:
-        print("Reading AORC ...")
-        lat, lon, tot = read_aorc_sum(data_dir(cfg, 'aorc_dir'), t0, t1, bbox)
-        panels.append({'label': 'AORC', 'kind': 'grid', 'lat': lat, 'lon': lon, 'val': tot})
+        print(f"Reading {name} ...")
+        panels.append(read_obs_sum(cfg, name, t0, t1, bbox))
     except Exception as e:
-        print(f"  AORC SKIPPED ({type(e).__name__}: {e})")
-        panels.append({'label': 'AORC', 'na': 'AORC n/a'})
-else:
-    panels.append({'label': 'AORC', 'na': 'AORC n/a (pre-1979)'})
+        print(f"  {name} SKIPPED ({type(e).__name__}: {e})")
+        panels.append({'label': obs_label(name), 'na': f"{obs_label(name)} n/a"})
 
 for case in available_cases(cfg, t0, t1):
     print(f"Reading E3SM: {case['name']} ...")
@@ -79,9 +78,7 @@ if 'county' in boundaries:
     for p in panels:
         if 'val' not in p:
             continue
-        lat, lon = (np.meshgrid(p['lat'], p['lon'], indexing='ij') if p['kind'] == 'grid'
-                    else (p['lat'], p['lon']))
-        m = sp.points_in(boundaries['county'], lat, lon) & np.isfinite(p['val'])
+        m = sp.points_in(boundaries['county'], p['lat'], p['lon']) & np.isfinite(p['val'])
         if m.any():
             print(f"  {p['label']}: {np.mean(p['val'][m]):.1f} mm  (n={int(m.sum())})")
         else:

@@ -3,7 +3,8 @@ plot_county_timeseries.py
 
 County area-mean precipitation for every storyline event: rate (thin lines,
 left axis) and running accumulation (thick lines, right axis), one panel per
-event, E3SM resolutions and AORC overlaid. One figure per region, where a
+event, E3SM resolutions and the event's obs overlaid (AORC/Stage IV, or
+NClimGrid where neither covers the event; obs: in defaults.yaml). One figure per region, where a
 region is one county or the union of the listed counties (region_mode).
 
 Run:  python plot_county_timeseries.py
@@ -12,11 +13,12 @@ All options live in county_timeseries.yaml (next to this script).
 Method:
   - E3SM: simple mean of PRECT over cells whose centers are inside the
     region, accumulated with a trapezoidal integral.
-  - AORC: mean over grid points inside the region of each hourly value,
-    averaged into `aorc.rate_hours` blocks for the rate line, running sum
-    for the accumulation. Hours are stamped at their end (storyline_io.py).
+  - Obs: mean over grid points inside the region of each hourly (daily for
+    NClimGrid) value, averaged into `obs.rate_hours` blocks (24 hr for
+    NClimGrid) for the rate line, running sum for the accumulation. Values
+    are stamped at the end of their period (storyline_io.py).
   - Data are read once per event/case over a box around all counties.
-  - A case or AORC read that fails is skipped with a printed reason.
+  - A case or obs read that fails is skipped with a printed reason.
 """
 
 import os
@@ -32,9 +34,9 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.lines import Line2D
 
-from storyline_config import load_event, event_window, data_dir
-from storyline_io import (read_e3sm_precip, cumulative_depth, read_aorc_stack, aorc_available,
-                          available_cases)
+from storyline_config import load_event, event_window
+from storyline_io import (read_e3sm_precip, cumulative_depth, read_obs_stack, obs_products,
+                          obs_label, available_cases)
 
 OPTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "county_timeseries.yaml")
 with open(OPTS_FILE) as f:
@@ -44,10 +46,13 @@ resolutions = opt.get('resolutions', ["30x8", "30x16"])
 units = opt.get('units', 'in')
 conv = 25.4 if units == 'in' else 1.0
 rate_unit = f"{units}/hr"
-aorc_on = opt.get('aorc', {}).get('enabled', True)
-aorc_block = int(opt.get('aorc', {}).get('rate_hours', 3))
+obs_on = opt.get('obs', {}).get('enabled', True)
+obs_block = int(opt.get('obs', {}).get('rate_hours', 3))
 FALLBACK_COLORS = {"30x8": "#d95f02", "30x16": "#1b9e77", "30x32": "#7570b3"}
-AORC_COLOR = "black"
+
+
+def obs_color(name, cfg):
+    return ((cfg.get('obs', {}) or {}).get('styles', {}) or {}).get(name, {}).get('color', 'black')
 
 
 def res_color(res, cfg):
@@ -103,18 +108,19 @@ def e3sm_series(case, t0, t1):
     return out
 
 
-def aorc_series(cfg, t0, t1):
-    times, lat, lon, vals = read_aorc_stack(data_dir(cfg, 'aorc_dir'), t0, t1, bbox)
-    lon2d, lat2d = np.meshgrid(lon, lat)
-    acc_t = np.concatenate([[t0], times])
-    k = ((np.array([(t - t0).total_seconds() for t in times]) / 3600.0 - 1e-6) // aorc_block)
+def obs_series(cfg, name, t0, t1):
+    times, lat2d, lon2d, vals, step = read_obs_stack(cfg, name, t0, t1, bbox)
+    start = times[0] - timedelta(hours=step)
+    acc_t = np.concatenate([[start], times])
+    blk = max(obs_block, step)
+    k = ((np.array([(t - start).total_seconds() for t in times]) / 3600.0 - 1e-6) // blk)
     blocks = np.unique(k)
-    r_t = np.array([t0 + timedelta(hours=aorc_block * (b + 1)) for b in blocks])
+    r_t = np.array([start + timedelta(hours=blk * (b + 1)) for b in blocks])
     out = []
     for (rname, _), m in zip(regions, region_masks(lat2d, lon2d)):
-        hourly = np.nanmean(vals[:, m], axis=1)
-        acc = np.concatenate([[0.0], np.nancumsum(hourly)])
-        rate = np.array([np.nanmean(hourly[k == b]) for b in blocks])
+        per_rec = np.nanmean(vals[:, m], axis=1)               # mm per record
+        acc = np.concatenate([[0.0], np.nancumsum(per_rec)])
+        rate = np.array([np.nanmean(per_rec[k == b]) for b in blocks]) / step   # mm/hr
         print(f"    {rname}: {int(m.sum())} grid points, total {acc[-1]:.1f} mm")
         out.append((r_t, rate, acc_t, acc))
     return out
@@ -122,7 +128,7 @@ def aorc_series(cfg, t0, t1):
 
 # ── read everything ──────────────────────────────────────────────────────
 panels = [[] for _ in regions]
-used_res, style_cfg = [], None
+used_res, used_obs, style_cfg = [], [], None
 for ev in opt['events']:
     cpath = ev['config'] if os.path.isabs(ev['config']) else \
         os.path.join(os.path.dirname(OPTS_FILE), ev['config'])
@@ -153,17 +159,17 @@ for ev in opt['events']:
         if res not in used_res:
             used_res.append(res)
 
-    if aorc_on:
-        if not aorc_available(t0):
-            notes.append("AORC: n/a (pre-1979)")
-        else:
-            print("  AORC")
+    if obs_on:
+        for name in obs_products(cfg, t0, t1):
+            print(f"  {name}")
             try:
-                for r, s in enumerate(aorc_series(cfg, t0, t1)):
-                    series[r].append(("AORC", "AORC", AORC_COLOR) + s)
+                for r, s in enumerate(obs_series(cfg, name, t0, t1)):
+                    series[r].append((name, obs_label(name), obs_color(name, cfg)) + s)
+                if name not in used_obs:
+                    used_obs.append(name)
             except Exception as e:
                 print(f"    SKIPPED ({type(e).__name__}: {e})")
-                notes.append("AORC: n/a")
+                notes.append(f"{obs_label(name)}: n/a")
 
     for r in range(len(regions)):
         panels[r].append({'title': title, 't0': t0, 't1': t1, 'series': series[r], 'notes': notes})
@@ -197,7 +203,7 @@ for (rname, _), rp in zip(regions, panels):
     for i, (ax, p) in enumerate(zip(axes, rp)):
         ax2 = ax.twinx()
         for key, label, color, rt, r, at, a in p['series']:
-            if key == "AORC":
+            if key in used_obs:
                 ax.step(rt, r / conv, where='pre', color=color, lw=0.9, alpha=0.8, zorder=2)
             else:
                 ax.plot(rt, r / conv, color=color, lw=0.9, alpha=0.8, zorder=2)
@@ -225,8 +231,8 @@ for (rname, _), rp in zip(regions, panels):
     res_labels = style_cfg.get('resolution_labels', {})
     handles = [Line2D([], [], color=res_color(r, style_cfg), lw=2.4, label=res_labels.get(r, r))
                for r in used_res]
-    if aorc_on:
-        handles.append(Line2D([], [], color=AORC_COLOR, lw=2.4, label="AORC"))
+    handles += [Line2D([], [], color=obs_color(n, style_cfg), lw=2.4, label=obs_label(n))
+                for n in used_obs]
     handles += [Line2D([], [], color='0.4', lw=0.9, label=f"Rate ({rate_unit}), left axis"),
                 Line2D([], [], color='0.4', lw=2.4, label=f"Accumulated ({units}), right axis")]
     spare = axes[len(rp):]

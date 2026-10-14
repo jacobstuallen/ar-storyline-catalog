@@ -28,4 +28,4 @@ observed_comparison:
   day_window:   {start: "1964-12-22 08:00", end: "1964-12-23 08:00"}
   observed_storm_total_in: null   # station max, inches (unknown)
   # VERIFY day_window is the peak 24-hr day.
-  # No AORC before 1979: AORC panels show 'n/a' and obs comparisons are E3SM-only.
+  # No AORC (1979 on) or Stage IV (2002 on): NClimGrid (daily) is the obs for 1964.

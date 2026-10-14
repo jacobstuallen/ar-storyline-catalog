@@ -2,12 +2,13 @@
 plot_max_precip.py
 
 2-row map of peak intensity: max hourly (row 1) and max 24-hr (row 2)
-precipitation, for AORC plus each E3SM case.
+precipitation, for each obs product plus each E3SM case.
 
 E3SM output is 3-hourly instantaneous PRECT, so "max hourly" is the peak
 rate (mm/hr) times 1 hr, and max 24-hr is the largest trapezoidal depth
-over any 8 consecutive intervals. AORC uses true hourly values and a
-rolling 24-hr sum.
+over any 8 consecutive intervals. AORC and Stage IV use true hourly values
+and a rolling 24-hr sum. NClimGrid is daily: no hourly panel, and its 24-hr
+value is the wettest fixed day, which can miss a peak split across two days.
 Options: plots.max_precip in defaults.yaml.
 
 Run:  python plot_max_precip.py      (event: STORYLINE_CONFIG, see storyline_config.py)
@@ -19,9 +20,9 @@ import storyline_plot as sp
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 
-from storyline_config import load_event, event_window, plot_opts, data_dir
-from storyline_io import (read_e3sm_precip, cumulative_depth, read_aorc_rolling_max,
-                          aorc_available, available_cases)
+from storyline_config import load_event, event_window, plot_opts
+from storyline_io import (read_e3sm_precip, cumulative_depth, read_obs_peaks, obs_products,
+                          obs_label, available_cases)
 
 WINDOW_HOURS = 24
 
@@ -52,16 +53,17 @@ def e3sm_peaks(times, rate):
 
 # ── data ─────────────────────────────────────────────────────────────────
 panels = []
-if aorc_available(t0):
+for name in obs_products(cfg, t0, t1):
     try:
-        print("Reading AORC ...")
-        lat, lon, m1, m24 = read_aorc_rolling_max(data_dir(cfg, 'aorc_dir'), t0, t1, bbox, WINDOW_HOURS)
-        panels.append({'label': 'AORC', 'kind': 'grid', 'lat': lat, 'lon': lon, 'h': m1, 'd': m24})
+        print(f"Reading {name} ...")
+        p = read_obs_peaks(cfg, name, t0, t1, bbox, WINDOW_HOURS)
+        if p['h'] is None:          # daily product
+            del p['h']
+            p['na_h'] = f"{p['label']}: daily data"
+        panels.append(p)
     except Exception as e:
-        print(f"  AORC SKIPPED ({type(e).__name__}: {e})")
-        panels.append({'label': 'AORC', 'na': 'AORC n/a'})
-else:
-    panels.append({'label': 'AORC', 'na': 'AORC n/a (pre-1979)'})
+        print(f"  {name} SKIPPED ({type(e).__name__}: {e})")
+        panels.append({'label': obs_label(name), 'na': f"{obs_label(name)} n/a"})
 
 for case in available_cases(cfg, t0, t1):
     print(f"Reading E3SM: {case['name']} ...")
@@ -82,8 +84,8 @@ for r, (key, vmax, label) in enumerate(rows):
     for c, p in enumerate(panels):
         ax = axes[r, c]
         sp.plot_background(ax, extent)
-        if 'na' in p:
-            sp.na_panel(ax, p['na'])
+        if 'na' in p or key not in p:
+            sp.na_panel(ax, p.get('na') or p.get('na_' + key, "n/a"))
         else:
             cf = sp.draw_field(ax, {**p, 'val': p[key]}, levels, sp.PRECIP_CMAP)
             sp.add_boundaries(ax, boundaries)
@@ -100,9 +102,7 @@ if 'county' in boundaries:
     for p in panels:
         if 'd' not in p:
             continue
-        lat, lon = (np.meshgrid(p['lat'], p['lon'], indexing='ij') if p['kind'] == 'grid'
-                    else (p['lat'], p['lon']))
-        m = sp.points_in(boundaries['county'], lat, lon) & np.isfinite(p['d'])
+        m = sp.points_in(boundaries['county'], p['lat'], p['lon']) & np.isfinite(p['d'])
         if m.any():
             print(f"  {p['label']}: {np.mean(p['d'][m]):.1f} / {np.max(p['d'][m]):.1f} mm  (n={int(m.sum())})")
         else:

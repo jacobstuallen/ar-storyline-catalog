@@ -15,7 +15,7 @@
 #   mkdir -p slurm_logs && sbatch submit_era5_diagnostics.sbatch
 # One event only:  sbatch --array=4 submit_era5_diagnostics.sbatch
 
-SCRIPT_DIR="/global/homes/j/jsallen/projects/ar_storylines_2026/storyline_diag_03"
+SCRIPT_DIR="/global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag"
 CONFIGS=(config.1964.WUS.G-NDG.yaml config.1986.WUS.G-NDG.yaml config.2005.WUS.G-NDG.yaml
          config.2019.WUS.G-NDG.yaml config.2024.WUS.G-NDG.yaml)
 CONFIG="${CONFIGS[${SLURM_ARRAY_TASK_ID}]}"

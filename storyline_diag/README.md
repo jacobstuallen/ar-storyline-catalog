@@ -23,6 +23,7 @@ Logs: `logs/<event_label>/<script>.log`; the SLURM log ends with a pass/fail tab
 |---|---|
 | Event cases, dates, storm/day windows | `config.<year>.WUS.G-NDG.yaml` |
 | Data paths, labels, regions, locations, every plot's options | `defaults.yaml` (`data:`, `resolution_labels:`, `plots:`) |
+| Which obs products are used | `defaults.yaml` `obs:` (override per event) |
 | Per-event override of any plot option | same key under `plots:` in the event config |
 | Which scripts/events run | lists at the top of `run_diagnostics.py` |
 | Multi-event county timeseries | `county_timeseries.yaml` |
@@ -31,7 +32,7 @@ Logs: `logs/<event_label>/<script>.log`; the SLURM log ends with a pass/fail tab
 
 ## Files
 - `storyline_config.py` config merge, `load_event()`, `event_window()`, `plot_opts()`
-- `storyline_io.py` E3SM/AORC/Stage IV readers, depth integrals, case coverage checks
+- `storyline_io.py` E3SM/AORC/Stage IV/NClimGrid readers, `obs_products()`, depth integrals, case coverage checks
 - `storyline_plot.py` style, `save_png`, map/polygon helpers, cached downloads
 - `obs_compare.py` storm/day-window helpers for the two observed-comparison scripts
 - `build_comparison_nc.py` then `plot_multicase_overlay.py`, `plot_accum_precip.py`,
@@ -44,4 +45,6 @@ Logs: `logs/<event_label>/<script>.log`; the SLURM log ends with a pass/fail tab
 - E3SM PRECT is instantaneous: depths are trapezoidal integrals.
 - AORC/Stage IV hours are stamped at the hour's end; window (t0, t1] (flip `OBS_STAMP_AT_END` in storyline_io.py if wrong).
 - A case whose output doesn't cover the window is skipped with a printed reason. A script with no usable case exits with an error.
-- No AORC before 1979: AORC panels show "n/a", E3SM still plotted.
+- Obs: AORC and Stage IV are primary; NClimGrid (daily) is used only when neither covers the event (1964), unless `obs.always_show_backup: true`.
+- NClimGrid days are taken to end at `obs.nclimgrid_day_end_utc` (12 UTC). A window uses the days whose midpoint falls inside it, so NClimGrid totals can be offset up to 12 hr at each end; the period used is printed.
+- County and HUC-10 difference figures are made once per obs product (`_diff_vs_<obs>.png`), on a shared color scale.
