@@ -1,8 +1,12 @@
 Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
 24-hr window: 1964-12-22 08:00:00 to 1964-12-23 08:00:00 UTC, per-watershed stat: max
 Reading HUC-10 watersheds ...
-Reading AORC ...
-  AORC n/a for 1964 (record starts 1979).
+  AORC n/a: record starts 1979-02-01
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: NClimGrid
+Reading NClimGrid ...
+  NClimGrid: 1 days, period 1964-12-22 12Z to 1964-12-23 12Z (window 1964-12-22 08Z to 1964-12-23 08Z)
+    1/506 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
     171/506 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 ...
@@ -11,6 +15,7 @@ Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
     4/506 polygons had no points inside; nearest point used.
 
 Watersheds with 24-hr max >= 10 in:
+  NClimGrid: 0
   E3SM ~14 km: 7
       1802012106  Middle North Fork Feather River     11.2 in
       1802012307  Lower Middle Fork Feather River     11.0 in

@@ -1,0 +1,35 @@
+loading compute pixi env...
+   pixi env loaded.
+activating spack env...
+   spack env activated.
+loading e3sm-unified environment variables...
+   e3sm-unified environment variables loaded.
+Job 59796021, array task 3, on nid005809 at Wed Oct 14 10:02:19 PM PDT 2026
+Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+
+===== 2019_G-NDG (config.2019.WUS.G-NDG.yaml) =====
+  window 2019-02-19 00:00:00 to 2019-03-04 00:00:00
+    30x8  Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2: 2019-02-19 00:00:00 to 2019-03-04 00:00:00, 105 records
+   30x16  Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2: 2019-02-19 00:00:00 to 2019-03-04 00:00:00, 105 records
+   30x32  Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2: 2019-02-19 00:00:00 to 2019-03-04 00:00:00, 105 records
+  plot_multicase_overlay.py      ok                   0.3 min   logs/2019_G-NDG/plot_multicase_overlay.log
+  plot_accum_precip.py           ok                   3.4 min   logs/2019_G-NDG/plot_accum_precip.log
+  plot_max_precip.py             ok                   2.9 min   logs/2019_G-NDG/plot_max_precip.log
+  plot_county_accum.py           ok                   4.3 min   logs/2019_G-NDG/plot_county_accum.log
+  plot_huc10_accum.py            ok                  15.7 min   logs/2019_G-NDG/plot_huc10_accum.log
+  plot_huc10_24hr.py             ok                   1.2 min   logs/2019_G-NDG/plot_huc10_24hr.log
+  print_basin_totals.py          ok                   0.6 min   logs/2019_G-NDG/print_basin_totals.log
+  plot_idf_overlay.py            ok                   0.1 min   logs/2019_G-NDG/plot_idf_overlay.log
+  plot_ivt_ar.py                 ok                   0.5 min   logs/2019_G-NDG/plot_ivt_ar.log
+
+===== summary =====
+  2019_G-NDG     plot_multicase_overlay.py      ok        0.3 min
+  2019_G-NDG     plot_accum_precip.py           ok        3.4 min
+  2019_G-NDG     plot_max_precip.py             ok        2.9 min
+  2019_G-NDG     plot_county_accum.py           ok        4.3 min
+  2019_G-NDG     plot_huc10_accum.py            ok       15.7 min
+  2019_G-NDG     plot_huc10_24hr.py             ok        1.2 min
+  2019_G-NDG     print_basin_totals.py          ok        0.6 min
+  2019_G-NDG     plot_idf_overlay.py            ok        0.1 min
+  2019_G-NDG     plot_ivt_ar.py                 ok        0.5 min
+Finished at Wed Oct 14 10:31:21 PM PDT 2026, exit 0

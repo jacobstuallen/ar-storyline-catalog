@@ -1,12 +1,23 @@
-Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03/config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
+Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
 
 === 1964: Christmas flood: 1964-12-13 00:00:00 to 1964-12-31 00:00:00 ===
-  SKIP case Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2: output covers 1964-12-13 00:00:00 to 1964-12-29 21:00:00, window is 1964-12-13 00:00:00 to 1964-12-31 00:00:00
   30x8: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2
     Sonoma County: 10 cells, total 318.5 mm
     Napa County: 4 cells, total 244.8 mm
     Marin County: 2 cells, total 218.2 mm
-Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03/config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
+  30x16: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2
+    Sonoma County: 38 cells, total 395.2 mm
+    Napa County: 18 cells, total 221.6 mm
+    Marin County: 13 cells, total 248.4 mm
+  AORC n/a: record starts 1979-02-01
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: NClimGrid
+  NClimGrid
+  NClimGrid: 18 days, period 1964-12-12 12Z to 1964-12-30 12Z (window 1964-12-13 00Z to 1964-12-31 00Z)
+    Sonoma County: 240 grid points, total 361.7 mm
+    Napa County: 118 grid points, total 272.9 mm
+    Marin County: 85 grid points, total 277.5 mm
+Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/config.1986.WUS.G-NDG.yaml  (event_label: 1986_G-NDG)
 
 === 1986: Valentine's Day flood: 1986-02-04 00:00:00 to 1986-02-27 00:00:00 ===
   30x8: Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2
@@ -14,14 +25,21 @@ Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03
     Napa County: 4 cells, total 439.4 mm
     Marin County: 2 cells, total 382.8 mm
   30x16: Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2
-    Sonoma County: 38 cells, total 362.0 mm
-    Napa County: 18 cells, total 291.4 mm
-    Marin County: 13 cells, total 215.9 mm
+    Sonoma County: 38 cells, total 375.0 mm
+    Napa County: 18 cells, total 349.9 mm
+    Marin County: 13 cells, total 238.0 mm
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: AORC, NClimGrid
   AORC
     Sonoma County: 6063 grid points, total 499.4 mm
     Napa County: 3075 grid points, total 496.2 mm
     Marin County: 2130 grid points, total 454.3 mm
-Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03/config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
+  NClimGrid
+  NClimGrid: 23 days, period 1986-02-03 12Z to 1986-02-26 12Z (window 1986-02-04 00Z to 1986-02-27 00Z)
+    Sonoma County: 240 grid points, total 474.2 mm
+    Napa County: 118 grid points, total 451.5 mm
+    Marin County: 85 grid points, total 415.6 mm
+Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/config.2005.WUS.G-NDG.yaml  (event_label: 2005_G-NDG)
 
 === 2005: New Year's flood: 2005-12-18 00:00:00 to 2006-01-08 00:00:00 ===
   30x8: Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2
@@ -32,11 +50,21 @@ Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03
     Sonoma County: 38 cells, total 682.0 mm
     Napa County: 18 cells, total 515.7 mm
     Marin County: 13 cells, total 500.2 mm
+  Obs used: AORC, Stage IV, NClimGrid
   AORC
     Sonoma County: 6063 grid points, total 551.7 mm
     Napa County: 3075 grid points, total 433.6 mm
     Marin County: 2130 grid points, total 492.6 mm
-Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03/config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
+  StageIV
+    Sonoma County: 235 grid points, total 135.7 mm
+    Napa County: 121 grid points, total 201.1 mm
+    Marin County: 85 grid points, total 168.6 mm
+  NClimGrid
+  NClimGrid: 21 days, period 2005-12-17 12Z to 2006-01-07 12Z (window 2005-12-18 00Z to 2006-01-08 00Z)
+    Sonoma County: 240 grid points, total 566.3 mm
+    Napa County: 118 grid points, total 455.6 mm
+    Marin County: 85 grid points, total 482.4 mm
+Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
 
 === 2019: February flood: 2019-02-19 00:00:00 to 2019-03-04 00:00:00 ===
   30x8: Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2
@@ -47,11 +75,21 @@ Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03
     Sonoma County: 38 cells, total 254.1 mm
     Napa County: 18 cells, total 220.7 mm
     Marin County: 13 cells, total 178.7 mm
+  Obs used: AORC, Stage IV, NClimGrid
   AORC
     Sonoma County: 6063 grid points, total 264.6 mm
     Napa County: 3075 grid points, total 192.6 mm
     Marin County: 2130 grid points, total 177.0 mm
-Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03/config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+  StageIV
+    Sonoma County: 235 grid points, total 263.1 mm
+    Napa County: 121 grid points, total 194.0 mm
+    Marin County: 85 grid points, total 176.6 mm
+  NClimGrid
+  NClimGrid: 13 days, period 2019-02-18 12Z to 2019-03-03 12Z (window 2019-02-19 00Z to 2019-03-04 00Z)
+    Sonoma County: 240 grid points, total 211.1 mm
+    Napa County: 118 grid points, total 154.5 mm
+    Marin County: 85 grid points, total 120.6 mm
+Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
 
 === 2024: November bomb cyclone: 2024-11-14 00:00:00 to 2024-11-27 00:00:00 ===
   30x8: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2
@@ -62,31 +100,53 @@ Event config: /global/u2/j/jsallen/projects/ar_storylines_2026/storyline_diag_03
     Sonoma County: 38 cells, total 264.7 mm
     Napa County: 18 cells, total 169.9 mm
     Marin County: 13 cells, total 106.1 mm
+  Obs used: AORC, Stage IV, NClimGrid
   AORC
     Sonoma County: 6063 grid points, total 397.1 mm
     Napa County: 3075 grid points, total 274.1 mm
     Marin County: 2130 grid points, total 225.3 mm
+  StageIV
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241113.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241114.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241115.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241116.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241117.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241118.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241119.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241120.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241121.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241122.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241123.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241124.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241125.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241126.nc
+    SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/Stage_IV for 2024-11-14 00:00:00 to 2024-11-27 00:00:00.)
+  NClimGrid
+  NClimGrid: 13 days, period 2024-11-13 12Z to 2024-11-26 12Z (window 2024-11-14 00Z to 2024-11-27 00Z)
+    Sonoma County: 240 grid points, total 296.1 mm
+    Napa County: 118 grid points, total 218.1 mm
+    Marin County: 85 grid points, total 225.8 mm
 
 Sonoma County event totals (in):
-  1964: Christmas flood: E3SM ~14 km 12.54
-  1986: Valentine's Day flood: E3SM ~14 km 20.40, E3SM ~7 km 14.25, AORC 19.66
-  2005: New Year's flood: E3SM ~14 km 19.13, E3SM ~7 km 26.85, AORC 21.72
-  2019: February flood: E3SM ~14 km 8.42, E3SM ~7 km 10.00, AORC 10.42
-  2024: November bomb cyclone: E3SM ~14 km 9.54, E3SM ~7 km 10.42, AORC 15.63
+  1964: Christmas flood: E3SM ~14 km 12.54, E3SM ~7 km 15.56, NClimGrid 14.24
+  1986: Valentine's Day flood: E3SM ~14 km 20.40, E3SM ~7 km 14.76, AORC 19.66, NClimGrid 18.67
+  2005: New Year's flood: E3SM ~14 km 19.13, E3SM ~7 km 26.85, AORC 21.72, Stage IV 5.34, NClimGrid 22.30
+  2019: February flood: E3SM ~14 km 8.42, E3SM ~7 km 10.00, AORC 10.42, Stage IV 10.36, NClimGrid 8.31
+  2024: November bomb cyclone: E3SM ~14 km 9.54, E3SM ~7 km 10.42, AORC 15.63, NClimGrid 11.66
 
 Napa County event totals (in):
-  1964: Christmas flood: E3SM ~14 km 9.64
-  1986: Valentine's Day flood: E3SM ~14 km 17.30, E3SM ~7 km 11.47, AORC 19.54
-  2005: New Year's flood: E3SM ~14 km 18.11, E3SM ~7 km 20.30, AORC 17.07
-  2019: February flood: E3SM ~14 km 8.01, E3SM ~7 km 8.69, AORC 7.58
-  2024: November bomb cyclone: E3SM ~14 km 8.37, E3SM ~7 km 6.69, AORC 10.79
+  1964: Christmas flood: E3SM ~14 km 9.64, E3SM ~7 km 8.73, NClimGrid 10.75
+  1986: Valentine's Day flood: E3SM ~14 km 17.30, E3SM ~7 km 13.77, AORC 19.54, NClimGrid 17.78
+  2005: New Year's flood: E3SM ~14 km 18.11, E3SM ~7 km 20.30, AORC 17.07, Stage IV 7.92, NClimGrid 17.94
+  2019: February flood: E3SM ~14 km 8.01, E3SM ~7 km 8.69, AORC 7.58, Stage IV 7.64, NClimGrid 6.08
+  2024: November bomb cyclone: E3SM ~14 km 8.37, E3SM ~7 km 6.69, AORC 10.79, NClimGrid 8.59
 
 Marin County event totals (in):
-  1964: Christmas flood: E3SM ~14 km 8.59
-  1986: Valentine's Day flood: E3SM ~14 km 15.07, E3SM ~7 km 8.50, AORC 17.89
-  2005: New Year's flood: E3SM ~14 km 14.57, E3SM ~7 km 19.69, AORC 19.39
-  2019: February flood: E3SM ~14 km 5.22, E3SM ~7 km 7.04, AORC 6.97
-  2024: November bomb cyclone: E3SM ~14 km 3.86, E3SM ~7 km 4.18, AORC 8.87
+  1964: Christmas flood: E3SM ~14 km 8.59, E3SM ~7 km 9.78, NClimGrid 10.93
+  1986: Valentine's Day flood: E3SM ~14 km 15.07, E3SM ~7 km 9.37, AORC 17.89, NClimGrid 16.36
+  2005: New Year's flood: E3SM ~14 km 14.57, E3SM ~7 km 19.69, AORC 19.39, Stage IV 6.64, NClimGrid 18.99
+  2019: February flood: E3SM ~14 km 5.22, E3SM ~7 km 7.04, AORC 6.97, Stage IV 6.95, NClimGrid 4.75
+  2024: November bomb cyclone: E3SM ~14 km 3.86, E3SM ~7 km 4.18, AORC 8.87, NClimGrid 8.89
 Written: plots/multi_event/sonoma_county_precip_timeseries.png
 Written: plots/multi_event/napa_county_precip_timeseries.png
 Written: plots/multi_event/marin_county_precip_timeseries.png

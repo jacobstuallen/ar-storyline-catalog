@@ -7,7 +7,11 @@ Russian: 1 WBDHU8 polygon(s) matched:
 Napa: 1 WBDHU10 polygon(s) matched:
     1805000202  Napa River
 
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: AORC, NClimGrid
 Reading AORC ...
+Reading NClimGrid ...
+  NClimGrid: 10 days, period 1986-02-11 12Z to 1986-02-21 12Z (window 1986-02-11 08Z to 1986-02-21 08Z)
 Reading E3SM: Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2 ...
@@ -17,13 +21,15 @@ Observed (station max): ~40 in
 Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
 ------------------------------------------------------------------------------
 Russian   AORC                        19.6      38.1   38.666  -122.625   5745
+Russian   NClimGrid                   19.0      24.3   38.562  -123.146    232
 Russian   E3SM ~14 km                 21.1      23.9   38.744  -122.972      9
-Russian   E3SM ~7 km                  13.8      19.9   38.810  -122.802     36
+Russian   E3SM ~7 km                  13.9      18.8   38.810  -122.802     36
 Russian   E3SM ~3.5 km                19.4      37.6   38.790  -122.769    146
 
 Napa      AORC                        21.3      36.7   38.658  -122.617    807
+Napa      NClimGrid                   18.3      24.8   38.604  -122.479     32
 Napa      E3SM ~14 km                 20.2      20.2   38.428  -122.449      1
-Napa      E3SM ~7 km                  14.5      15.4   38.389  -122.384      3
+Napa      E3SM ~7 km                  15.7      16.4   38.389  -122.384      3
 Napa      E3SM ~3.5 km                18.5      23.0   38.415  -122.358     20
 
 Written: plots/1986_G-NDG/basin_storm_totals.csv

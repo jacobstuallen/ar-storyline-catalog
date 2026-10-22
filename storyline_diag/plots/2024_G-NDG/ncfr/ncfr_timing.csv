@@ -1,0 +1,4 @@
+event,case,resolution,win24_start_utc,win24_end_utc,depth24_mm,T0_peak_hour_end_utc,peak_rate_mmhr,timing_source
+2024_G-NDG,Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2,30x8,2024-11-20 12:00:00,2024-11-21 12:00:00,104.2,2024-11-21 00:00:00,5.28,h5
+2024_G-NDG,Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2,30x16,2024-11-20 11:00:00,2024-11-21 11:00:00,97.4,2024-11-21 01:00:00,5.14,h5
+2024_G-NDG,Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2,30x32,2024-11-20 11:00:00,2024-11-21 11:00:00,85.1,2024-11-20 23:00:00,4.33,h5

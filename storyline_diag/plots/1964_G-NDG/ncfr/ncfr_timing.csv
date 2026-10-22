@@ -1,0 +1,4 @@
+event,case,resolution,win24_start_utc,win24_end_utc,depth24_mm,T0_peak_hour_end_utc,peak_rate_mmhr,timing_source
+1964_G-NDG,Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2,30x8,1964-12-22 11:00:00,1964-12-23 11:00:00,136.0,1964-12-23 03:00:00,7.17,h5
+1964_G-NDG,Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2,30x16,1964-12-22 16:00:00,1964-12-23 16:00:00,134.5,1964-12-23 01:00:00,8.44,h5
+1964_G-NDG,Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2,30x32,1964-12-21 10:00:00,1964-12-22 10:00:00,126.6,1964-12-21 20:00:00,6.92,h5

@@ -1,5 +1,24 @@
 Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+  Obs used: AORC, Stage IV, NClimGrid
 Reading AORC ...
+Reading StageIV ...
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241113.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241114.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241115.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241116.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241117.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241118.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241119.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241120.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241121.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241122.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241123.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241124.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241125.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241126.nc
+  StageIV SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/Stage_IV for 2024-11-14 00:00:00 to 2024-11-27 00:00:00.)
+Reading NClimGrid ...
+  NClimGrid: 13 days, period 2024-11-13 12Z to 2024-11-26 12Z (window 2024-11-14 00Z to 2024-11-27 00Z)
 Reading E3SM: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2 ...
@@ -7,6 +26,7 @@ Written: plots/2024_G-NDG/max_precip_zoom.png
 
 Max 24-hr precip, Sonoma County (mean over points inside / wettest point):
   AORC: 180.8 / 334.3 mm  (n=6063)
+  NClimGrid: 105.3 / 169.6 mm  (n=240)
   E3SM ~14 km: 106.6 / 141.7 mm  (n=10)
   E3SM ~7 km: 114.5 / 203.5 mm  (n=38)
   E3SM ~3.5 km: 107.0 / 311.4 mm  (n=156)

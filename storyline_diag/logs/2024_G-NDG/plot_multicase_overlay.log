@@ -6,12 +6,11 @@ Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
   Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2: area weights from 'area' in /pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2/run/Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2.eam.h0.2024-11-14-00000.nc
 
 == NORCAL (cells from WUS files) ==
-  Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2: 419 cells
-  Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2: 1681 cells
-  Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2: 6737 cells
+  Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2: 507 cells
+  Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2: 2032 cells
+  Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2: 8130 cells
   Event totals, area-weighted mean over NORCAL:
-    AORC               202.7 mm
-    E3SM ~14 km        210.4 mm
-    E3SM ~7 km         208.5 mm
-    E3SM ~3.5 km       203.5 mm
+    E3SM ~14 km        196.3 mm
+    E3SM ~7 km         197.5 mm
+    E3SM ~3.5 km       192.5 mm
 Written: plots/2024_G-NDG/multicase_overlay_NORCAL.png

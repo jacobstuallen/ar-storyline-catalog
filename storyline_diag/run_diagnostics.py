@@ -32,19 +32,21 @@ EVENTS = [
 
 PER_EVENT = [                      # run in this order (overlay needs the netCDFs)
     #"build_comparison_nc.py",
-    "plot_multicase_overlay.py",
-    "plot_accum_precip.py",
-    "plot_max_precip.py",
-    "plot_county_accum.py",
-    "plot_huc10_accum.py",
-    "plot_huc10_24hr.py",
-    "print_basin_totals.py",
-    "plot_idf_overlay.py",
-    "plot_ivt_ar.py",
+    #"plot_multicase_overlay.py",
+    #"plot_accum_precip.py",
+    #"plot_max_precip.py",
+    #"plot_county_accum.py",
+    #"plot_huc10_accum.py",
+    #"plot_huc10_24hr.py",
+    #"print_basin_totals.py",
+    #"plot_idf_overlay.py",
+    #"plot_ivt_ar.py",
+    #"plot_precip_partition.py",
+    "plot_ncfr_maps.py",
 ]
 
 MULTI_EVENT = [
-    "plot_county_timeseries.py",
+    #"plot_county_timeseries.py",
 ]
 
 HERE = os.path.dirname(os.path.abspath(__file__))

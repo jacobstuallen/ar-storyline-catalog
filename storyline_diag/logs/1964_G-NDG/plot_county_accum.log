@@ -2,10 +2,16 @@ Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
 Accumulation window: 1964-12-13 00:00:00 to 1964-12-31 00:00:00
 Reading county boundaries ...
   419 counties
-  AORC n/a for 1964 (record starts 1979); no difference figure.
-  SKIP case Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2: output covers 1964-12-13 00:00:00 to 1964-12-29 21:00:00, window is 1964-12-13 00:00:00 to 1964-12-31 00:00:00
+  AORC n/a: record starts 1979-02-01
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: NClimGrid
+Reading NClimGrid ...
+  NClimGrid: 18 days, period 1964-12-12 12Z to 1964-12-30 12Z (window 1964-12-13 00Z to 1964-12-31 00Z)
 Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
     25/419 polygons had no points inside; nearest point used.
+Reading E3SM: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 ...
+    10/419 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
     6/419 polygons had no points inside; nearest point used.
 Written: plots/1964_G-NDG/accum_by_county_day0-18_raw.png
+Written: plots/1964_G-NDG/accum_by_county_day0-18_diff_vs_NClimGrid.png

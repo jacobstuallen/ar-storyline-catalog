@@ -1,7 +1,13 @@
 Event config: config.2019.WUS.G-NDG.yaml  (event_label: 2019_G-NDG)
 24-hr window: 2019-02-26 08:00:00 to 2019-02-27 08:00:00 UTC, per-watershed stat: max
 Reading HUC-10 watersheds ...
+  Obs used: AORC, Stage IV, NClimGrid
 Reading AORC ...
+Reading StageIV ...
+Reading NClimGrid ...
+  NClimGrid: 1 days, period 2019-02-26 12Z to 2019-02-27 12Z (window 2019-02-26 08Z to 2019-02-27 08Z)
+    1/506 polygons had no points inside; nearest point used.
+    1/506 polygons had no points inside; nearest point used.
     1/506 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2 ...
     171/506 polygons had no points inside; nearest point used.
@@ -22,6 +28,28 @@ Watersheds with 24-hr max >= 5 in:
       1802000504  Sacramento River Arm-Shasta Lake    9.0 in
       1802011603  Kelsey Creek-Clear Lake             8.4 in
       1801011006  Middle Russian River                8.3 in
+  Stage IV: 47
+      1801011005  Dry Creek                           12.4 in
+      1801011008  Austin Creek                        12.0 in
+      1801010901  Gualala River                       11.2 in
+      1801011009  Lower Russian River                 10.0 in
+      1801010902  Salmon Creek-Frontal Pacific Ocean  8.4 in
+      1802015401  Clear Creek                         8.2 in
+      1802015403  Churn Creek-Sacramento River        8.1 in
+      1802011603  Kelsey Creek-Clear Lake             7.7 in
+      1802000504  Sacramento River Arm-Shasta Lake    7.5 in
+      1802012306  South Fork Feather River            7.4 in
+  NClimGrid: 19
+      1802000503  Slate Creek-Sacramento River        6.0 in
+      1802015403  Churn Creek-Sacramento River        5.9 in
+      1802000504  Sacramento River Arm-Shasta Lake    5.9 in
+      1801021103  East Fork Trinity River             5.8 in
+      1802000405  McCloud River Arm-Shasta Lake       5.8 in
+      1801021104  Stuart Fork                         5.7 in
+      1801021105  Swift Creek-Trinity River           5.7 in
+      1802012504  Lower North Yuba River              5.7 in
+      1802012306  South Fork Feather River            5.7 in
+      1802015401  Clear Creek                         5.7 in
   E3SM ~14 km: 5
       1802012106  Middle North Fork Feather River     6.1 in
       1802012108  Lower North Fork Feather River      6.1 in

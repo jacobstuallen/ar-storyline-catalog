@@ -1,9 +1,16 @@
 Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
-  SKIP case Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2: output covers 1964-12-13 00:00:00 to 1964-12-29 21:00:00, window is 1964-12-13 00:00:00 to 1964-12-31 00:00:00
+  AORC n/a: record starts 1979-02-01
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: NClimGrid
+Reading NClimGrid ...
+  NClimGrid: 18 days, period 1964-12-12 12Z to 1964-12-30 12Z (window 1964-12-13 00Z to 1964-12-31 00Z)
 Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
+Reading E3SM: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
 Written: plots/1964_G-NDG/max_precip_zoom.png
 
 Max 24-hr precip, Sonoma County (mean over points inside / wettest point):
+  NClimGrid: 91.9 / 168.0 mm  (n=240)
   E3SM ~14 km: 85.1 / 130.2 mm  (n=10)
+  E3SM ~7 km: 114.2 / 177.8 mm  (n=38)
   E3SM ~3.5 km: 107.2 / 219.1 mm  (n=156)

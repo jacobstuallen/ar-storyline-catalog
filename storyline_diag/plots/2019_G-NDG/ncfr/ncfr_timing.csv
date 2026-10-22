@@ -1,0 +1,4 @@
+event,case,resolution,win24_start_utc,win24_end_utc,depth24_mm,T0_peak_hour_end_utc,peak_rate_mmhr,timing_source
+2019_G-NDG,Storyline_2019_WUS_ne30x8_pg2_G-NDG_v2,30x8,2019-02-25 11:00:00,2019-02-26 11:00:00,76.6,2019-02-25 21:00:00,5.33,h5
+2019_G-NDG,Storyline_2019_WUS_ne30x16_pg2_G-NDG_v2,30x16,2019-02-26 14:00:00,2019-02-27 14:00:00,82.4,2019-02-27 03:00:00,5.38,h5
+2019_G-NDG,Storyline_2019_WUS_ne30x32_pg2_G-NDG_v2,30x32,2019-02-26 11:00:00,2019-02-27 11:00:00,96.5,2019-02-27 08:00:00,5.89,h5

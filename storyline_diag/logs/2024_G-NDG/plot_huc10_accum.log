@@ -2,8 +2,28 @@ Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
 Accumulation window: 2024-11-14 00:00:00 to 2024-11-27 00:00:00
 Reading HUC-10 watersheds ...
   6416 watersheds
+  Obs used: AORC, Stage IV, NClimGrid
 Reading AORC ...
     1/6416 polygons had no points inside; nearest point used.
+Reading StageIV ...
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241113.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241114.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241115.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241116.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241117.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241118.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241119.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241120.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241121.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241122.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241123.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241124.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241125.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241126.nc
+  StageIV SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/Stage_IV for 2024-11-14 00:00:00 to 2024-11-27 00:00:00.)
+Reading NClimGrid ...
+  NClimGrid: 13 days, period 2024-11-13 12Z to 2024-11-26 12Z (window 2024-11-14 00Z to 2024-11-27 00Z)
+    171/6416 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 ...
     1292/6416 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 ...
@@ -11,4 +31,5 @@ Reading E3SM: Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2 ...
     40/6416 polygons had no points inside; nearest point used.
 Written: plots/2024_G-NDG/accum_by_huc10_day0-13_raw.png
-Written: plots/2024_G-NDG/accum_by_huc10_day0-13_diff.png
+Written: plots/2024_G-NDG/accum_by_huc10_day0-13_diff_vs_AORC.png
+Written: plots/2024_G-NDG/accum_by_huc10_day0-13_diff_vs_NClimGrid.png

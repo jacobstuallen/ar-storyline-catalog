@@ -1,0 +1,4 @@
+event,case,resolution,win24_start_utc,win24_end_utc,depth24_mm,T0_peak_hour_end_utc,peak_rate_mmhr,timing_source
+2005_G-NDG,Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2,30x8,2005-12-27 15:00:00,2005-12-28 15:00:00,140.3,2005-12-28 14:00:00,7.99,h5
+2005_G-NDG,Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2,30x16,2005-12-30 13:00:00,2005-12-31 13:00:00,140.6,2005-12-31 05:00:00,7.25,h5
+2005_G-NDG,Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2,30x32,2005-12-27 15:00:00,2005-12-28 15:00:00,169.0,2005-12-28 04:00:00,9.03,h5

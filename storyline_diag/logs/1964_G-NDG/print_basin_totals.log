@@ -7,8 +7,11 @@ Russian: 1 WBDHU8 polygon(s) matched:
 Napa: 1 WBDHU10 polygon(s) matched:
     1805000202  Napa River
 
-Reading AORC ...
-  AORC n/a for 1964 (record starts 1979).
+  AORC n/a: record starts 1979-02-01
+  Stage IV n/a: record starts 2002-01-01
+  Obs used: NClimGrid
+Reading NClimGrid ...
+  NClimGrid: 6 days, period 1964-12-20 12Z to 1964-12-26 12Z (window 1964-12-20 08Z to 1964-12-26 08Z)
 Reading E3SM: Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 ...
 Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
@@ -16,12 +19,14 @@ Reading E3SM: Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 ...
 Storm totals, 1964-12-20 08:00 to 1964-12-26 08:00 UTC
 Basin     Source                 Mean (in)  Max (in)  Max lat   Max lon  Cells
 ------------------------------------------------------------------------------
+Russian   NClimGrid                   12.3      20.0   39.354  -123.354    232
 Russian   E3SM ~14 km                 12.9      20.1   39.295  -123.053      9
-Russian   E3SM ~7 km                  14.1      24.8   39.307  -123.355     36
+Russian   E3SM ~7 km                  14.1      24.3   39.307  -123.355     36
 Russian   E3SM ~3.5 km                13.1      27.1   39.333  -123.329    146
 
+Napa      NClimGrid                    8.6      14.8   38.646  -122.604     32
 Napa      E3SM ~14 km                  6.6       6.6   38.428  -122.449      1
-Napa      E3SM ~7 km                   7.8      10.4   38.560  -122.527      3
+Napa      E3SM ~7 km                   7.8      10.3   38.560  -122.527      3
 Napa      E3SM ~3.5 km                 7.8      10.4   38.580  -122.560     20
 
 Written: plots/1964_G-NDG/basin_storm_totals.csv

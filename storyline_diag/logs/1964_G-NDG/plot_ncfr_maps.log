@@ -1,0 +1,76 @@
+Event config: config.1964.WUS.G-NDG.yaml  (event_label: 1964_G-NDG)
+
+=== Storyline_1964_WUS_ne30x8_pg2_G-NDG_v2 (30x8) ===
+  h0 max 24-h county mean: 138.7 mm, 1964-12-22 09:00:00 to 1964-12-23 09:00:00 (53 cells)
+  h5 max 24-h county mean: 136.0 mm, 1964-12-22 11:00:00 to 1964-12-23 11:00:00
+  T0 (peak hour end): 1964-12-23 03:00:00, 7.17 mm/hr
+  WARNING: h0 has no PS; 850 hPa fields are not masked under terrain
+    h0 median cell spacing (km): NW 20.2, NE 20.4, SW 20.1, SE 20.6
+  h0 frames: 17 (1964-12-21 03:00:00 to 1964-12-23 03:00:00), grid 81 x 105
+  h5 hourly frames: 13
+
+=== Storyline_1964_WUS_ne30x16_pg2_G-NDG_v2 (30x16) ===
+  h0 max 24-h county mean: 135.3 mm, 1964-12-22 15:00:00 to 1964-12-23 15:00:00 (232 cells)
+  h5 max 24-h county mean: 134.5 mm, 1964-12-22 16:00:00 to 1964-12-23 16:00:00
+  T0 (peak hour end): 1964-12-23 01:00:00, 8.44 mm/hr
+  WARNING: h0 has no PS; 850 hPa fields are not masked under terrain
+    h0 median cell spacing (km): NW 10.1, NE 10.2, SW 10.1, SE 10.3
+  h0 frames: 16 (1964-12-21 03:00:00 to 1964-12-23 00:00:00), grid 161 x 209
+  h5 hourly frames: 13
+
+=== Storyline_1964_WUS_ne30x32_pg2_G-NDG_v2 (30x32) ===
+  h0 max 24-h county mean: 125.6 mm, 1964-12-21 09:00:00 to 1964-12-22 09:00:00 (911 cells)
+  h5 max 24-h county mean: 126.6 mm, 1964-12-21 10:00:00 to 1964-12-22 10:00:00
+  T0 (peak hour end): 1964-12-21 20:00:00, 6.92 mm/hr
+  WARNING: h0 has no PS; 850 hPa fields are not masked under terrain
+    h0 median cell spacing (km): NW 10.1, NE 5.1, SW 10.1, SE 5.1
+  h0 frames: 16 (1964-12-19 21:00:00 to 1964-12-21 18:00:00), grid 321 x 417
+  h5 hourly frames: 13
+
+Plotting E3SM ~14 km
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_000.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_001.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_002.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_003.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_004.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_005.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_006.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_007.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_008.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_009.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_010.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_011.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_012.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_013.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_014.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_015.png
+Written: plots/1964_G-NDG/ncfr/h0_30x8/frame_016.png
+Written: plots/1964_G-NDG/ncfr/ncfr_h0_30x8.gif
+Written: plots/1964_G-NDG/ncfr/ncfr_Tminus6h_30x8.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_000.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_001.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_002.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_003.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_004.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_005.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_006.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_007.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_008.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_009.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_010.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_011.png
+Written: plots/1964_G-NDG/ncfr/h5_30x8/frame_012.png
+Written: plots/1964_G-NDG/ncfr/ncfr_h5_30x8.gif
+
+Plotting E3SM ~7 km
+Written: plots/1964_G-NDG/ncfr/h0_30x16/frame_000.png
+Traceback (most recent call last):
+  File "/global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/plot_ncfr_maps.py", line 460, in <module>
+    sp.save_png(h0_figure(r, f), p)
+  File "/global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/storyline_diag/storyline_plot.py", line 63, in save_png
+    fig.savefig(path, dpi=DPI, bbox_inches='tight')
+  File "/global/homes/j/jsallen/.conda/envs/earth/lib/python3.11/site-packages/matplotlib/figure.py", line 3497, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/global/homes/j/jsallen/.conda/envs/earth/lib/python3.11/site-packages/matplotlib/backend_bases.py", line 2186, in print_figure
+    result = print_method(
+             ^^^^^

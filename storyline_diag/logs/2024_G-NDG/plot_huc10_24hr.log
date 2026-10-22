@@ -1,7 +1,16 @@
 Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
 24-hr window: 2024-11-21 08:00:00 to 2024-11-22 08:00:00 UTC, per-watershed stat: max
 Reading HUC-10 watersheds ...
+  Obs used: AORC, Stage IV, NClimGrid
 Reading AORC ...
+Reading StageIV ...
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241120.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241121.nc
+  SKIP (no Stage IV file): /global/cfs/projectdirs/m3522/datalake/Stage_IV/PrecipitationST4_20241122.nc
+  StageIV SKIPPED (FileNotFoundError: No Stage IV data in /global/cfs/projectdirs/m3522/datalake/Stage_IV for 2024-11-21 08:00:00 to 2024-11-22 08:00:00.)
+Reading NClimGrid ...
+  NClimGrid: 1 days, period 2024-11-21 12Z to 2024-11-22 12Z (window 2024-11-21 08Z to 2024-11-22 08Z)
+    1/506 polygons had no points inside; nearest point used.
     1/506 polygons had no points inside; nearest point used.
 Reading E3SM: Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 ...
     171/506 polygons had no points inside; nearest point used.
@@ -14,6 +23,7 @@ Watersheds with 24-hr max >= 10 in:
   AORC: 2
       1801010702  Mattole River                       11.4 in
       1801010704  Cooksie Creek-Frontal Pacific Ocean 10.7 in
+  NClimGrid: 0
   E3SM ~14 km: 0
   E3SM ~7 km: 0
   E3SM ~3.5 km: 8

@@ -1,0 +1,232 @@
+Event config: config.2024.WUS.G-NDG.yaml  (event_label: 2024_G-NDG)
+
+=== Storyline_2024_WUS_ne30x8_pg2_G-NDG_v2 (30x8) ===
+  h0 max 24-h county mean: 104.2 mm, 2024-11-20 12:00:00 to 2024-11-21 12:00:00 (53 cells)
+  h5 max 24-h county mean: 104.2 mm, 2024-11-20 12:00:00 to 2024-11-21 12:00:00
+  T0 (peak hour end): 2024-11-21 00:00:00, 5.28 mm/hr
+  WARNING: h0 has no PS; 850 hPa fields are not masked under terrain
+    h0 median cell spacing (km): NW 20.2, NE 20.4, SW 20.1, SE 20.6
+    land mask from Natural Earth 50m land
+  h0 frames: 25 (2024-11-19 00:00:00 to 2024-11-22 00:00:00), grid 81 x 105
+  h5 hourly frames: 37
+
+=== Storyline_2024_WUS_ne30x16_pg2_G-NDG_v2 (30x16) ===
+  h0 max 24-h county mean: 97.0 mm, 2024-11-20 12:00:00 to 2024-11-21 12:00:00 (232 cells)
+  h5 max 24-h county mean: 97.4 mm, 2024-11-20 11:00:00 to 2024-11-21 11:00:00
+  T0 (peak hour end): 2024-11-21 01:00:00, 5.14 mm/hr
+  WARNING: h0 has no PS; 850 hPa fields are not masked under terrain
+    h0 median cell spacing (km): NW 10.1, NE 10.2, SW 10.1, SE 10.3
+    land mask from Natural Earth 50m land
+  h0 frames: 24 (2024-11-19 03:00:00 to 2024-11-22 00:00:00), grid 161 x 209
+  h5 hourly frames: 37
+
+=== Storyline_2024_WUS_ne30x32_pg2_G-NDG_v2 (30x32) ===
+  h0 max 24-h county mean: 82.4 mm, 2024-11-20 09:00:00 to 2024-11-21 09:00:00 (911 cells)
+  h5 max 24-h county mean: 85.1 mm, 2024-11-20 11:00:00 to 2024-11-21 11:00:00
+  T0 (peak hour end): 2024-11-20 23:00:00, 4.33 mm/hr
+  WARNING: h0 has no PS; 850 hPa fields are not masked under terrain
+    h0 median cell spacing (km): NW 10.1, NE 5.1, SW 10.1, SE 5.1
+    land mask from Natural Earth 50m land
+  h0 frames: 24 (2024-11-19 00:00:00 to 2024-11-21 21:00:00), grid 321 x 417
+  h5 hourly frames: 37
+
+Plotting E3SM ~14 km
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_000.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_001.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_002.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_003.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_004.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_005.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_006.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_007.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_008.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_009.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_010.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_011.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_012.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_013.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_014.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_015.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_016.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_017.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_018.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_019.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_020.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_021.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_022.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_023.png
+Written: plots/2024_G-NDG/ncfr/h0_30x8/frame_024.png
+Written: plots/2024_G-NDG/ncfr/ncfr_h0_30x8.gif
+Written: plots/2024_G-NDG/ncfr/ncfr_Tminus6h_30x8.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_000.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_001.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_002.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_003.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_004.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_005.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_006.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_007.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_008.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_009.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_010.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_011.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_012.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_013.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_014.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_015.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_016.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_017.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_018.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_019.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_020.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_021.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_022.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_023.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_024.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_025.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_026.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_027.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_028.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_029.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_030.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_031.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_032.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_033.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_034.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_035.png
+Written: plots/2024_G-NDG/ncfr/h5_30x8/frame_036.png
+Written: plots/2024_G-NDG/ncfr/ncfr_h5_30x8.gif
+
+Plotting E3SM ~7 km
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_000.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_001.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_002.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_003.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_004.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_005.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_006.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_007.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_008.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_009.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_010.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_011.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_012.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_013.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_014.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_015.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_016.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_017.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_018.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_019.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_020.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_021.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_022.png
+Written: plots/2024_G-NDG/ncfr/h0_30x16/frame_023.png
+Written: plots/2024_G-NDG/ncfr/ncfr_h0_30x16.gif
+Written: plots/2024_G-NDG/ncfr/ncfr_Tminus6h_30x16.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_000.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_001.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_002.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_003.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_004.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_005.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_006.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_007.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_008.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_009.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_010.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_011.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_012.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_013.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_014.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_015.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_016.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_017.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_018.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_019.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_020.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_021.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_022.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_023.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_024.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_025.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_026.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_027.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_028.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_029.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_030.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_031.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_032.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_033.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_034.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_035.png
+Written: plots/2024_G-NDG/ncfr/h5_30x16/frame_036.png
+Written: plots/2024_G-NDG/ncfr/ncfr_h5_30x16.gif
+
+Plotting E3SM ~3.5 km
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_000.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_001.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_002.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_003.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_004.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_005.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_006.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_007.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_008.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_009.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_010.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_011.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_012.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_013.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_014.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_015.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_016.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_017.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_018.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_019.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_020.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_021.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_022.png
+Written: plots/2024_G-NDG/ncfr/h0_30x32/frame_023.png
+Written: plots/2024_G-NDG/ncfr/ncfr_h0_30x32.gif
+Written: plots/2024_G-NDG/ncfr/ncfr_Tminus6h_30x32.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_000.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_001.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_002.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_003.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_004.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_005.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_006.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_007.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_008.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_009.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_010.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_011.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_012.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_013.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_014.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_015.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_016.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_017.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_018.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_019.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_020.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_021.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_022.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_023.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_024.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_025.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_026.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_027.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_028.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_029.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_030.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_031.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_032.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_033.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_034.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_035.png
+Written: plots/2024_G-NDG/ncfr/h5_30x32/frame_036.png
+Written: plots/2024_G-NDG/ncfr/ncfr_h5_30x32.gif
+Written: plots/2024_G-NDG/ncfr/ncfr_timing.png
+Written: plots/2024_G-NDG/ncfr/ncfr_timing.csv

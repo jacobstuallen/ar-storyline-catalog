@@ -1,0 +1,48 @@
+# ===========================================================================
+# process_diag settings. Case paths, dates and storm windows come from the
+# storyline_diag event configs listed under `events:` (no second copy here).
+# ===========================================================================
+
+# Event configs, relative to ../storyline_diag/. Comment out to skip.
+events:
+  - config.1964.WUS.G-NDG.yaml
+  - config.1986.WUS.G-NDG.yaml
+  - config.2005.WUS.G-NDG.yaml
+  - config.2019.WUS.G-NDG.yaml
+  - config.2024.WUS.G-NDG.yaml
+
+# Analysis box [min_lat, min_lon, max_lat, max_lon]. Same as NORCAL in
+# storyline_diag/defaults.yaml.
+region: [37.0, -124.5, 42.0, -120.0]
+
+# Time window: "storm" = observed_comparison.storm_window of each event,
+# "event" = the full time: block.
+window: storm
+
+# Hourly instantaneous tape with U, V, Target_U, Target_V, Nudge_U, PS.
+stream: eam.h6
+
+# Output folders, relative to process_diag/.
+plot_dir: plots
+data_dir: output
+
+# --- Block 1: nudging profile (plot_nudge_profile.py) ----------------------
+nudge_profile:
+  every_hours: 3          # read every Nth hourly record (all 80 levels is heavy at 30x32)
+  # Nudge_Vwin_Lindex / Nudge_Vwin_Hindex from user_nl_eam (1-based model
+  # level indices). Drawn as reference lines only.
+  namelist_window: [44, 61]
+
+# --- Blocks 2-3: structure functions (compute_structure_functions.py) -------
+structure_function:
+  fields: [U, Target_U, V, Target_V]
+  # Nearest model level by the reference `lev` coordinate (hPa at PS = 1000 hPa).
+  # Pick one free and one nudged level after looking at block 1.
+  levels_hpa: [500, 850]
+  every_hours: 1
+  r_min_km: 2
+  r_max_km: 300
+  n_bins: 30              # log-spaced separation bins
+  r_exact_km: 60          # all pairs closer than this (snapped to a bin edge)
+  n_random_pairs: 3000000 # random pairs for the larger separations
+  min_pairs: 200          # bins with fewer pairs are written as NaN
