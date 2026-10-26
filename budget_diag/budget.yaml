@@ -1,0 +1,127 @@
+# ===========================================================================
+# budget_diag settings: regional water budget and drying ratio.
+# Case paths, dates and windows come from the event configs listed under
+# `events:`. These are copies of the storyline_diag configs kept in this
+# directory; budget_diag only reads event_label, cases, time and
+# observed_comparison (storm_window, day_window) from them.
+# ===========================================================================
+
+event_config_dir: "."
+
+# Event configs, relative to event_config_dir. Comment out to skip.
+events:
+  - config.1964.WUS.G-NDG.yaml
+  - config.1986.WUS.G-NDG.yaml
+  - config.2005.WUS.G-NDG.yaml
+  - config.2019.WUS.G-NDG.yaml
+  - config.2024.WUS.G-NDG.yaml
+
+# History streams. h0: 3-hourly instantaneous TUQ, TVQ, QFLX, TMQ, TM* burdens.
+# precip: 3-hourly mean PRECT. If the precip stream is missing, or its PRECT
+# is not a time mean, compute_budget.py falls back to h0 PRECT (instantaneous)
+# and records that in the output file.
+streams:
+  h0: "eam.h0"
+  precip: "eam.h1"
+
+# Budget boxes, all computed in one pass over the E3SM files. Vertices are
+# [lon, lat], in order around the box (either direction). Edges are straight
+# in lon/lat. faces[i] names the edge from vertex i to vertex i+1 (the last
+# edge closes back to vertex 0); edges with the same name are summed.
+# Comment out a box to skip it. Optional `inside: <box name>` marks a box that
+# lies entirely within another; the box-comparison figure then shows what
+# share of the outer box's precipitation falls in the inner one.
+#
+# ALL VERTICES ARE FIRST GUESSES FROM MEMORY, NOT CHECKED AGAINST TERRAIN OR
+# A COASTLINE. Check each box on the budget_map.png figures and adjust.
+#  - Coastal boxes: west edges ~15 km offshore; east edge an approximate
+#    Coast Range / Mayacamas crest (38.2-40.0 N), then the Humboldt-Trinity
+#    county line (north of 40.0 N, where there is no single crest).
+#  - Sierra box: west edge along the Central Valley axis (so the foothills and
+#    the barrier-jet zone are inside); east edge along the crest passes.
+boxes:
+  - name: "offshore_to_crest"       # ~150 km of ocean to the crest
+    vertices:
+      - [-124.30, 38.20]
+      - [-122.55, 38.20]
+      - [-122.75, 38.80]
+      - [-123.00, 39.60]
+      - [-124.30, 39.60]
+    faces: [south, east, east, north, west]
+
+  - name: "coast_to_crest"          # Sonoma / southern Mendocino, ~15 km offshore to the crest
+    inside: "offshore_to_crest"
+    vertices:
+      - [-123.20, 38.20]   # off Bodega Bay
+      - [-123.30, 38.45]   # off Jenner
+      - [-123.70, 38.77]   # off Gualala
+      - [-123.92, 38.95]   # off Point Arena
+      - [-123.98, 39.60]   # off Fort Bragg
+      - [-123.00, 39.60]   # crest
+      - [-122.75, 38.80]   # crest
+      - [-122.55, 38.20]   # crest
+    faces: [west, west, west, west, north, east, east, south]
+
+  - name: "norcal_coast"            # Sonoma to Humboldt, ~15 km offshore to crest / county line
+    vertices:
+      - [-123.20, 38.20]   # off Bodega Bay
+      - [-123.30, 38.45]   # off Jenner
+      - [-123.70, 38.77]   # off Gualala
+      - [-123.92, 38.95]   # off Point Arena
+      - [-123.98, 39.60]   # off Fort Bragg
+      - [-124.25, 40.00]   # off Shelter Cove
+      - [-124.60, 40.44]   # off Cape Mendocino
+      - [-124.35, 40.80]   # off Eureka
+      - [-124.30, 41.50]   # off Klamath
+      - [-123.60, 41.50]   # Humboldt county line
+      - [-123.45, 40.40]   # Humboldt county line
+      - [-122.95, 40.00]   # Mendocino county line / crest
+      - [-123.00, 39.60]   # crest
+      - [-122.75, 38.80]   # crest
+      - [-122.55, 38.20]   # crest
+    faces: [west, west, west, west, west, west, west, west,
+            north, east, east, east, east, east, south]
+
+  - name: "sierra_west"             # northern/central Sierra windward slope, valley axis to crest
+    vertices:
+      - [-120.30, 37.00]   # valley axis near Merced
+      - [-118.75, 37.00]   # crest, upper Kings/San Joaquin
+      - [-119.26, 37.91]   # crest, Tioga Pass
+      - [-119.64, 38.33]   # crest, Sonora Pass
+      - [-119.99, 38.69]   # crest, Carson Pass
+      - [-120.33, 39.32]   # crest, Donner Pass
+      - [-120.40, 39.90]   # crest, northern Sierra (Feather)
+      - [-121.90, 39.90]   # Sacramento Valley axis near Chico
+      - [-121.40, 38.50]   # valley axis near Sacramento
+      - [-120.80, 37.70]   # valley axis near Modesto
+    faces: [south, east, east, east, east, east, north, west, west, west]
+
+box_options:
+  sample_km: 1.0            # spacing of boundary samples (finer than 3.5 km)
+  stencil_margin_deg: 0.5   # columns this far outside a box feed the interpolation
+
+# Event-mean IVT map region = box extent plus this margin (degrees).
+map_margin_deg: 2.0
+
+output_dir: "output/budget"   # output/budget/<box>/budget_<event>_<res>.nc
+plot_dir: "plots"             # plots/<event_label>/<box>/ and plots/multi_event/<box>/
+
+# Resolutions not in resolution_order are still computed but left out of plots.
+# Add "30" to the order to include unrefined ne30 cases, if a config lists them.
+resolution_labels:
+  "30": "~110 km"
+  "30x8": "~14 km"
+  "30x16": "~7 km"
+  "30x32": "~3.5 km"
+resolution_order: ["30x8", "30x16", "30x32"]
+resolution_colors:            # fixed per resolution, never reassigned
+  "30": "#eda100"
+  "30x8": "#2a78d6"
+  "30x16": "#eb6834"
+  "30x32": "#1baf7a"
+
+# Multi-event summary (plot_budget_summary.py)
+summary:
+  window: storm               # storm | day | event (windows from the event configs)
+  reference_resolution: "30x8"  # attribution panel is relative to this mesh
+  dr_lines: [0.1, 0.2, 0.3, 0.5, 0.7]

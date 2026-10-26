@@ -1,0 +1,30 @@
+# 2005-06 New Year's flood. 2005-12-18 through 2006-01-08.
+# Everything not set here comes from defaults.yaml.
+event_label: "2005_G-NDG"
+
+cases:
+  - name: "Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2"
+    resolution: "30x8"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x8_pg2_G-NDG_v2/run"
+  - name: "Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2"
+    resolution: "30x16"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x16_pg2_G-NDG_v2/run"
+  - name: "Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2"
+    resolution: "30x32"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_2005_WUS_ne30x32_pg2_G-NDG_v2/run"
+
+time:
+  start_year: 2005
+  start_month: 12
+  start_day: 18
+  num_days: 21
+  hours_step: 3
+
+active_regions: ["NOR_PAC", "WUS"]
+
+# All times UTC. PST calendar day D = D 08:00 to D+1 08:00 UTC.
+observed_comparison:
+  storm_window: {start: "2005-12-24 08:00", end: "2006-01-03 08:00"}
+  day_window:   {start: "2005-12-30 08:00", end: "2005-12-31 08:00"}
+  observed_storm_total_in: null   # station max, inches (fill in)
+  # huc10_24hr threshold/bins inherited from defaults (tuned for 1986); adjust if needed.

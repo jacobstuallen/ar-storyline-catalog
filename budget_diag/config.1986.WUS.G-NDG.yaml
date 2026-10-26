@@ -1,0 +1,30 @@
+# 1986 Valentine's Day flood.
+# Everything not set here comes from defaults.yaml.
+event_label: "1986_G-NDG"
+
+cases:
+  - name: "Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2"
+    resolution: "30x8"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1986_WUS_ne30x8_pg2_G-NDG_v2/run"
+  - name: "Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2"
+    resolution: "30x16"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1986_WUS_ne30x16_pg2_G-NDG_v2/run"
+  - name: "Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2"
+    resolution: "30x32"
+    e3sm_dir: "/pscratch/sd/j/jsallen/e3sm_scratch/pm-cpu/Storyline_1986_WUS_ne30x32_pg2_G-NDG_v2/run"
+
+time:
+  start_year: 1986
+  start_month: 2
+  start_day: 4
+  num_days: 23
+  hours_step: 3
+
+active_regions: ["NOR_PAC", "WUS"]
+
+# All times UTC. PST calendar day D = D 08:00 to D+1 08:00 UTC.
+observed_comparison:
+  storm_window: {start: "1986-02-11 08:00", end: "1986-02-21 08:00"}
+  day_window:   {start: "1986-02-17 08:00", end: "1986-02-18 08:00"}
+  observed_storm_total_in: 40     # NOAA: "nearly 40 inches", station max
+
