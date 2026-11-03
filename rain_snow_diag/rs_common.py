@@ -394,3 +394,80 @@ def map_axes(fig, nrows, ncols, extent):
             ax.set_ylim(extent[2:])
             ax.set_aspect(1.0 / np.cos(np.deg2rad(np.mean(extent[2:]))))
         return axes
+
+
+# ── binned sums for the multi-event summaries ───────────────────────────
+def samples(d, opts, min_rate, elev_range=None):
+    """Land samples with PRECT >= min_rate. Returns p, s (mm/hr), w (area),
+    ok mask, all (time, ncell), plus day index per record."""
+    land = land_mask(d, opts)
+    if elev_range:
+        land &= (d["zsfc"] >= elev_range[0]) & (d["zsfc"] <= elev_range[1])
+    p, s = d["prect"], d["snow"]
+    w = np.broadcast_to(d["area"], p.shape)
+    ok = land[None, :] & np.isfinite(p) & np.isfinite(s) & (p >= min_rate)
+    t = d["time"]
+    # Day of the event for each 3-hr mean, keyed on the interval midpoint.
+    mid = [x - timedelta(hours=1.5) for x in t]
+    day0 = min(mid).replace(hour=0, minute=0, second=0)
+    day = np.array([(x - day0).days for x in mid])
+    return p, s, w, ok, day
+
+
+def binned(x, p, s, w, ok, day, edges, clip=False):
+    """Sums per (day, bin): array (ndays, 3, nbin) of [sum P*w, sum S*w, count].
+    x, p, s, w, ok: (time, ncell); day: (time,). clip=True puts out-of-range
+    x in the end bins (needed when every sample must be counted)."""
+    nb = len(edges) - 1
+    nd = int(day.max()) + 1
+    dd = np.broadcast_to(day[:, None], p.shape)
+    m = ok & np.isfinite(x)
+    ib = np.digitize(x[m], edges) - 1
+    if clip:
+        ib = np.clip(ib, 0, nb - 1)
+        keep = np.ones(ib.shape, bool)
+    else:
+        keep = (ib >= 0) & (ib < nb)
+    k = dd[m][keep] * nb + ib[keep]
+    pw, sw = (p * w)[m][keep], (s * w)[m][keep]
+    out = np.zeros((nd, 3, nb))
+    out[:, 0] = np.bincount(k, pw, nd * nb).reshape(nd, nb)
+    out[:, 1] = np.bincount(k, sw, nd * nb).reshape(nd, nb)
+    out[:, 2] = np.bincount(k, minlength=nd * nb).reshape(nd, nb)
+    return out
+
+
+def snow_fraction(sums, min_samples=1):
+    """sums (..., 3, nbin) -> snow fraction per bin, NaN where too few samples."""
+    P, S, N = sums[..., 0, :], sums[..., 1, :], sums[..., 2, :]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where((N >= min_samples) & (P > 0), S / P, np.nan)
+
+
+def crossing(frac, centers, level):
+    """x where frac first drops through `level` going from low to high x
+    (cold to warm). NaN if it never does."""
+    for i in range(len(frac) - 1):
+        a, b = frac[i], frac[i + 1]
+        if np.isfinite(a) and np.isfinite(b) and a >= level > b:
+            return centers[i] + (a - level) / (a - b) * (centers[i + 1] - centers[i])
+    return np.nan
+
+
+def fzl_on_precip_times(d):
+    """Freezing level (time, ncol) on the 3-hr precip records: the 6-hr
+    instantaneous profile nearest each interval's midpoint (within 3 h)."""
+    out = np.full(d["prect"].shape, np.nan)
+    if d["fzl"].shape[0] == 0:
+        return out
+    t6 = np.array([(x - EPOCH).total_seconds() for x in d["time6"]])
+    for i, t in enumerate(d["time"]):
+        mid = (t - timedelta(hours=1.5) - EPOCH).total_seconds()
+        j = np.argmin(np.abs(t6 - mid))
+        if abs(t6[j] - mid) <= 3 * 3600:
+            out[i] = d["fzl"][j]
+    return out
+
+
+def event_short(label):
+    return label.split("_")[0]

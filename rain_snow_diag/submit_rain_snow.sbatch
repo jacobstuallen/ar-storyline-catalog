@@ -16,7 +16,8 @@ conda activate earth
 cd "$SLURM_SUBMIT_DIR"
 mkdir -p logs
 status=0
-for s in build_phase_nc plot_elevband_timeseries plot_partition_curve plot_snowline_maps plot_transect; do
+for s in build_phase_nc plot_elevband_timeseries plot_partition_curve plot_snowline_maps plot_transect \
+         plot_threshold_summary plot_snowfrac_decomposition plot_snowfrac_vs_meltlayer plot_snowfrac_vs_rate; do
     echo "=== $s $(date +%H:%M:%S)"
     if python "$s.py" > "logs/$s.log" 2>&1; then
         echo "    ok"

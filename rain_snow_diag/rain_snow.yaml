@@ -28,7 +28,7 @@ streams:
   static: h4     # PHIS, OCNFRAC
 
 build:
-  overwrite: true
+  overwrite: false
   freezing_level: highest  # highest | lowest 0 C crossing above the surface
   freezing_level_max_m: 10000  # ignore crossings above this (warm stratopause near model top)
 
@@ -69,6 +69,32 @@ plots:
     #  2019_G-NDG: ["2019-02-26 12:00", "2019-02-27 00:00"]
     n_auto: 3
     min_sep_hours: 24
+
+  # Multi-event summaries (plots/multi_event/). Shared settings first.
+  summary:
+    ref_resolution: "30x8"  # baseline for the decomposition
+    min_rate_mmhr: 0.1
+    min_samples: 30         # per bin, else the bin's snow fraction is NaN
+    elev_range_m: null      # e.g. [1000, 4500]; null = all land cells
+    temp_bins_c: [-6.0, 8.0, 0.5]   # min, max, width
+
+  threshold_summary:        # plot_threshold_summary.py
+    width_levels: [0.9, 0.1]  # transition width = T(10% snow) - T(90% snow)
+    n_boot: 500             # bootstrap over event days
+    ci: [5, 95]
+    seed: 0
+
+  decomposition:            # plot_snowfrac_decomposition.py
+    temp_var: tw            # tw | trefht
+    wide_bins_c: [-40.0, 30.0, 0.5]  # end bins catch everything outside
+
+  meltlayer:                # plot_snowfrac_vs_meltlayer.py
+    depth_bins_m: [0, 3000, 150]   # freezing level minus surface elevation
+    frozen_to_ground: true  # add a point at 0 m for columns below 0 C to the ground
+
+  rate_classes:             # plot_snowfrac_vs_rate.py
+    classes_mmhr: [[0.1, 1.0], [1.0, 4.0], [4.0, null]]
+    near_zero_c: [-1.0, 2.0]   # Tw range for the printed rate-share table
 
   snowline_maps:
     # Pulses per event label as [start, end] UTC. Missing events are

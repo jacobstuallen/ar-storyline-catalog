@@ -13,6 +13,12 @@ python plot_elevband_timeseries.py
 python plot_partition_curve.py
 python plot_snowline_maps.py
 python plot_transect.py             # reads h2 directly for the chosen times
+
+# multi-event summaries (plots/multi_event/), options under plots.summary etc.
+python plot_threshold_summary.py
+python plot_snowfrac_decomposition.py
+python plot_snowfrac_vs_meltlayer.py
+python plot_snowfrac_vs_rate.py
 ```
 
 or `mkdir -p slurm_logs && sbatch submit_rain_snow.sbatch`. All options are in
@@ -28,6 +34,17 @@ or `mkdir -p slurm_logs && sbatch submit_rain_snow.sbatch`. All options are in
 | `rain_on_snow_maps.png` | Rain on snowpack per pulse. |
 | `transect_NAME_YYYYMMDDHH.png` | Height cross-sections: T with 0 C, along-transect wind, RH. |
 | `transect_locator.png` | Transect lines over terrain. |
+
+## Multi-event summaries (plots/multi_event/)
+
+| File | Question it answers |
+| --- | --- |
+| `threshold_summary.png` | Does T50 (50% snow) and the 90-10% transition width differ by resolution, consistently across events? Dot = T50, thick bar = bootstrap CI over days, thin bar = width. |
+| `snowfrac_decomposition_tw.png` | Is the change in event snow fraction vs 30x8 from *where/when it precipitates* (temperature sampling) or from *phase at the same temperature*? Terms sum exactly to the total. |
+| `snowfrac_vs_meltlayer.png` | Does the difference persist when binned by freezing level above ground instead of surface T? Persists -> melting/microphysics; vanishes -> surface T vs melting-layer coupling. |
+| `snowfrac_vs_rate.png` | Does the difference persist within precip-rate classes? Vanishes -> heavier rates (melting cooling) explain it. |
+
+Scripts print the numbers behind each figure.
 
 ## Definitions
 
