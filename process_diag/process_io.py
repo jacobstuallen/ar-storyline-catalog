@@ -286,3 +286,199 @@ def sf_mean(sf, field, level_hpa):
     with warnings.catch_warnings():
         warnings.simplefilter('ignore', RuntimeWarning)    # all-NaN bins (too few pairs)
         return np.nanmean(sf['S2'][k, m], axis=0), float(sf['lev'][m])
+
+
+# ── precipitation (block 4) ──────────────────────────────────────────────
+# Periods: k = 1..n covers (t0 + (k-1)A, t0 + kA] with A = accum_hours.
+# Values are depths in mm per period. A period missing any record is NaN.
+def n_periods(t0, t1, accum_hours):
+    return int(round((t1 - t0).total_seconds() / 3600.0 / accum_hours))
+
+
+def period_ends(t0, t1, accum_hours):
+    return [t0 + timedelta(hours=accum_hours * (k + 1))
+            for k in range(n_periods(t0, t1, accum_hours))]
+
+
+def _period_index(times, t0, accum_hours):
+    """0-based period for each stamp, from its (seconds since t0)."""
+    s = np.array([(t - t0).total_seconds() for t in times])
+    return np.ceil(s / (3600.0 * accum_hours) - 1e-9).astype(int) - 1
+
+
+def read_e3sm_precip_periods(case, stream, var, t0, t1, bbox, accum_hours, chunk=64):
+    """(Columns, vals (nper, ncol) mm per period) from an averaged precip
+    tape (e.g. h5 PRECT, m/s). Each record is the mean over the interval
+    ending at its stamp, so it is assigned by its interval midpoint. None if
+    the case has no records."""
+    c = dict(case, e3sm_stream=stream)
+    try:
+        index = sio._e3sm_file_index(c, t0, t1)
+    except FileNotFoundError as e:
+        print(f"  {case['name']}: {e}")
+        return None
+    if not index:
+        return None
+    stamps = sorted({t for _, times, keep in index for t in times[keep]})
+    if len(stamps) < 2:
+        return None
+    step = float(np.median(np.diff([(t - stamps[0]).total_seconds() for t in stamps])))
+    expected = accum_hours * 3600.0 / step
+    if abs(expected - round(expected)) > 1e-6:
+        print(f"  WARNING {case['name']}: {step:.0f} s records don't divide {accum_hours} h")
+    expected = int(round(expected))
+
+    cols = Columns(index[0][0], bbox)
+    nper = n_periods(t0, t1, accum_hours)
+    sums = np.zeros((nper, cols.n))
+    counts = np.zeros(nper, dtype=int)
+    seen = set()
+    for path, times, keep in index:
+        ks = np.array([k for k in keep if times[k] not in seen], dtype=int)
+        seen.update(times[ks])
+        if len(ks) == 0:
+            continue
+        mids = [times[k] - timedelta(seconds=step / 2) for k in ks]
+        p = _period_index(mids, t0, accum_hours)
+        with nc.Dataset(path) as ds:
+            v = ds.variables[var]
+            for s in range(0, len(ks), chunk):
+                k, pp = ks[s:s + chunk], p[s:s + chunk]
+                block = np.asarray(v[k[0]:k[-1] + 1, cols.span], dtype=np.float64)
+                block = block[k - k[0]][:, cols.local]
+                ok = (pp >= 0) & (pp < nper)
+                np.add.at(sums, pp[ok], block[ok])
+                np.add.at(counts, pp[ok], 1)
+    bad = counts != expected
+    if bad.any():
+        print(f"  {case['resolution']}: {bad.sum()} of {nper} periods incomplete "
+              f"(expected {expected} records each); set to NaN")
+    with np.errstate(invalid='ignore', divide='ignore'):
+        vals = sums / counts[:, None] * 3.6e6 * accum_hours     # m/s -> mm per period
+    vals[bad] = np.nan
+    return cols, vals.astype(np.float32)
+
+
+def block_mean(a, f):
+    """Mean over f x f blocks of the last two axes (edges trimmed). NaN in a
+    block gives NaN."""
+    if f == 1:
+        return a
+    ny, nx = a.shape[-2] // f * f, a.shape[-1] // f * f
+    a = a[..., :ny, :nx]
+    return a.reshape(a.shape[:-2] + (ny // f, f, nx // f, f)).mean(axis=(-3, -1))
+
+
+def read_obs_precip_periods(cfg, name, t0, t1, bbox, accum_hours, coarsen=1):
+    """(lat, lon, vals (nper, npts)) for an hourly obs product: hours summed
+    into periods, optionally block-averaged by `coarsen`, points inside bbox.
+    A period missing any hour is NaN."""
+    it, _, _, _ = sio._obs_iter(cfg, name, t0, t1, bbox)
+    nper = n_periods(t0, t1, accum_hours)
+    sums = counts = lat = lon = None
+    for la, lo, times, block in it:
+        if sums is None:
+            lat, lon = la, lo
+            sums = np.zeros((nper,) + block.shape[1:])
+            counts = np.zeros(nper, dtype=int)
+        p = _period_index(times, t0, accum_hours)
+        ok = (p >= 0) & (p < nper)
+        np.add.at(sums, p[ok], block[ok].astype(np.float64))
+        np.add.at(counts, p[ok], 1)
+    bad = counts != accum_hours
+    if bad.any():
+        print(f"  {name}: {bad.sum()} of {nper} periods incomplete; set to NaN")
+    sums[bad] = np.nan
+    lat2d, lon2d = sio._as_2d(lat, lon)
+    sums = block_mean(sums, coarsen)
+    lat2d, lon2d = block_mean(lat2d, coarsen), block_mean(lon2d, coarsen)
+    min_lat, min_lon, max_lat, max_lon = bbox
+    inside = ((lat2d >= min_lat) & (lat2d <= max_lat) &
+              (lon2d >= min_lon) & (lon2d <= max_lon))
+    return lat2d[inside], lon2d[inside], sums[:, inside].astype(np.float32)
+
+
+def surface_fields(cfg, opt, t0, t1, bbox, pad=0.3):
+    """(lat, lon, elevation m, land bool) on the columns of the reference
+    mesh (opt['surface']), bbox + pad degrees."""
+    s = opt['surface']
+    case = next((c for c in cfg['cases'] if c['resolution'] == s['resolution']), None)
+    if case is None:
+        raise KeyError(f"{cfg['event_label']}: no {s['resolution']} case for the surface fields.")
+    index = sio._e3sm_file_index(dict(case, e3sm_stream=s['stream']), t0, t1)
+    if not index:
+        raise FileNotFoundError(f"No {s['stream']} records for {case['name']} in {t0} to {t1}.")
+    path, _, keep = index[0]
+    min_lat, min_lon, max_lat, max_lon = bbox
+    cols = Columns(path, (min_lat - pad, min_lon - pad, max_lat + pad, max_lon + pad))
+    elev = cols.read(path, int(keep[0]), 'PHIS') / 9.80616
+    land = cols.read(path, int(keep[0]), 'OCNFRAC') < s['ocnfrac_max']
+    return cols.lat, cols.lon, elev, land
+
+
+def mask_points(lat, lon, surf, masks):
+    """{mask name: bool (npts)} from the nearest surface column. Points
+    farther than 2 surface spacings from any column are outside every mask."""
+    slat, slon, elev, land = surf
+    tree = cKDTree(sphere_xyz(slat, slon))
+    d, k = tree.query(sphere_xyz(lat, lon))
+    near = d < 2 * grid_spacing_km(slat, slon)
+    out = {}
+    for name, zmax in masks.items():
+        m = near & land[k]
+        if zmax is not None:
+            m &= elev[k] < zmax
+        out[name] = m
+    return out
+
+
+def psf_path(pcfg, event_label, product):
+    return os.path.join(out_dir(pcfg, 'data_dir', 'precip_structure_functions'),
+                        f"psf_{event_label}_{product}.nc")
+
+
+def write_psf(path, s2, npairs, edges, times, mask_names, kind_names, attrs):
+    """s2: (mask, kind, time, bin); npairs: (mask, bin)."""
+    with nc.Dataset(path, 'w') as ds:
+        ds.createDimension('mask', len(mask_names))
+        ds.createDimension('kind', len(kind_names))
+        ds.createDimension('time', len(times))
+        ds.createDimension('bin', len(edges) - 1)
+        ds.createDimension('edge', len(edges))
+        for dim, names in (('mask', mask_names), ('kind', kind_names)):
+            v = ds.createVariable(f'{dim}_name', str, (dim,))
+            for k, n in enumerate(names):
+                v[k] = n
+        ds.createVariable('r_edges', 'f8', ('edge',))[:] = edges
+        ds['r_edges'].units = "km"
+        ds.createVariable('r', 'f8', ('bin',))[:] = np.sqrt(edges[:-1] * edges[1:])
+        ds['r'].units = "km"
+        t = ds.createVariable('time', 'f8', ('time',))
+        t.units = f"hours since {times[0]:%Y-%m-%d %H:%M:%S}"
+        t.long_name = "period end"
+        t[:] = [(x - times[0]).total_seconds() / 3600.0 for x in times]
+        ds.createVariable('S2', 'f4', ('mask', 'kind', 'time', 'bin'))[:] = s2
+        ds['S2'].units = "mm2 (per accumulation period squared)"
+        ds['S2'].long_name = "second-order structure function of precipitation depth"
+        ds.createVariable('npairs', 'f8', ('mask', 'bin'))[:] = npairs
+        for k, val in attrs.items():
+            ds.setncattr(k, val)
+
+
+def read_psf(path):
+    with nc.Dataset(path) as ds:
+        return {
+            'S2': np.ma.filled(ds['S2'][:].astype(float), np.nan),
+            'r': ds['r'][:], 'npairs': ds['npairs'][:],
+            'masks': [str(x) for x in ds['mask_name'][:]],
+            'kinds': [str(x) for x in ds['kind_name'][:]],
+            'attrs': {k: ds.getncattr(k) for k in ds.ncattrs()},
+        }
+
+
+def psf_mean(psf, mask, kind):
+    """Time-mean S2(r) for one mask and kind."""
+    m, k = psf['masks'].index(mask), psf['kinds'].index(kind)
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore', RuntimeWarning)
+        return np.nanmean(psf['S2'][m, k], axis=0)

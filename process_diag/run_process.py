@@ -6,8 +6,8 @@ separate process with PROCESS_EVENT set to the event year, so one crash
 doesn't stop the rest. Logs: logs/<year>/<script>.log. Ends with a
 pass/fail table.
 
-Run compute_structure_functions.py first (or use submit_process.sbatch,
-which runs both).
+Run compute_structure_functions.py and compute_precip_structure_functions.py
+first (or use submit_process.sbatch, which runs all three).
 
 Run:  python run_process.py
 """
@@ -25,6 +25,7 @@ SCRIPTS = [
     "plot_nudge_profile.py",
     "plot_sf_single.py",
     "plot_sf_resolutions.py",
+    "plot_precip_sf.py",
 ]
 
 # Event years from process.yaml (config.<year>.WUS.G-NDG.yaml). Replace with a

@@ -125,3 +125,58 @@ summary:
   window: storm               # storm | day | event (windows from the event configs)
   reference_resolution: "30x8"  # attribution panel is relative to this mesh
   dr_lines: [0.1, 0.2, 0.3, 0.5, 0.7]
+
+# ---------------------------------------------------------------------------
+# Spatial precipitation efficiency, P / IVT (compute_p_ivt.py,
+# plot_p_ivt_maps.py, plot_p_ivt_elevation.py). Native grid, no regridding.
+# Efficiency = window P / window-integrated |IVT|, reported in % per 100 km.
+# ---------------------------------------------------------------------------
+spatial:
+  window: storm                 # storm | day | event (from the event configs)
+  ivt_threshold: 250.0          # kg m-1 s-1. Unconditioned maps mask columns with
+                                # window-mean IVT below this; AR-conditioned fields
+                                # count only 3-h intervals with IVT above it.
+  min_cond_hours: 12            # AR-conditioned columns need at least this many hours
+  #region: [-126.0, -114.0, 33.5, 43.5]   # lon_min, lon_max, lat_min, lat_max saved to disk
+
+  region: [-127.0, -101.0, 30.0, 50.0]
+  #map_extent: [-125.5, -102.0, 31.0, 49.5]
+  #terrain_contours_m: [2000, 3000]
+
+  # Model topography per mesh (PHIS on the pg2 physgrid). null = use the
+  # `topography_file` global attribute of the first h0 file.
+  topo_files:
+    "30x8": null
+    "30x16": null
+    "30x32": "/global/cfs/cdirs/m2637/E3SM_SCREAM_files/topo/USGS-gtopo30_SnowEater_WUS_30x32np4pg2_x6t.nc"
+
+  # Refined-region mask: columns with sqrt(area) > coarse_factor x nominal_km
+  # are treated as outside the refined region and greyed out / dropped.
+  nominal_km: {"30x8": 14.0, "30x16": 7.0, "30x32": 3.5}
+  coarse_factor: 1.5
+
+  output_dir: "output/spatial"  # output/spatial/p_ivt_<event>_<res>.nc
+
+  # Maps
+  #map_extent: [-125.5, -117.0, 35.5, 42.5]
+  map_extent: [-125.5, -102.0, 31.0, 49.5]
+  p_max_mm: 600                 # colour-scale top for window precipitation
+  ivt_max: 800                  # colour-scale top for window-mean IVT
+  eff_max: 20                   # colour-scale top, % per 100 km
+  #terrain_contours_m: [1000, 2000, 3000]
+  terrain_contours_m: [2000, 3000]
+
+  # Elevation binning
+  #bin_boxes: ["sierra_west", "norcal_coast"]
+  #bin_width_m: 200
+  #bin_max_m: 3800
+  #min_cols_per_bin: 5
+  #land_frac_min: 0.5
+
+  bin_boxes: ["west", "sierra_west", "norcal_coast"]
+  bin_regions:                  # lon_min, lon_max, lat_min, lat_max
+    west: [-125.5, -102.0, 31.0, 49.5]
+  bin_width_m: 200
+  bin_max_m: 4000               # top bin also holds everything above
+  min_cols_per_bin: 5
+  land_frac_min: 0.5

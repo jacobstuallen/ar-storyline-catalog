@@ -9,7 +9,7 @@
 #SBATCH --job-name=process_sf
 #SBATCH --output=slurm_logs/%x-%j.out
 
-# Structure functions for every event/resolution in process.yaml, then all
+# Wind and precipitation structure functions for every event in process.yaml, then all
 # plots for every event (run_process.py).
 # Walltime is a placeholder; tighten after the first run.
 # Submit from process_diag/:  mkdir -p slurm_logs && sbatch submit_process.sbatch
@@ -22,4 +22,6 @@ conda activate earth
 
 cd "${SCRIPT_DIR}"
 python -u compute_structure_functions.py
+python -u compute_precip_structure_functions.py
 python -u run_process.py
+python -u plot_precip_sf_summary.py

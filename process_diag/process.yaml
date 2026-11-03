@@ -46,3 +46,32 @@ structure_function:
   r_exact_km: 60          # all pairs closer than this (snapped to a bin edge)
   n_random_pairs: 3000000 # random pairs for the larger separations
   min_pairs: 200          # bins with fewer pairs are written as NaN
+
+# --- Block 4: precipitation structure functions ------------------------------
+# compute_precip_structure_functions.py, plot_precip_sf.py. S2 of hourly
+# precipitation for every mesh and obs product, raw and with the event-mean
+# field removed, over all land and over land below an elevation limit.
+precip_structure_function:
+  region: [37.0, -124.5, 42.0, -120.0]   # same box as the winds; widen for more of the West
+  stream: eam.h5          # high-frequency mean PRECT (20 / 6.7 / 3.3 min for 30x8 / 30x16 / 30x32)
+  variable: PRECT
+  accum_hours: 1          # periods (t0 + (k-1)*accum_hours, t0 + k*accum_hours]; 1 matches hourly obs
+  obs: [AORC, StageIV]    # hourly products only; skipped when the record doesn't cover the event
+  obs_options:            # coarsen = integer block mean of the native grid (1 = native)
+    AORC:    {coarsen: 1, r_exact_km: 8}    # ~1 km grid: keep exact pairs short or memory blows up
+    StageIV: {coarsen: 1, r_exact_km: 40}
+  # One elevation and land field for every product, so each mask covers the
+  # same area. Nearest column of this mesh to every point.
+  surface:
+    resolution: "30x32"
+    stream: eam.h4        # PHIS, OCNFRAC
+    ocnfrac_max: 0.5      # land = OCNFRAC below this
+  masks:                  # name: maximum elevation (m); null = all land
+    land: null
+    below_1000m: 1000
+  r_min_km: 2
+  r_max_km: 300
+  n_bins: 30
+  r_exact_km: 60          # E3SM; obs_options override per product
+  n_random_pairs: 3000000
+  min_pairs: 200
