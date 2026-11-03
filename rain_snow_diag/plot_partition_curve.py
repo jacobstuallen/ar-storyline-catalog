@@ -3,7 +3,7 @@
 Columns: wet-bulb (Tw) and 2-m air temperature (TREFHT).
 Top row: share of total precip falling in each temperature bin.
 Bottom row: precip-weighted snow fraction per bin; T50 (50% crossing) printed
-and marked. Uses every 3-hr land sample with PRECT >= min_rate_mmhr.
+and marked (monotone fit). Uses every 3-hr land sample with PRECT >= min_rate_mmhr.
 Output: plots/EVENT/partition_curve.png and, if pool_events,
 plots/multi_event/partition_curve_all_events.png.
 """
@@ -42,17 +42,9 @@ def accumulate(d):
     return out
 
 
-def t50(frac):
-    for i in range(len(frac) - 1):
-        a, b = frac[i], frac[i + 1]
-        if np.isfinite(a) and np.isfinite(b) and a >= 0.5 > b:
-            return centers[i] + (a - 0.5) / (a - b) * (centers[i + 1] - centers[i])
-    return np.nan
-
-
-def draw(sums, title, path):
+def draw(sums, path):
     """sums: {res: (label, color, {key: [P, S, N]})}"""
-    fig, axes = plt.subplots(2, 2, figsize=(11, 6.5), sharex=True,
+    fig, axes = plt.subplots(2, 2, figsize=rc.fig_size(10, 6.2), sharex=True,
                              gridspec_kw={"height_ratios": [1, 2]})
     for res, (lab, col, acc) in sums.items():
         for j, (key, xlabel) in enumerate(TEMPS):
@@ -60,19 +52,21 @@ def draw(sums, title, path):
             frac = np.where((N >= po["min_samples"]) & (P > 0), S / np.where(P > 0, P, 1), np.nan)
             axes[0, j].plot(centers, 100 * P / P.sum(), color=col, label=lab)
             axes[1, j].plot(centers, 100 * frac, color=col, marker="o", ms=3, label=lab)
-            t = t50(frac)
+            t = rc.threshold(np.array([P, S, N]), centers, 0.5, po["min_samples"])
             if np.isfinite(t):
                 axes[1, j].axvline(t, color=col, lw=0.8, ls=":")
             print(f"  {lab:<16s} {key:<7s} T50 = {t:5.2f} C   samples {int(N.sum())}")
             axes[1, j].set_xlabel(xlabel)
-    for j in range(2):
+    for j, (key, _) in enumerate(TEMPS):
+        name = "wet bulb" if key == "tw" else "2-m air temperature"
+        rc.panel_title(axes[0, j], j, f"precip share, {name}")
+        rc.panel_title(axes[1, j], 2 + j, f"snow fraction, {name}")
         axes[0, j].set_ylabel("% of precip")
         axes[1, j].set_ylabel("snow fraction (%)")
         axes[1, j].set_ylim(-3, 103)
         axes[1, j].axhline(50, color=rc.MUTED, lw=0.6)
         axes[1, j].axvline(0, color=rc.MUTED, lw=0.6)
     axes[1, 0].legend(loc="upper right")
-    fig.suptitle(title, x=0.01, ha="left")
     fig.tight_layout()
     rc.save_png(fig, path)
     plt.close(fig)
@@ -96,12 +90,10 @@ for cfg_name in opts["events"]:
                            {k: np.zeros((3, nb)) for k, _ in TEMPS})
         for k, _ in TEMPS:
             pooled[res][2][k] += acc[k]
-    draw(sums, f"{label}: snow fraction vs temperature, land, PRECT >= {po['min_rate_mmhr']} mm/hr",
-         rc.plot_path(opts, label, "partition_curve.png"))
+    draw(sums, rc.plot_path(opts, label, "partition_curve.png"))
 
 if po.get("pool_events") and pooled:
     print("=== all events pooled")
     order = {r: i for i, r in enumerate(rc.RES_COLORS)}
     pooled = dict(sorted(pooled.items(), key=lambda kv: order.get(kv[0], 99)))
-    draw(pooled, "All events: snow fraction vs temperature (pooled samples)",
-         rc.plot_path(opts, "multi_event", "partition_curve_all_events.png"))
+    draw(pooled, rc.plot_path(opts, "multi_event", "partition_curve_all_events.png"))

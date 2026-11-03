@@ -4,7 +4,7 @@ Heavier precipitation cools the melting layer (latent cooling), so snow can
 survive to warmer surface temperatures. If the finer meshes' extra snow at
 0-2 C comes from heavier rates, the resolutions should agree within each
 rate class. Columns = rate classes, line per resolution, all events pooled.
-Prints each resolution's precip share by rate class for Tw in near_zero_c.
+T50 from a monotone fit. Prints each resolution's precip share by rate class for Tw in near_zero_c.
 
 Output: plots/multi_event/snowfrac_vs_rate.png
 """
@@ -49,23 +49,22 @@ print(f"{'res':<7s}" + "".join(f"{n:>16s}" for n in cname))
 for r in res_order:
     print(f"{r:<7s}" + "".join(f"{100 * v / near[r].sum():16.1f}" for v in near[r]))
 
-fig, axes = plt.subplots(1, len(classes), figsize=(3.6 * len(classes) + 0.6, 4.2),
+fig, axes = plt.subplots(1, len(classes), figsize=rc.fig_size(3.5 * len(classes) + 0.5, 3.8),
                          sharey=True, squeeze=False)
 for c, ax in enumerate(axes[0]):
     for r in res_order:
         f = rc.snow_fraction(sums[r][c], so["min_samples"])
-        t50 = rc.crossing(f, centers, 0.5)
+        t50 = rc.threshold(sums[r][c], centers, 0.5, so["min_samples"])
         ax.plot(centers, 100 * f, color=colors[r], marker="o", ms=2.5,
                 label=f"{labels[r]} (T50 {t50:.1f} C)")
         print(f"  {cname[c]:<14s} {r:<6s} T50 = {t50:5.2f} C  samples {int(sums[r][c][2].sum())}")
     ax.axhline(50, color=rc.MUTED, lw=0.6)
     ax.axvline(0, color=rc.MUTED, lw=0.6)
-    ax.set_title(cname[c], loc="left")
+    rc.panel_title(ax, c, cname[c])
     ax.set_xlabel("wet-bulb temperature (C)")
     ax.legend(loc="upper right", fontsize=7)
-axes[0, 0].set_ylabel("snow fraction (%)")
+    if c == 0:
+        ax.set_ylabel("snow fraction (%)")
 axes[0, 0].set_ylim(-3, 103)
-fig.suptitle("Snow fraction vs wet-bulb temperature by precip rate, all events pooled, land",
-             x=0.01, ha="left")
 fig.tight_layout()
 rc.save_png(fig, rc.plot_path(opts, "multi_event", "snowfrac_vs_rate.png"))

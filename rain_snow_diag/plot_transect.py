@@ -95,9 +95,10 @@ def fill_gaps(F, sc):
 
 
 PANELS = [
-    ("T", "air temperature (C)", "RdBu_r", np.arange(-30, 22, 2), 0.0),
-    ("W", "wind along transect (m/s)", "PuOr_r", np.arange(-10, 42, 2), 0.0),
-    ("RH", "relative humidity (%)", "Blues", np.arange(0, 105, 5), None),
+    ("T", "T", "air temperature (C), black = 0 C", "RdBu_r", np.arange(-30, 22, 2), 0.0),
+    ("W", "wind along transect", "wind along transect (m/s), + toward end",
+     "PuOr_r", np.arange(-10, 42, 2), 0.0),
+    ("RH", "RH", "relative humidity (%), black = 90%", "Blues", np.arange(0, 105, 5), None),
 ]
 
 for cfg_name in opts["events"]:
@@ -114,16 +115,16 @@ for cfg_name in opts["events"]:
     fine = built[-1][1]
     box = opts["region_bbox"]
     extent = [box[1] - 1.0, box[3] + 0.5, box[0] - 0.5, box[2] + 0.5]
-    fig = plt.figure(figsize=(5.5, 5))
+    fig = plt.figure(figsize=(5.0, 4.6))
     ax = rc.map_axes(fig, 1, 1, extent)[0, 0]
     tri = rc.triangulation(fine["lon"], fine["lat"])
     pc = ax.tripcolor(tri, fine["zsfc"], cmap="Greys", vmin=0, vmax=3500, shading="gouraud")
     for tr in po["transects"]:
         (la0, lo0), (la1, lo1) = tr["start"], tr["end"]
         ax.plot([lo0, lo1], [la0, la1], color=rc.RES_COLORS["30x16"], lw=2)
-        ax.text(lo0, la0, f" {tr['name']} start", fontsize=7, va="top")
+        ax.text(lo0, la0, f" {tr['name']} start", fontsize=8, va="top")
     fig.colorbar(pc, ax=ax, shrink=0.7, label="surface elevation (m)")
-    ax.set_title(f"{fine['label']} terrain and transects", loc="left")
+    ax.set_title(f"{fine['label']} terrain and transects", loc="left")  # single panel, no letter
     rc.save_png(fig, rc.plot_path(opts, label, "transect_locator.png"))
     plt.close(fig)
 
@@ -184,11 +185,11 @@ for cfg_name in opts["events"]:
             rows = [(r, v) for r, v in sections.items() if t in v[1]]
             if not rows:
                 continue
-            fig, axes = plt.subplots(len(rows), 3, figsize=(15, 2.8 * len(rows) + 0.8),
+            fig, axes = plt.subplots(len(rows), 3, figsize=rc.fig_size(11.5, 2.5 * len(rows) + 1.4),
                                      sharex=True, sharey=True, squeeze=False)
             for i, (res, (case, got, s_edges, zb)) in enumerate(rows):
                 sc = 0.5 * (s_edges[:-1] + s_edges[1:])
-                for j, (key, title, cmap, lev, center) in enumerate(PANELS):
+                for j, (key, title, cblabel, cmap, lev, center) in enumerate(PANELS):
                     ax = axes[i, j]
                     F = got[t][key]
                     norm = TwoSlopeNorm(center, lev[0], lev[-1]) if center is not None else None
@@ -200,13 +201,11 @@ for cfg_name in opts["events"]:
                         ax.contour(sc, heights / 1000, F, levels=[90], colors=rc.INK, linewidths=0.8)
                     ok = np.isfinite(zb)
                     ax.fill_between(sc[ok], 0, zb[ok] / 1000, color="#4a4a46", lw=0, zorder=3)
-                    ax.set_title(f"{rc.case_label(cfg, case)}: {title}", loc="left")
+                    rc.panel_title(ax, 3 * i + j, f"{rc.case_label(cfg, case)}, {title}")
                     if i == len(rows) - 1:
-                        fig.colorbar(pm, ax=axes[:, j], orientation="horizontal",
-                                     fraction=0.05 / len(rows) ** 0.5, pad=0.18 / len(rows) ** 0.5)
-                        ax.set_xlabel(f"distance from {tr['start']} (km)")
+                        fig.colorbar(pm, ax=axes[:, j], orientation="horizontal", label=cblabel,
+                                     fraction=0.05 / len(rows) ** 0.5, pad=0.22 / len(rows) ** 0.5)
+                        ax.set_xlabel(f"km along {tr['name']}, {t:%Y-%m-%d %H} UTC")
                 axes[i, 0].set_ylabel("height (km MSL)")
-            fig.suptitle(f"{label} {tr['name']} transect, {t:%Y-%m-%d %H} UTC "
-                         "(black: 0 C in T, 90% in RH)", x=0.01, ha="left")
             rc.save_png(fig, rc.plot_path(opts, label, f"transect_{tr['name']}_{t:%Y%m%d%H}.png"))
             plt.close(fig)

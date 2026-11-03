@@ -68,9 +68,11 @@ for cfg_name in opts["events"]:
         print(f"  pulse {a:%m-%d %H} to {b:%m-%d %H} UTC")
 
     n, m = len(cases), len(pulses)
-    fig1 = plt.figure(figsize=(3.6 * m + 0.8, 3.7 * n + 0.6))
+    pw = min(3.0, 10.4 / m, 9.0 / n)           # panel width (in), keeps figure < 12 x 12
+    size = rc.fig_size(pw * m + 1.2, (pw * 1.1 + 0.75) * n + 0.3)
+    fig1 = plt.figure(figsize=size)
     ax1 = rc.map_axes(fig1, n, m, extent)
-    fig2 = plt.figure(figsize=(3.6 * m + 0.8, 3.7 * n + 0.6))
+    fig2 = plt.figure(figsize=size)
     ax2 = rc.map_axes(fig2, n, m, extent)
     ros_all, store = [], []
     for i, (case, d) in enumerate(cases):
@@ -99,6 +101,7 @@ for cfg_name in opts["events"]:
     for i, j, frac, ros, snl, d, case in store:
         a, b = pulses[j]
         title = f"{rc.case_label(cfg, case)}\n{a:%m-%d %H}Z to {b:%m-%d %H}Z"
+        letter = rc.letter(i * m + j)
         terrain = rc.triangulation(d["lon"], d["lat"])
         for key, ax, field, kw in [
             ("frac", ax1[i, j], frac, dict(cmap="RdBu_r", vmin=0, vmax=1)),
@@ -111,19 +114,17 @@ for cfg_name in opts["events"]:
                 tri_frac = tri
             ax.tricontour(terrain, d["zsfc"], levels=po["terrain_contours_m"], colors="#8a8a85",
                           linewidths=0.5)
-            ax.set_title(title, loc="left", fontsize=8)
+            ax.set_title(f"{letter} {title}", loc="left")
         ok = np.isfinite(frac)
         if ok.sum() > 10 and np.nanmin(frac) < 0.5 < np.nanmax(frac):
             ax1[i, j].tricontour(tri_frac, np.nan_to_num(frac), levels=[0.5], colors=rc.INK,
                                  linewidths=1.0)
         if np.isfinite(snl):
-            ax1[i, j].set_title(title + f", snow line {snl:.0f} m", loc="left", fontsize=8)
-    fig1.colorbar(pcs["frac"], ax=ax1, shrink=0.6, label="rain fraction of pulse precip")
-    fig2.colorbar(pcs["ros"], ax=ax2, shrink=0.6, label="rain on snowpack (mm)")
-    fig1.suptitle(f"{label}: rain fraction per pulse (cells < {po['min_total_mm']} mm blank; "
-                  f"black 50%, grey {po['terrain_contours_m']} m)", x=0.01, ha="left")
-    fig2.suptitle(f"{label}: rain on snowpack (SWE >= {po['rain_on_snow_swe_mm']} mm) per pulse",
-                  x=0.01, ha="left")
+            ax1[i, j].set_title(f"{letter} {title}\nsnow line {snl:.0f} m", loc="left")
+    fig1.colorbar(pcs["frac"], ax=ax1, shrink=0.6,
+                  label=f"rain fraction of pulse precip (black 50%; blank < {po['min_total_mm']} mm)")
+    fig2.colorbar(pcs["ros"], ax=ax2, shrink=0.6,
+                  label=f"rain on snowpack, SWE >= {po['rain_on_snow_swe_mm']} mm (mm)")
     rc.save_png(fig1, rc.plot_path(opts, label, "snowline_maps.png"))
     rc.save_png(fig2, rc.plot_path(opts, label, "rain_on_snow_maps.png"))
     plt.close(fig1)

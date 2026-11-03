@@ -19,6 +19,7 @@ python plot_threshold_summary.py
 python plot_snowfrac_decomposition.py
 python plot_snowfrac_vs_meltlayer.py
 python plot_snowfrac_vs_rate.py
+python plot_snowfrac_conv_ls.py     # needs prect_conv: rerun build_phase_nc.py (appends only)
 ```
 
 or `mkdir -p slurm_logs && sbatch submit_rain_snow.sbatch`. All options are in
@@ -43,6 +44,12 @@ or `mkdir -p slurm_logs && sbatch submit_rain_snow.sbatch`. All options are in
 | `snowfrac_decomposition_tw.png` | Is the change in event snow fraction vs 30x8 from *where/when it precipitates* (temperature sampling) or from *phase at the same temperature*? Terms sum exactly to the total. |
 | `snowfrac_vs_meltlayer.png` | Does the difference persist when binned by freezing level above ground instead of surface T? Persists -> melting/microphysics; vanishes -> surface T vs melting-layer coupling. |
 | `snowfrac_vs_rate.png` | Does the difference persist within precip-rate classes? Vanishes -> heavier rates (melting cooling) explain it. |
+| `snowfrac_conv_ls.png` | Convective (ZM) vs large-scale (P3) phase: is sub-freezing rain or the 14 km light-rate behavior from the convective scheme? |
+
+Thresholds (T50, D50, width) come from a precip-weighted monotone
+(non-increasing) fit of snow fraction, so sparse noisy bins can't create
+spurious crossings. Figures: no suptitles, lettered panels, < 12 x 12 in,
+titles 10 pt, labels and ticks 8 pt, long legends 7 pt.
 
 Scripts print the numbers behind each figure.
 

@@ -30,7 +30,7 @@ for cfg_name in opts["events"]:
         continue
 
     n = len(cases)
-    fig, axes = plt.subplots(n, 2, figsize=(13, 3.0 * n + 0.6), sharex=True,
+    fig, axes = plt.subplots(n, 2, figsize=rc.fig_size(11, 2.8 * n + 0.6), sharex=True,
                              sharey="col", squeeze=False,
                              gridspec_kw={"width_ratios": [1.6, 1]})
     for i, (case, d) in enumerate(cases):
@@ -48,7 +48,7 @@ for cfg_name in opts["events"]:
             ax.plot(d["time"], np.nansum(d["snow"][:, m] * ww, axis=1), color=colors[b],
                     lw=1.4, ls=(0, (3, 1.5)))
         ax.set_ylabel("mm/hr")
-        ax.set_title(f"{d['label']}: rain and snow by elevation band", loc="left")
+        rc.panel_title(ax, 2 * i, f"{d['label']}: rain and snow by elevation band")
 
         ax = axes[i, 1]
         if d["fzl"].shape[0]:
@@ -64,7 +64,7 @@ for cfg_name in opts["events"]:
             ax.axhline(e, color=rc.MUTED, lw=0.5, ls=":")
         ax.set_ylabel("m MSL")
         ax.set_ylim(0, None)
-        ax.set_title("freezing level and snow line", loc="left")
+        rc.panel_title(ax, 2 * i + 1, f"{d['label']}: freezing level and snow line")
         if np.isfinite(snl).any():
             print(f"  {case['resolution']}: snow line median {np.nanmedian(snl):.0f} m")
 
@@ -72,11 +72,10 @@ for cfg_name in opts["events"]:
     labels = [f"{edges[b]:.0f}-{edges[b + 1]:.0f} m" for b in range(nb)]
     handles += [Line2D([], [], color=rc.MUTED, lw=1.4), Line2D([], [], color=rc.MUTED, lw=1.4, ls=(0, (3, 1.5)))]
     labels += ["rain", "snow"]
-    fig.legend(handles, labels, loc="upper left", ncol=nb + 2, bbox_to_anchor=(0.01, 1.0))
-    axes[0, 1].legend(loc="upper right", fontsize=8)
+    fig.legend(handles, labels, loc="lower left", ncol=nb + 2, bbox_to_anchor=(0.01, 1.0))
+    axes[0, 1].legend(loc="upper right", fontsize=7)
     for ax in axes[-1]:
         rc.date_axis(ax)
-    fig.suptitle(f"{label}: rain-snow partition, box {opts['region_bbox']}", x=0.01, ha="left", y=1.03)
     fig.tight_layout()
     rc.save_png(fig, rc.plot_path(opts, label, "elevband_timeseries.png"))
     plt.close(fig)

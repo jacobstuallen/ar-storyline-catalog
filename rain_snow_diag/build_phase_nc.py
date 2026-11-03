@@ -1,12 +1,14 @@
 """Step 1. Per event and case, write data/EVENT/phase_RES.nc on the native
 columns inside region_bbox:
 
-  time  (3-hr, h1 stamps): prect, snow, rain (mm/hr), trefht, tw (C), snowh (mm SWE)
+  time  (3-hr, h1 stamps): prect, snow, rain, prect_conv, snow_conv (mm/hr),
+                           trefht, tw (C), snowh (mm SWE)
   time6 (6-hr, h2 stamps): fzl (m MSL, 0 C level)
   ncol: lat, lon, area (sr), zsfc (m), landfrac
 
-Runs every event in rain_snow.yaml; existing files are skipped unless
-build.overwrite is true.
+Runs every event in rain_snow.yaml. Existing files are kept unless
+build.overwrite is true; if one lacks prect_conv/snow_conv (built before they
+were added), only those are read from the precip tape and appended.
 """
 import os
 
@@ -22,6 +24,31 @@ fz_method = opts["build"].get("freezing_level", "highest")
 fz_zmax = opts["build"].get("freezing_level_max_m", 10000.0)
 overwrite = opts["build"].get("overwrite", False)
 
+
+def add_conv(case, path, t0, t1):
+    """Append convective precip and snow (PRECC, PRECSC) to an existing file."""
+    with nc.Dataset(path) as ds:
+        if "prect_conv" in ds.variables:
+            return False
+        cols = np.asarray(ds["ncol_index"][:]).astype(int)
+        tp = rc.from_seconds(ds["time"][:])
+    tc, pr = rc.read_2d(case, st["precip"], ["PRECC", "PRECSC"], t0, t1, cols)
+    idx = {t: i for i, t in enumerate(tc)}
+    take = np.array([idx.get(t, -1) for t in tp])
+    conv = np.full((len(tp), cols.size), np.nan)
+    sconv = np.full_like(conv, np.nan)
+    conv[take >= 0] = pr["PRECC"][take[take >= 0]] * 3.6e6
+    sconv[take >= 0] = pr["PRECSC"][take[take >= 0]] * 3.6e6
+    with nc.Dataset(path, "a") as ds:
+        for name, val, ln in [("prect_conv", conv, "PRECC, 3-hr mean"),
+                              ("snow_conv", sconv, "PRECSC, 3-hr mean")]:
+            v = ds.createVariable(name, "f4", ("time", "ncol"), zlib=True, fill_value=np.nan)
+            v.units = "mm/hr"
+            v.long_name = ln
+            v[:] = val
+    return True
+
+
 for cfg_name in opts["events"]:
     cfg = rc.load_event(opts, cfg_name)
     label = cfg["event_label"]
@@ -32,7 +59,12 @@ for cfg_name in opts["events"]:
         res = case["resolution"]
         out = rc.phase_path(opts, label, res)
         if os.path.isfile(out) and not overwrite:
-            print(f"  {res}: exists, skip ({out})")
+            try:
+                added = add_conv(case, out, t0, t1)
+            except (FileNotFoundError, KeyError) as e:
+                print(f"  {res}: exists; could not add convective split ({e})")
+                continue
+            print(f"  {res}: exists, {'appended prect_conv/snow_conv' if added else 'skip'} ({out})")
             continue
         try:
             cols, lat, lon, area = rc.grid_cols(case, box, t0, t1)
@@ -44,7 +76,8 @@ for cfg_name in opts["events"]:
 
         try:
             stat = rc.read_static(case, st["static"], ["PHIS", "OCNFRAC"], t0, t1, cols)
-            tp, pr = rc.read_2d(case, st["precip"], ["PRECT", "PRECSL", "PRECSC"], t0, t1, cols)
+            tp, pr = rc.read_2d(case, st["precip"], ["PRECT", "PRECSL", "PRECSC", "PRECC"], t0, t1,
+                                cols, optional=("PRECC",))
             ts, sf = rc.read_2d(case, st["sfc"], ["TREFHT", "QREFHT", "PS"], t0, t1, cols,
                                 optional=("PS",))
         except (FileNotFoundError, KeyError) as e:
@@ -57,6 +90,8 @@ for cfg_name in opts["events"]:
         prect = pr["PRECT"] * 3.6e6
         snow = (pr["PRECSL"] + pr["PRECSC"]) * 3.6e6
         rain = np.clip(prect - snow, 0.0, None)
+        conv = pr["PRECC"] * 3.6e6 if pr["PRECC"] is not None else np.full_like(prect, np.nan)
+        sconv = pr["PRECSC"] * 3.6e6
         snow = np.minimum(snow, prect)
 
         # Align surface fields to precip stamps (both 3-hr means).
@@ -122,6 +157,8 @@ for cfg_name in opts["events"]:
                 ("prect", ("time", "ncol"), prect, "mm/hr", "PRECT, 3-hr mean", "f4"),
                 ("snow", ("time", "ncol"), snow, "mm/hr", "PRECSL + PRECSC", "f4"),
                 ("rain", ("time", "ncol"), rain, "mm/hr", "PRECT - snow", "f4"),
+                ("prect_conv", ("time", "ncol"), conv, "mm/hr", "PRECC, 3-hr mean", "f4"),
+                ("snow_conv", ("time", "ncol"), sconv, "mm/hr", "PRECSC, 3-hr mean", "f4"),
                 ("trefht", ("time", "ncol"), trefht - rc.T0, "degC", "TREFHT", "f4"),
                 ("tw", ("time", "ncol"), tw, "degC", "wet bulb, Stull 2011", "f4"),
                 ("snowh", ("time", "ncol"), snowh, "mm", "SNOWHLND (SWE)", "f4"),

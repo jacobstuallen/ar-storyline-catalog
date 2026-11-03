@@ -10,9 +10,9 @@ the reference resolution (ref_resolution):
 
 Bins cover every sample (end bins catch the tails), so the terms sum exactly
 to dF. Bins where only one run has precip borrow that run's f, which puts
-them entirely in the sampling term.
+them entirely in the sampling term. One panel per comparison, stacked.
 
-Output: plots/multi_event/snowfrac_decomposition.png and a printed table.
+Output: plots/multi_event/snowfrac_decomposition_{tw|trefht}.png
 """
 import numpy as np
 from matplotlib.lines import Line2D
@@ -75,11 +75,13 @@ if skipped:
     print(f"  no {ref} case, left out: {skipped}")
 
 names = [rc.event_short(e) for e in events] + ["All events"]
-fig, axes = plt.subplots(1, len(others), figsize=(1.2 + 1.3 * len(names) * len(others), 4.2),
-                         sharey=True, squeeze=False)
+fig, axes = plt.subplots(len(others), 1, figsize=rc.fig_size(7.0, 3.2 * len(others) + 0.7),
+                         sharex=True, sharey=True, squeeze=False)
 print(f"\n{'event':<10s} {'res':<7s} {'F_ref':>6s} {'F':>6s} {'dF':>6s} {'sampl':>6s} {'phase':>6s} {'inter':>6s}  (percentage points)")
-for ax, r in zip(axes[0], others):
-    x = np.arange(len(names))
+x = np.arange(len(names))
+width = 0.24
+for n, r in enumerate(others):
+    ax = axes[n, 0]
     for i, name in enumerate(names):
         if name == "All events":
             ev_list = [e for e in events if r in sums[e]]
@@ -95,22 +97,19 @@ for ax, r in zip(axes[0], others):
         dc = decompose(a, b)
         print(f"{name:<10s} {r:<7s} {100 * dc['F_ref']:6.1f} {100 * dc['F']:6.1f} {100 * dc['total']:6.1f} "
               f"{100 * dc['sampling']:6.1f} {100 * dc['phase']:6.1f} {100 * dc['interaction']:6.1f}")
-        width = 0.24
         for k, (t, _, c) in enumerate(TERMS):
             ax.bar(x[i] + (k - 1) * width, 100 * dc[t], width * 0.9, color=c)
         ax.plot(x[i], 100 * dc["total"], "D", color=rc.INK, ms=6, mec="white", zorder=4)
     ax.axhline(0, color=rc.MUTED, lw=0.8)
     ax.axvline(len(names) - 1.5, color=rc.GRID, lw=1.2)
-    ax.set_xticks(x)
-    ax.set_xticklabels(names)
-    ax.set_title(f"{labels[r]} minus {labels[ref]}", loc="left")
+    ax.set_ylabel("change in snow fraction (percentage points)")
     ax.grid(axis="x", visible=False)
-axes[0, 0].set_ylabel("change in event snow fraction (percentage points)")
+    rc.panel_title(ax, n, f"{labels[r]} minus {labels[ref]}")
+axes[-1, 0].set_xticks(x)
+axes[-1, 0].set_xticklabels(names)
 handles = [Patch(color=c) for _, _, c in TERMS] + [
     Line2D([], [], marker="D", color=rc.INK, lw=0, ms=6, mec="white")]
-fig.legend(handles, [n for _, n, _ in TERMS] + ["total change"], loc="upper left",
-           ncol=4, bbox_to_anchor=(0.01, 1.02))
-fig.suptitle(f"Snow-fraction change vs {labels[ref]}, binned by {'wet-bulb' if key == 'tw' else '2-m'} "
-             f"temperature; land, PRECT >= {so['min_rate_mmhr']} mm/hr", x=0.01, ha="left", y=1.09)
+fig.legend(handles, [n for _, n, _ in TERMS] + ["total change"], loc="lower left",
+           ncol=2, bbox_to_anchor=(0.01, 1.0))
 fig.tight_layout()
 rc.save_png(fig, rc.plot_path(opts, "multi_event", f"snowfrac_decomposition_{key}.png"))

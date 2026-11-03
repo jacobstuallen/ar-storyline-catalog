@@ -50,7 +50,7 @@ plots:
     temp_max_c: 8.0
     bin_c: 0.5
     min_rate_mmhr: 0.1
-    min_samples: 30
+    min_samples: 200
     elev_range_m: null      # e.g. [1000, 4500] to restrict to mountain cells
     pool_events: true       # also plots/multi_event/partition_curve_all_events.png
 
@@ -74,12 +74,14 @@ plots:
   summary:
     ref_resolution: "30x8"  # baseline for the decomposition
     min_rate_mmhr: 0.1
-    min_samples: 30         # per bin, else the bin's snow fraction is NaN
+    min_samples: 200        # per bin, else the bin's snow fraction is NaN (cells and 3-hr
+                            # samples are correlated, so this is far fewer independent samples)
     elev_range_m: null      # e.g. [1000, 4500]; null = all land cells
     temp_bins_c: [-6.0, 8.0, 0.5]   # min, max, width
 
   threshold_summary:        # plot_threshold_summary.py
-    width_levels: [0.9, 0.1]  # transition width = T(10% snow) - T(90% snow)
+    width_levels: [0.75, 0.25]  # transition range; 0.9 is often never reached (see cold_end_c)
+    cold_end_c: -3.0        # printed snow fraction of samples colder than this
     n_boot: 500             # bootstrap over event days
     ci: [5, 95]
     seed: 0

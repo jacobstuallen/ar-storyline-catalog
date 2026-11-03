@@ -341,10 +341,30 @@ def style():
         "axes.edgecolor": "#c3c2b7", "axes.labelcolor": INK, "text.color": INK,
         "xtick.color": MUTED, "ytick.color": MUTED, "axes.grid": True,
         "grid.color": GRID, "grid.linewidth": 0.6, "axes.spines.top": False,
-        "axes.spines.right": False, "font.size": 9, "axes.titlesize": 10,
+        "axes.spines.right": False, "font.size": 8, "axes.titlesize": 10,
+        "axes.labelsize": 8, "xtick.labelsize": 8, "ytick.labelsize": 8,
+        "legend.fontsize": 8, "legend.title_fontsize": 8,
         "legend.frameon": False, "lines.linewidth": 1.6,
     })
     return plt
+
+
+MAX_IN = 11.9  # figures stay under 12 x 12 inches
+
+
+def fig_size(w, h):
+    """Scale (w, h) down uniformly so neither side exceeds MAX_IN."""
+    k = min(1.0, MAX_IN / w, MAX_IN / h)
+    return (w * k, h * k)
+
+
+def letter(i):
+    return f"{chr(ord('a') + i)})"
+
+
+def panel_title(ax, i, text=""):
+    """Left-aligned panel title with its letter: 'a) text'."""
+    ax.set_title(f"{letter(i)} {text}".rstrip(), loc="left")
 
 
 def save_png(fig, path):
@@ -444,9 +464,36 @@ def snow_fraction(sums, min_samples=1):
         return np.where((N >= min_samples) & (P > 0), S / P, np.nan)
 
 
+def monotone_decreasing(f, w):
+    """Weighted least-squares non-increasing fit (pool adjacent violators).
+    NaN bins (or zero weight) are skipped and stay NaN."""
+    f = np.asarray(f, float)
+    w = np.asarray(w, float)
+    ok = np.isfinite(f) & (w > 0)
+    out = np.full(f.shape, np.nan)
+    if not ok.any():
+        return out
+    vals, wts, cnt = [], [], []
+    for y, ww in zip(f[ok], w[ok]):
+        vals.append(y); wts.append(ww); cnt.append(1)
+        while len(vals) > 1 and vals[-2] < vals[-1]:      # violates non-increasing
+            v = (vals[-2] * wts[-2] + vals[-1] * wts[-1]) / (wts[-2] + wts[-1])
+            wts[-2] += wts[-1]; cnt[-2] += cnt[-1]; vals[-2] = v
+            vals.pop(); wts.pop(); cnt.pop()
+    out[ok] = np.repeat(vals, cnt)
+    return out
+
+
+def threshold(sums, centers, level, min_samples=1):
+    """x where the monotone-fitted snow fraction drops through `level`.
+    sums (3, nbin). Robust to noisy dips in sparse bins."""
+    f = snow_fraction(sums, min_samples)
+    return crossing(monotone_decreasing(f, sums[0]), centers, level)
+
+
 def crossing(frac, centers, level):
     """x where frac first drops through `level` going from low to high x
-    (cold to warm). NaN if it never does."""
+    (cold to warm). NaN if it never does. Use on a monotone curve."""
     for i in range(len(frac) - 1):
         a, b = frac[i], frac[i + 1]
         if np.isfinite(a) and np.isfinite(b) and a >= level > b:
