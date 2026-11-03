@@ -398,9 +398,29 @@ def read_obs_precip_periods(cfg, name, t0, t1, bbox, accum_hours, coarsen=1):
     return lat2d[inside], lon2d[inside], sums[:, inside].astype(np.float32)
 
 
+def terrain_slope(lat, lon, elev, radius_km):
+    """Slope magnitude (m/km) at each column: least-squares plane z = a + b x + c y
+    through the columns within radius_km (local tangent-plane x, y in km).
+    NaN where fewer than 4 columns fall inside the radius."""
+    xyz = sphere_xyz(lat, lon)
+    nbrs = cKDTree(xyz).query_ball_point(xyz, radius_km)
+    la0 = np.radians(lat)
+    out = np.full(len(lat), np.nan)
+    for n, idx in enumerate(nbrs):
+        if len(idx) < 4:
+            continue
+        idx = np.asarray(idx)
+        x = R_EARTH_KM * np.radians(lon[idx] - lon[n]) * np.cos(la0[n])
+        y = R_EARTH_KM * np.radians(lat[idx] - lat[n])
+        A = np.column_stack([np.ones(len(idx)), x, y])
+        coef, *_ = np.linalg.lstsq(A, elev[idx], rcond=None)
+        out[n] = np.hypot(coef[1], coef[2])
+    return out
+
+
 def surface_fields(cfg, opt, t0, t1, bbox, pad=0.3):
-    """(lat, lon, elevation m, land bool) on the columns of the reference
-    mesh (opt['surface']), bbox + pad degrees."""
+    """dict lat, lon, elev (m), land (bool), slope (m/km) on the columns of the
+    reference mesh (opt['surface']), bbox + pad degrees."""
     s = opt['surface']
     case = next((c for c in cfg['cases'] if c['resolution'] == s['resolution']), None)
     if case is None:
@@ -413,23 +433,47 @@ def surface_fields(cfg, opt, t0, t1, bbox, pad=0.3):
     cols = Columns(path, (min_lat - pad, min_lon - pad, max_lat + pad, max_lon + pad))
     elev = cols.read(path, int(keep[0]), 'PHIS') / 9.80616
     land = cols.read(path, int(keep[0]), 'OCNFRAC') < s['ocnfrac_max']
-    return cols.lat, cols.lon, elev, land
+    slope = terrain_slope(cols.lat, cols.lon, elev, s.get('slope_radius_km', 12))
+    return {'lat': cols.lat, 'lon': cols.lon, 'elev': elev, 'land': land, 'slope': slope}
+
+
+def mask_spec(spec):
+    """{'elev': (min, max), 'slope': (min, max)} from a masks: entry. A bare
+    number or null is the old form (maximum elevation)."""
+    if spec is None:
+        return {}
+    if isinstance(spec, (int, float)):
+        return {'elev': (None, float(spec))}
+    return {k: tuple(v) for k, v in spec.items()}
+
+
+def in_range(vals, lo, hi):
+    m = np.isfinite(vals)
+    if lo is not None:
+        m &= vals >= lo
+    if hi is not None:
+        m &= vals < hi
+    return m
+
+
+def surface_masks(surf, masks):
+    """{mask name: bool on the surface columns}."""
+    out = {}
+    for name, spec in masks.items():
+        m = surf['land'].copy()
+        for key, (lo, hi) in mask_spec(spec).items():
+            m &= in_range(surf[key], lo, hi)
+        out[name] = m
+    return out
 
 
 def mask_points(lat, lon, surf, masks):
     """{mask name: bool (npts)} from the nearest surface column. Points
     farther than 2 surface spacings from any column are outside every mask."""
-    slat, slon, elev, land = surf
-    tree = cKDTree(sphere_xyz(slat, slon))
+    tree = cKDTree(sphere_xyz(surf['lat'], surf['lon']))
     d, k = tree.query(sphere_xyz(lat, lon))
-    near = d < 2 * grid_spacing_km(slat, slon)
-    out = {}
-    for name, zmax in masks.items():
-        m = near & land[k]
-        if zmax is not None:
-            m &= elev[k] < zmax
-        out[name] = m
-    return out
+    near = d < 2 * grid_spacing_km(surf['lat'], surf['lon'])
+    return {name: near & m[k] for name, m in surface_masks(surf, masks).items()}
 
 
 def psf_path(pcfg, event_label, product):
@@ -482,3 +526,58 @@ def psf_mean(psf, mask, kind):
     with warnings.catch_warnings():
         warnings.simplefilter('ignore', RuntimeWarning)
         return np.nanmean(psf['S2'][m, k], axis=0)
+
+
+def filled_normalized(psf, mask, kind, r_km):
+    """Time-mean S2 with empty interior bins filled by log-log interpolation
+    (no extrapolation past the first or last filled bin), divided by its value
+    at the bin nearest r_km. Near the grid scale, point separations come in
+    discrete values, so two products often fill different bins; filling lets
+    their ratio be taken down to the smaller of their ranges. None if empty."""
+    r, s2 = np.asarray(psf['r']), psf_mean(psf, mask, kind)
+    ok = np.isfinite(s2) & (s2 > 0)
+    if ok.sum() < 2:
+        return None
+    out = np.full_like(s2, np.nan)
+    span = (r >= r[ok].min()) & (r <= r[ok].max())
+    out[span] = np.exp(np.interp(np.log(r[span]), np.log(r[ok]), np.log(s2[ok])))
+    k = np.where(span)[0][np.argmin(np.abs(r[span] - r_km))]
+    return out / out[k]
+
+
+def panel_grid(n, ncols=2, w=5.2, h=4.3, **kw):
+    """(fig, flat list of n axes) on a grid with ncols columns; unused axes removed."""
+    import matplotlib.pyplot as plt
+    ncols = min(ncols, n)
+    nrows = int(np.ceil(n / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(w * ncols, h * nrows), squeeze=False, **kw)
+    axes = list(axes.ravel())
+    for ax in axes[n:]:
+        ax.remove()
+    return fig, axes[:n]
+
+
+def mask_groups(opt, available):
+    """{group: [masks]} from opt['mask_groups'], keeping masks in `available`;
+    one group of everything if none is set."""
+    groups = opt.get('mask_groups') or {'all': list(available)}
+    out = {g: [m for m in ms if m in available] for g, ms in groups.items()}
+    return {g: ms for g, ms in out.items() if ms}
+
+
+def mask_title(name, opt):
+    """Readable panel title from a mask's spec, e.g. 'Elevation 500-1500 m'."""
+    spec = mask_spec((opt.get('masks') or {}).get(name, {}))
+    if not spec:
+        return "All land" if name == "land" else name
+    units = {'elev': ("Elevation", "m"), 'slope': ("Slope", "m/km")}
+    parts = []
+    for key, (lo, hi) in spec.items():
+        word, u = units.get(key, (key, ""))
+        if lo is None:
+            parts.append(f"{word} < {hi:g} {u}")
+        elif hi is None:
+            parts.append(f"{word} > {lo:g} {u}")
+        else:
+            parts.append(f"{word} {lo:g}-{hi:g} {u}")
+    return ", ".join(parts)

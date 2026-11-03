@@ -6,9 +6,10 @@ mesh and hourly obs product, inside precip_structure_function.region.
 
   kinds:  raw   the field as is
           anom  each point's event-mean field removed (mean over the window)
-  masks:  from process.yaml (all land, land below an elevation limit). All
-          products use one reference elevation/land field, so a mask covers
-          the same area for every product.
+          (precip_structure_function.kinds picks which)
+  masks:  from process.yaml: land, elevation bands, terrain-slope classes.
+          All products use one reference elevation/land/slope field, so a
+          mask covers the same area for every product.
 
 Native points only: E3SM columns and obs grid cells, no regridding. Points
 missing any period are dropped, so raw and anom use the same pairs. One
@@ -24,10 +25,11 @@ import numpy as np
 import process_io as pio
 import storyline_io as sio
 
-KINDS = ["raw", "anom"]
+PAIR_CHECK_KM = [50, 100]   # print pair counts per mask in the bins nearest these
 
 pcfg = pio.load_process_cfg()
 opt = pcfg['precip_structure_function']
+KINDS = list(opt.get('kinds', ["raw", "anom"]))
 bbox = opt['region']
 A = opt['accum_hours']
 edges = pio.r_edges(opt)
@@ -48,7 +50,9 @@ def compute(lat, lon, vals, r_exact_km):
           + ", ".join(f"{k}: {m.sum()}" for k, m in masks.items()))
 
     i, j, b = pio.build_pairs(lat, lon, edges, r_exact_km, opt['n_random_pairs'])
-    fields = {"raw": vals, "anom": vals - np.nanmean(vals[rows], axis=0)}
+    fields = {"raw": vals}
+    if "anom" in KINDS:
+        fields["anom"] = vals - np.nanmean(vals[rows], axis=0)
     s2 = np.full((len(mask_names), len(KINDS), len(vals), n_bins), np.nan, dtype=np.float32)
     npairs = np.zeros((len(mask_names), n_bins))
     for m, name in enumerate(mask_names):
@@ -59,6 +63,10 @@ def compute(lat, lon, vals, r_exact_km):
                 s[cnt < opt['min_pairs']] = np.nan
                 s2[m, k, t] = s
                 npairs[m] = cnt
+    kb = [int(np.argmin(np.abs(np.sqrt(edges[:-1] * edges[1:]) - r))) for r in PAIR_CHECK_KM]
+    print("    pairs near " + ", ".join(f"{r} km" for r in PAIR_CHECK_KM) + ": "
+          + "; ".join(f"{name} " + "/".join(f"{int(npairs[m, k]):,}" for k in kb)
+                      for m, name in enumerate(mask_names)))
     return s2, npairs, dx, int(use.sum())
 
 
@@ -74,6 +82,11 @@ for cfg in pio.load_events(pcfg):
     except (KeyError, FileNotFoundError) as e:
         print(f"SKIP {cfg['event_label']}: {e}")
         continue
+    sm = pio.surface_masks(surf, opt['masks'])
+    sl = surf['slope'][surf['land'] & np.isfinite(surf['slope'])]
+    print(f"  surface ({opt['surface']['resolution']}, box + 0.3 deg pad): land slope percentiles 10/33/50/67/90 = "
+          + "/".join(f"{np.percentile(sl, q):.0f}" for q in (10, 33, 50, 67, 90)) + " m/km; "
+          + ", ".join(f"{k}: {m.sum()}" for k, m in sm.items()) + " columns")
     ends = pio.period_ends(t0, t1, A)
     base = {'event_label': cfg['event_label'], 'region': str(bbox), 'window': f"{t0} to {t1}",
             'accum_hours': A, 'surface_resolution': opt['surface']['resolution'],

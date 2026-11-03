@@ -1,0 +1,83 @@
+# rain_snow_diag options. Every script runs as `python SCRIPT.py`.
+# Event configs (cases, time window, labels) are read from storyline_diag,
+# deep-merged over storyline_diag/defaults.yaml.
+
+storyline_dir: ../storyline_diag
+events:
+  - config.1964.WUS.G-NDG.yaml
+  - config.1986.WUS.G-NDG.yaml
+  - config.2005.WUS.G-NDG.yaml
+  - config.2019.WUS.G-NDG.yaml
+  - config.2024.WUS.G-NDG.yaml
+
+# Analysis box [min_lat, min_lon, max_lat, max_lon]. Central Valley floor to
+# the Sierra crest, Kern to Feather/Pit. Check the printed median grid spacing
+# per case to confirm the box sits in the refined region on 30x8.
+region_bbox: [36.5, -122.5, 40.5, -118.5]
+min_landfrac: 0.5          # land cells only (1 - OCNFRAC)
+
+data_dir: data             # build_phase_nc.py output: data/EVENT_LABEL/phase_RES.nc
+plot_dir: plots            # plots/EVENT_LABEL/*.png, plots/multi_event/*.png
+
+# EAM history tapes (layout from the 2019 v2 runs; verify for other events).
+streams:
+  precip: h1     # PRECT, PRECSL, PRECSC   3-hr mean
+  sfc: h3        # TREFHT, QREFHT, PS      3-hr mean (PS optional; std atm fallback)
+  snowpack: h0   # SNOWHLND                3-hr instantaneous (optional)
+  profile: h2    # T, Z3, U, V, Q, PS      6-hr instantaneous
+  static: h4     # PHIS, OCNFRAC
+
+build:
+  overwrite: false
+  freezing_level: highest  # highest | lowest 0 C crossing above the surface
+
+# Snow line = elevation where the area-weighted snow fraction of precipitating
+# land cells crosses `frac`, from elevation bins of width bin_m.
+snowline:
+  bin_m: 100
+  min_rate_mmhr: 0.1
+  min_cells: 3
+  frac: 0.5
+
+plots:
+  elevband_timeseries:
+    band_edges_m: [0, 500, 1000, 1500, 2000, 2500, 4500]
+    min_cells: 5
+
+  partition_curve:
+    temp_min_c: -6.0
+    temp_max_c: 8.0
+    bin_c: 0.5
+    min_rate_mmhr: 0.1
+    min_samples: 30
+    elev_range_m: null      # e.g. [1000, 4500] to restrict to mountain cells
+    pool_events: true       # also plots/multi_event/partition_curve_all_events.png
+
+  transect:
+    transects:
+      - name: American
+        start: [38.30, -122.40]   # [lat, lon]
+        end: [39.25, -119.70]
+        half_width_km: 15
+        bin_km: 5
+    z_top_m: 8000
+    dz_m: 100
+    # Times (UTC, must be h2 record times). Per event label; missing events
+    # get the n_auto wettest 6-hourly times along the transect.
+    times: {}
+    #  2019_G-NDG: ["2019-02-26 12:00", "2019-02-27 00:00"]
+    n_auto: 3
+    min_sep_hours: 24
+
+  snowline_maps:
+    # Pulses per event label as [start, end] UTC. Missing events are
+    # segmented automatically from the land-mean precip rate.
+    pulses: {}
+    #  1986_G-NDG: [["1986-02-12 00:00", "1986-02-14 00:00"], ...]
+    auto_rate_mmhr: 0.5     # land-mean rate that counts as "raining"
+    auto_gap_hours: 12      # merge wet spells separated by less than this
+    auto_min_hours: 12      # drop spells shorter than this
+    max_pulses: 4
+    min_total_mm: 5         # mask cells with less pulse precip
+    terrain_contours_m: [1500, 2500]
+    rain_on_snow_swe_mm: 10 # snowpack SWE at which rain counts as rain-on-snow

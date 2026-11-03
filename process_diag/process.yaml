@@ -66,9 +66,25 @@ precip_structure_function:
     resolution: "30x32"
     stream: eam.h4        # PHIS, OCNFRAC
     ocnfrac_max: 0.5      # land = OCNFRAC below this
-  masks:                  # name: maximum elevation (m); null = all land
-    land: null
-    below_1000m: 1000
+    slope_radius_km: 12   # terrain slope = least-squares plane through columns within this radius
+  # raw = field as is; anom = each point's event mean removed. Add anom back to compute both.
+  kinds: [raw]
+  # Masks, all land only. name: {elev: [min, max] m, slope: [min, max] m/km};
+  # null = no bound, bands are [min, max). A bare number (old form) = maximum elevation.
+  # Slope 20 m/km ~ 1.1 deg, 60 m/km ~ 3.4 deg. compute_precip_structure_functions.py
+  # prints the land slope percentiles; adjust the classes after the first run.
+  masks:
+    land: {}
+    elev_lt_500:    {elev: [null, 500]}
+    elev_500_1500:  {elev: [500, 1500]}
+    elev_gt_1500:   {elev: [1500, null]}
+    slope_flat:     {slope: [null, 7]}
+    slope_moderate: {slope: [7, 20]}
+    slope_steep:    {slope: [20, null]}
+  # One figure per group in the plot scripts (masks missing from the files are skipped).
+  mask_groups:
+    elevation: [land, elev_lt_500, elev_500_1500, elev_gt_1500]
+    slope:     [land, slope_flat, slope_moderate, slope_steep]
   r_min_km: 2
   r_max_km: 300
   n_bins: 30

@@ -2,14 +2,16 @@
 plot_precip_sf.py  (block 4)
 
 Time-mean S2(r) of precipitation for every mesh and obs product of one
-event. Rows = masks (all land, below the elevation limit), columns = raw
-and event-mean removed. Ticks on the x axis mark each product's median
+event. One figure per mask group in process.yaml, one panel per mask
+and kind. Ticks on the x axis mark each product's median
 point spacing. Reads the output of compute_precip_structure_functions.py.
 
 Run:  python plot_precip_sf.py
 """
 
 import os
+
+from string import ascii_lowercase
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,7 +21,8 @@ import storyline_plot as sp
 
 EVENT_YEAR = pio.event_year(2019)     # run_process.py sets this per event
 NORMALIZE_KM = None       # e.g. 150 to divide each curve by its value there (compares shape only)
-KIND_TITLES = {"raw": "Raw", "anom": "Event mean removed"}
+KIND_TITLES = {"raw": "", "anom": "Event mean removed, "}
+NCOLS = 2
 
 pcfg = pio.load_process_cfg()
 opt = pcfg['precip_structure_function']
@@ -47,12 +50,13 @@ if not lines:
 
 masks, kinds = lines[0][0]['masks'], lines[0][0]['kinds']
 A = int(lines[0][0]['attrs']['accum_hours'])
-fig, axes = plt.subplots(len(masks), len(kinds), figsize=(5.2 * len(kinds), 4.3 * len(masks)),
-                         squeeze=False)
-for row, mask in enumerate(masks):
-    for col, kind in enumerate(kinds):
-        ax = axes[row, col]
+for group, gmasks in pio.mask_groups(opt, masks).items():
+    panels = [(m, k) for m in gmasks for k in kinds]
+    fig, axes = pio.panel_grid(len(panels), NCOLS)
+    for n, ((mask, kind), ax) in enumerate(zip(panels, axes)):
         for psf, label, style in lines:
+            if mask not in psf['masks']:
+                continue
             r, s2 = pio.finite_bins(psf['r'], pio.psf_mean(psf, mask, kind))
             if len(r) == 0:
                 continue
@@ -64,16 +68,15 @@ for row, mask in enumerate(masks):
         ax.set_xscale('log')
         ax.set_yscale('log')
         ax.grid(alpha=0.3, which='both')
-        ax.set_title(f"{KIND_TITLES.get(kind, kind)}, {mask}", fontsize=10)
-        if row == len(masks) - 1:
+        title = KIND_TITLES.get(kind, kind + ", ") + pio.mask_title(mask, opt)
+        ax.set_title(f"{ascii_lowercase[n]}) {title}", loc='left', fontsize=10)
+        if n >= len(panels) - NCOLS:
             ax.set_xlabel("Separation r (km)")
-        if col == 0:
-            ylab = rf"$S_2 / S_2({NORMALIZE_KM}\,$km$)$" if NORMALIZE_KM else \
-                rf"$S_2(r)$ (mm$^2$, {A}-h depth)"
-            ax.set_ylabel(ylab)
-axes[0, 0].legend(frameon=False, fontsize=8)
-fig.suptitle(f"{cfg['event_label']}  precipitation S2, {opt['region']}", fontsize=10)
-fig.tight_layout()
-
-name = "precip_sf_resolutions" + (f"_norm{NORMALIZE_KM}" if NORMALIZE_KM else "")
-sp.save_png(fig, f"{pio.out_dir(pcfg, 'plot_dir', cfg['event_label'])}/{name}.png")
+        if n % NCOLS == 0:
+            ax.set_ylabel(rf"$S_2 / S_2({NORMALIZE_KM}\,$km$)$" if NORMALIZE_KM else
+                          rf"$S_2(r)$ (mm$^2$, {A}-h depth)")
+    axes[0].legend(frameon=False, fontsize=8)
+    fig.suptitle(f"{cfg['event_label']}  precipitation S2, {opt['region']}", fontsize=10)
+    fig.tight_layout()
+    name = f"precip_sf_resolutions_{group}" + (f"_norm{NORMALIZE_KM}" if NORMALIZE_KM else "")
+    sp.save_png(fig, f"{pio.out_dir(pcfg, 'plot_dir', cfg['event_label'])}/{name}.png")

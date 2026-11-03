@@ -5,7 +5,7 @@ Precipitation S2(r) summarized across every event in process.yaml. For
 each product (mesh or obs), each event's time-mean S2 is divided by its
 own value at NORMALIZE_KM, so storms of different intensity can be
 combined. Line = geometric mean across events, band = event min to max.
-Rows = masks, columns = raw and event mean removed. n in the legend is the
+One figure per mask group in process.yaml, one panel per mask and kind. n in the legend is the
 number of events with that product (AORC starts 1979, Stage IV 2002).
 Reads the output of compute_precip_structure_functions.py.
 
@@ -15,6 +15,8 @@ Run:  python plot_precip_sf_summary.py
 import os
 import warnings
 
+from string import ascii_lowercase
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -23,7 +25,8 @@ import storyline_plot as sp
 
 NORMALIZE_KM = 100        # None = no normalization (geometric mean of the raw S2)
 SHOW_BAND = True          # event min-max band
-KIND_TITLES = {"raw": "All gridded data", "anom": "Event mean removed"}
+KIND_TITLES = {"raw": "", "anom": "Event mean removed, "}
+NCOLS = 2
 
 pcfg = pio.load_process_cfg()
 opt = pcfg['precip_structure_function']
@@ -72,15 +75,12 @@ def event_curves(files, mask, kind):
     return np.array(out)
 
 
-fig, axes = plt.subplots(len(masks), len(kinds), figsize=(5.2 * len(kinds), 4.3 * len(masks)),
-                         squeeze=False)
-
-i = 0
-for row, mask in enumerate(masks):
-    for col, kind in enumerate(kinds):
-        ax = axes[row, col]
+for group, gmasks in pio.mask_groups(opt, masks).items():
+    panels = [(m, k) for m in gmasks for k in kinds]
+    fig, axes = pio.panel_grid(len(panels), NCOLS)
+    for n, ((mask, kind), ax) in enumerate(zip(panels, axes)):
         for p, label, style in products:
-            files = psf[p]
+            files = [f for f in psf[p] if mask in f['masks']]
             if not files:
                 continue
             c = event_curves(files, mask, kind)
@@ -102,19 +102,14 @@ for row, mask in enumerate(masks):
         ax.set_xscale('log')
         ax.set_yscale('log')
         ax.grid(alpha=0.3, which='both')
-        ax.set_title(f"{'abcdef'[i]}) {KIND_TITLES.get(kind, kind)}, {mask}", loc='left')
-        if row == len(masks) - 1:
+        title = KIND_TITLES.get(kind, kind + ", ") + pio.mask_title(mask, opt)
+        ax.set_title(f"{ascii_lowercase[n]}) {title}", loc='left', fontsize=10)
+        if n >= len(panels) - NCOLS:
             ax.set_xlabel("Separation r (km)")
-        if col == 0:
+        if n % NCOLS == 0:
             ax.set_ylabel(rf"$S_2 / S_2({NORMALIZE_KM}\,$km$)$" if NORMALIZE_KM else
                           rf"$S_2(r)$ (mm$^2$, {A}-h depth)")
-        i+=1
-
-axes[0, 0].legend(frameon=False, fontsize=8)
-labels = ", ".join(cfg['event_label'].split('_')[0] for cfg in events)
-#fig.suptitle(f"Precipitation S2, all events ({labels}), {opt['region']}\n"
-#             f"line = geometric mean, band = event range", fontsize=10)
-fig.tight_layout()
-
-name = "precip_sf_summary" + (f"_norm{NORMALIZE_KM}" if NORMALIZE_KM else "")
-sp.save_png(fig, f"{pio.out_dir(pcfg, 'plot_dir', 'summary')}/{name}.png")
+    axes[0].legend(frameon=False, fontsize=8)
+    fig.tight_layout()
+    name = f"precip_sf_summary_{group}" + (f"_norm{NORMALIZE_KM}" if NORMALIZE_KM else "")
+    sp.save_png(fig, f"{pio.out_dir(pcfg, 'plot_dir', 'summary')}/{name}.png")

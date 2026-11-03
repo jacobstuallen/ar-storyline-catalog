@@ -25,3 +25,5 @@ python -u compute_structure_functions.py
 python -u compute_precip_structure_functions.py
 python -u run_process.py
 python -u plot_precip_sf_summary.py
+python -u print_precip_reff.py
+python -u plot_precip_ratio_dx.py
