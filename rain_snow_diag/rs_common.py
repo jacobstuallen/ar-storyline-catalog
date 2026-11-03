@@ -247,12 +247,13 @@ def wetbulb_stull(t, rh):
             + 0.00391838 * rh ** 1.5 * np.arctan(0.023101 * rh) - 4.686035)
 
 
-def freezing_level(T, Z, zsfc, method="highest"):
+def freezing_level(T, Z, zsfc, method="highest", zmax=10000.0):
     """Height (m MSL) of the 0 C crossing. T, Z: (lev, ncol), index 0 = model
-    top. A crossing is cold above a warm level below. Columns with no
-    crossing and a sub-freezing bottom level get the surface elevation."""
+    top. A crossing is cold above a warm level below, searched only below
+    zmax so the warm stratopause (model top ~60 km) is never picked. Columns
+    with no crossing and a sub-freezing bottom level get the surface elevation."""
     tc = T - T0
-    cross = (tc[:-1] <= 0) & (tc[1:] > 0)
+    cross = (tc[:-1] <= 0) & (tc[1:] > 0) & (Z[:-1] <= zmax)
     has = cross.any(axis=0)
     if method == "highest":
         k = np.argmax(cross, axis=0)

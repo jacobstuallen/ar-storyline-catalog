@@ -19,6 +19,7 @@ opts = rc.load_options()
 box = opts["region_bbox"]
 st = opts["streams"]
 fz_method = opts["build"].get("freezing_level", "highest")
+fz_zmax = opts["build"].get("freezing_level_max_m", 10000.0)
 overwrite = opts["build"].get("overwrite", False)
 
 for cfg_name in opts["events"]:
@@ -93,7 +94,7 @@ for cfg_name in opts["events"]:
         try:
             for t, rec in rc.iter_3d(case, st["profile"], ["T", "Z3"], t0, t1, cols):
                 t6.append(t)
-                fzl.append(rc.freezing_level(rec["T"], rec["Z3"], zsfc, fz_method))
+                fzl.append(rc.freezing_level(rec["T"], rec["Z3"], zsfc, fz_method, fz_zmax))
         except KeyError as e:
             print(f"  {res}: no freezing level ({e})")
         order = np.argsort(t6) if t6 else []

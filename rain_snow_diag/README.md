@@ -34,7 +34,8 @@ or `mkdir -p slurm_logs && sbatch submit_rain_snow.sbatch`. All options are in
 - Snow = PRECSL + PRECSC, rain = PRECT - snow (h1, 3-hr means), mm/hr.
 - Wet bulb from TREFHT, QREFHT, PS (h3) with Stull (2011).
 - Freezing level: height of the 0 C crossing in T/Z3 (h2, 6-hourly);
-  `highest` crossing by default. Columns frozen to the ground get the surface
+  `highest` crossing below `freezing_level_max_m` (10 km) by default, so the
+  warm stratopause near the model top is ignored. Columns frozen to the ground get the surface
   elevation.
 - Snow line: elevation where area-weighted snow fraction of precipitating land
   cells, binned by 100 m of model elevation, first reaches 50% going uphill.

@@ -28,8 +28,9 @@ streams:
   static: h4     # PHIS, OCNFRAC
 
 build:
-  overwrite: false
+  overwrite: true
   freezing_level: highest  # highest | lowest 0 C crossing above the surface
+  freezing_level_max_m: 10000  # ignore crossings above this (warm stratopause near model top)
 
 # Snow line = elevation where the area-weighted snow fraction of precipitating
 # land cells crosses `frac`, from elevation bins of width bin_m.
@@ -58,11 +59,6 @@ plots:
       - name: Sonoma_WE           # Sonoma coast -> Santa Rosa -> Sacramento -> Ebbetts/Sonora Pass
         start: [38.45, -123.10]   # [lat, lon]
         end: [38.45, -118.80]
-        half_width_km: 15
-        bin_km: 5
-      - name: American
-        start: [38.30, -122.40]
-        end: [39.25, -119.70]
         half_width_km: 15
         bin_km: 5
     z_top_m: 8000
