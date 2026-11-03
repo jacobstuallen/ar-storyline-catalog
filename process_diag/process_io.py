@@ -476,8 +476,29 @@ def mask_points(lat, lon, surf, masks):
     return {name: near & m[k] for name, m in surface_masks(surf, masks).items()}
 
 
-def psf_path(pcfg, event_label, product):
-    return os.path.join(out_dir(pcfg, 'data_dir', 'precip_structure_functions'),
+def precip_regions(pcfg):
+    """[(name, opt)] for each region in precip_structure_function.active_regions.
+    opt is the precip_structure_function block with that region's box as
+    opt['region'], its name as opt['region_name'], and its region_options
+    deep-merged on top (e.g. its own masks or AORC coarsening)."""
+    from storyline_config import deep_merge
+    base = pcfg['precip_structure_function']
+    regions = base.get('regions') or {'NORCAL': base['region']}
+    active = base.get('active_regions') or list(regions)
+    common = {k: v for k, v in base.items()
+              if k not in ('regions', 'active_regions', 'region_options')}
+    out = []
+    for name in active:
+        if name not in regions:
+            raise KeyError(f"active region {name} not in precip_structure_function.regions")
+        o = deep_merge(common, (base.get('region_options') or {}).get(name) or {})
+        o['region'], o['region_name'] = list(regions[name]), name
+        out.append((name, o))
+    return out
+
+
+def psf_path(pcfg, event_label, product, region):
+    return os.path.join(out_dir(pcfg, 'data_dir', 'precip_structure_functions', region),
                         f"psf_{event_label}_{product}.nc")
 
 

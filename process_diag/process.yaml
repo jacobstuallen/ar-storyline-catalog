@@ -52,7 +52,22 @@ structure_function:
 # precipitation for every mesh and obs product, raw and with the event-mean
 # field removed, over all land and over land below an elevation limit.
 precip_structure_function:
-  region: [37.0, -124.5, 42.0, -120.0]   # same box as the winds; widen for more of the West
+  # Sub-regions [min_lat, min_lon, max_lat, max_lon]. Each active region is computed and
+  # plotted separately; outputs go to <data_dir|plot_dir>/.../<REGION>/. NORCAL is the
+  # same box as the wind structure functions. The others are first guesses: run
+  # plot_precip_masks.py for a region first to check the mesh spacing is uniform there.
+  regions:
+    NORCAL:   [37.0, -124.5, 42.0, -120.0]
+    SIERRA:   [35.5, -121.5, 40.5, -117.5]
+    PNW:      [42.0, -125.0, 49.0, -116.0]
+    SOCAL:    [32.0, -121.0, 36.0, -114.0]
+    INTERIOR: [37.0, -117.0, 45.0, -105.0]
+  active_regions: [NORCAL]
+  # Per-region overrides of anything in this block (deep-merged), e.g. slope classes set
+  # from that region's own terciles, or coarser AORC for a big box.
+  region_options:
+    PNW:      {obs_options: {AORC: {coarsen: 3}}}
+    INTERIOR: {obs_options: {AORC: {coarsen: 4}}}
   stream: eam.h5          # high-frequency mean PRECT (20 / 6.7 / 3.3 min for 30x8 / 30x16 / 30x32)
   variable: PRECT
   accum_hours: 1          # periods (t0 + (k-1)*accum_hours, t0 + k*accum_hours]; 1 matches hourly obs
@@ -78,7 +93,7 @@ precip_structure_function:
     elev_lt_500:    {elev: [null, 500]}
     elev_500_1500:  {elev: [500, 1500]}
     elev_gt_1500:   {elev: [1500, null]}
-    slope_flat:     {slope: [null, 7]}
+    slope_flat:     {slope: [null, 7]}     # NORCAL terciles (~1650 / 2530 / 2270 30x32 columns)
     slope_moderate: {slope: [7, 20]}
     slope_steep:    {slope: [20, null]}
   # One figure per group in the plot scripts (masks missing from the files are skipped).

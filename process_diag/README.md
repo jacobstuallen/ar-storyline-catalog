@@ -12,7 +12,7 @@ mkdir -p slurm_logs && sbatch submit_process.sbatch
 Pieces by hand:
 ```
 python compute_structure_functions.py     # all events and resolutions in process.yaml
-python plot_precip_masks.py               # block 4 check first: elevation/slope maps and mask classes
+python plot_precip_masks.py               # block 4 check first: mask classes and mesh spacing, per region
 python compute_precip_structure_functions.py   # block 4 compute: meshes + AORC/Stage IV
 python run_process.py                     # every plot script for every event
 python plot_nudge_profile.py              # block 1, one event: Nudge_U and U - Target_U profiles
@@ -36,6 +36,13 @@ Second-order structure function S2(r) = mean (f_i - f_j)^2 over column pairs at
 separation r, on the native unstructured columns inside the box (no regridding).
 k^-5/3 corresponds to r^(2/3), k^-3 to r^2. Pairs: all pairs below
 `r_exact_km`, random pairs above. Bins with fewer than `min_pairs` are NaN.
+
+Precipitation (block 4) runs per sub-region: `regions:` defines the boxes, `active_regions:`
+picks which to run, `region_options:` overrides any setting for one region (its own slope
+classes, coarser AORC). Outputs go to `output/precip_structure_functions/<REGION>/` and
+`plots/<event>/<REGION>/`, `plots/summary/<REGION>/`. Check a new region with
+plot_precip_masks.py first: its spacing map shows whether the box stays inside each mesh's
+uniformly refined area.
 
 Precipitation (block 4): S2 of depth per `accum_hours` period (hourly by default).
 E3SM from the averaged h5 PRECT, records assigned to periods by interval midpoint

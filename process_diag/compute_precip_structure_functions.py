@@ -28,103 +28,104 @@ import storyline_io as sio
 PAIR_CHECK_KM = [50, 100]   # print pair counts per mask in the bins nearest these
 
 pcfg = pio.load_process_cfg()
-opt = pcfg['precip_structure_function']
-KINDS = list(opt.get('kinds', ["raw", "anom"]))
-bbox = opt['region']
-A = opt['accum_hours']
-edges = pio.r_edges(opt)
-n_bins = len(edges) - 1
-mask_names = list(opt['masks'])
+for REGION, opt in pio.precip_regions(pcfg):
+    print(f"\n##### region {REGION}: {opt['region']}")
+    KINDS = list(opt.get('kinds', ["raw", "anom"]))
+    bbox = opt['region']
+    A = opt['accum_hours']
+    edges = pio.r_edges(opt)
+    n_bins = len(edges) - 1
+    mask_names = list(opt['masks'])
 
 
-def compute(lat, lon, vals, r_exact_km):
-    """S2 (mask, kind, time, bin), npairs (mask, bin), grid spacing, n points."""
-    rows = np.isfinite(vals).any(axis=1)                  # periods with data
-    valid = np.isfinite(vals[rows]).all(axis=0)           # points with every period
-    masks = pio.mask_points(lat, lon, surf, opt['masks'])
-    use = valid & np.logical_or.reduce(list(masks.values()))
-    lat, lon, vals = lat[use], lon[use], vals[:, use]
-    masks = {k: m[use] for k, m in masks.items()}
-    dx = pio.grid_spacing_km(lat, lon)
-    print(f"    {use.sum()} points, median spacing {dx:.1f} km, "
-          + ", ".join(f"{k}: {m.sum()}" for k, m in masks.items()))
+    def compute(lat, lon, vals, r_exact_km):
+        """S2 (mask, kind, time, bin), npairs (mask, bin), grid spacing, n points."""
+        rows = np.isfinite(vals).any(axis=1)                  # periods with data
+        valid = np.isfinite(vals[rows]).all(axis=0)           # points with every period
+        masks = pio.mask_points(lat, lon, surf, opt['masks'])
+        use = valid & np.logical_or.reduce(list(masks.values()))
+        lat, lon, vals = lat[use], lon[use], vals[:, use]
+        masks = {k: m[use] for k, m in masks.items()}
+        dx = pio.grid_spacing_km(lat, lon)
+        print(f"    {use.sum()} points, median spacing {dx:.1f} km, "
+              + ", ".join(f"{k}: {m.sum()}" for k, m in masks.items()))
 
-    i, j, b = pio.build_pairs(lat, lon, edges, r_exact_km, opt['n_random_pairs'])
-    fields = {"raw": vals}
-    if "anom" in KINDS:
-        fields["anom"] = vals - np.nanmean(vals[rows], axis=0)
-    s2 = np.full((len(mask_names), len(KINDS), len(vals), n_bins), np.nan, dtype=np.float32)
-    npairs = np.zeros((len(mask_names), n_bins))
-    for m, name in enumerate(mask_names):
-        for k, kind in enumerate(KINDS):
-            f_all = np.where(masks[name], fields[kind], np.nan)
-            for t in np.where(rows)[0]:
-                s, cnt = pio.structure_function(f_all[t], i, j, b, n_bins)
-                s[cnt < opt['min_pairs']] = np.nan
-                s2[m, k, t] = s
-                npairs[m] = cnt
-    kb = [int(np.argmin(np.abs(np.sqrt(edges[:-1] * edges[1:]) - r))) for r in PAIR_CHECK_KM]
-    print("    pairs near " + ", ".join(f"{r} km" for r in PAIR_CHECK_KM) + ": "
-          + "; ".join(f"{name} " + "/".join(f"{int(npairs[m, k]):,}" for k in kb)
-                      for m, name in enumerate(mask_names)))
-    return s2, npairs, dx, int(use.sum())
+        i, j, b = pio.build_pairs(lat, lon, edges, r_exact_km, opt['n_random_pairs'])
+        fields = {"raw": vals}
+        if "anom" in KINDS:
+            fields["anom"] = vals - np.nanmean(vals[rows], axis=0)
+        s2 = np.full((len(mask_names), len(KINDS), len(vals), n_bins), np.nan, dtype=np.float32)
+        npairs = np.zeros((len(mask_names), n_bins))
+        for m, name in enumerate(mask_names):
+            for k, kind in enumerate(KINDS):
+                f_all = np.where(masks[name], fields[kind], np.nan)
+                for t in np.where(rows)[0]:
+                    s, cnt = pio.structure_function(f_all[t], i, j, b, n_bins)
+                    s[cnt < opt['min_pairs']] = np.nan
+                    s2[m, k, t] = s
+                    npairs[m] = cnt
+        kb = [int(np.argmin(np.abs(np.sqrt(edges[:-1] * edges[1:]) - r))) for r in PAIR_CHECK_KM]
+        print("    pairs near " + ", ".join(f"{r} km" for r in PAIR_CHECK_KM) + ": "
+              + "; ".join(f"{name} " + "/".join(f"{int(npairs[m, k]):,}" for k in kb)
+                          for m, name in enumerate(mask_names)))
+        return s2, npairs, dx, int(use.sum())
 
 
-for cfg in pio.load_events(pcfg):
-    try:
-        t0, t1 = pio.analysis_window(cfg, pcfg['window'])
-    except KeyError as e:
-        print(f"SKIP {e}")
-        continue
-    print(f"\n=== {cfg['event_label']}: {t0} to {t1}, {A}-hour periods")
-    try:
-        surf = pio.surface_fields(cfg, opt, t0, t1, bbox)
-    except (KeyError, FileNotFoundError) as e:
-        print(f"SKIP {cfg['event_label']}: {e}")
-        continue
-    sm = pio.surface_masks(surf, opt['masks'])
-    sl = surf['slope'][surf['land'] & np.isfinite(surf['slope'])]
-    print(f"  surface ({opt['surface']['resolution']}, box + 0.3 deg pad): land slope percentiles 10/33/50/67/90 = "
-          + "/".join(f"{np.percentile(sl, q):.0f}" for q in (10, 33, 50, 67, 90)) + " m/km; "
-          + ", ".join(f"{k}: {m.sum()}" for k, m in sm.items()) + " columns")
-    ends = pio.period_ends(t0, t1, A)
-    base = {'event_label': cfg['event_label'], 'region': str(bbox), 'window': f"{t0} to {t1}",
-            'accum_hours': A, 'surface_resolution': opt['surface']['resolution'],
-            'masks': str(opt['masks'])}
+    for cfg in pio.load_events(pcfg):
+        try:
+            t0, t1 = pio.analysis_window(cfg, pcfg['window'])
+        except KeyError as e:
+            print(f"SKIP {e}")
+            continue
+        print(f"\n=== {cfg['event_label']}: {t0} to {t1}, {A}-hour periods")
+        try:
+            surf = pio.surface_fields(cfg, opt, t0, t1, bbox)
+        except (KeyError, FileNotFoundError) as e:
+            print(f"SKIP {cfg['event_label']}: {e}")
+            continue
+        sm = pio.surface_masks(surf, opt['masks'])
+        sl = surf['slope'][surf['land'] & np.isfinite(surf['slope'])]
+        print(f"  surface ({opt['surface']['resolution']}, box + 0.3 deg pad): land slope percentiles 10/33/50/67/90 = "
+              + "/".join(f"{np.percentile(sl, q):.0f}" for q in (10, 33, 50, 67, 90)) + " m/km; "
+              + ", ".join(f"{k}: {m.sum()}" for k, m in sm.items()) + " columns")
+        ends = pio.period_ends(t0, t1, A)
+        base = {'event_label': cfg['event_label'], 'region': str(bbox), 'region_name': REGION, 'window': f"{t0} to {t1}",
+                'accum_hours': A, 'surface_resolution': opt['surface']['resolution'],
+                'masks': str(opt['masks'])}
 
-    products = []
-    for case in cfg['cases']:
-        products.append((case['resolution'], case['label'], 'e3sm', case))
-    available = sio.obs_products(cfg, t0, t1)
-    for name in opt['obs']:
-        if name in available:
-            products.append((name, sio.obs_label(name), 'obs', name))
+        products = []
+        for case in cfg['cases']:
+            products.append((case['resolution'], case['label'], 'e3sm', case))
+        available = sio.obs_products(cfg, t0, t1)
+        for name in opt['obs']:
+            if name in available:
+                products.append((name, sio.obs_label(name), 'obs', name))
 
-    for product, label, source, ref in products:
-        print(f"  {product}:")
-        if source == 'e3sm':
-            got = pio.read_e3sm_precip_periods(ref, opt['stream'], opt['variable'],
-                                               t0, t1, bbox, A)
-            if got is None:
-                print(f"  SKIP {product}: no {opt['stream']} records")
-                continue
-            cols, vals = got
-            lat, lon, r_exact = cols.lat, cols.lon, opt['r_exact_km']
-            extra = {'case': ref['name'], 'stream': opt['stream']}
-        else:
-            o = opt['obs_options'].get(ref, {})
-            try:
-                lat, lon, vals = pio.read_obs_precip_periods(cfg, ref, t0, t1, bbox, A,
-                                                             o.get('coarsen', 1))
-            except (FileNotFoundError, ValueError) as e:
-                print(f"  SKIP {product}: {e}")
-                continue
-            r_exact = o.get('r_exact_km', opt['r_exact_km'])
-            extra = {'coarsen': o.get('coarsen', 1)}
+        for product, label, source, ref in products:
+            print(f"  {product}:")
+            if source == 'e3sm':
+                got = pio.read_e3sm_precip_periods(ref, opt['stream'], opt['variable'],
+                                                   t0, t1, bbox, A)
+                if got is None:
+                    print(f"  SKIP {product}: no {opt['stream']} records")
+                    continue
+                cols, vals = got
+                lat, lon, r_exact = cols.lat, cols.lon, opt['r_exact_km']
+                extra = {'case': ref['name'], 'stream': opt['stream']}
+            else:
+                o = opt['obs_options'].get(ref, {})
+                try:
+                    lat, lon, vals = pio.read_obs_precip_periods(cfg, ref, t0, t1, bbox, A,
+                                                                 o.get('coarsen', 1))
+                except (FileNotFoundError, ValueError) as e:
+                    print(f"  SKIP {product}: {e}")
+                    continue
+                r_exact = o.get('r_exact_km', opt['r_exact_km'])
+                extra = {'coarsen': o.get('coarsen', 1)}
 
-        s2, npairs, dx, npts = compute(lat, lon, vals, r_exact)
-        out = pio.psf_path(pcfg, cfg['event_label'], product)
-        pio.write_psf(out, s2, npairs, edges, ends, mask_names, KINDS,
-                      dict(base, product=product, label=label, source=source,
-                           grid_spacing_km=dx, n_points=npts, **extra))
-        print(f"  Written: {out}")
+            s2, npairs, dx, npts = compute(lat, lon, vals, r_exact)
+            out = pio.psf_path(pcfg, cfg['event_label'], product, REGION)
+            pio.write_psf(out, s2, npairs, edges, ends, mask_names, KINDS,
+                          dict(base, product=product, label=label, source=source,
+                               grid_spacing_km=dx, n_points=npts, **extra))
+            print(f"  Written: {out}")

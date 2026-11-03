@@ -55,8 +55,13 @@ plots:
 
   transect:
     transects:
+      - name: Sonoma_WE           # Sonoma coast -> Santa Rosa -> Sacramento -> Ebbetts/Sonora Pass
+        start: [38.45, -123.10]   # [lat, lon]
+        end: [38.45, -118.80]
+        half_width_km: 15
+        bin_km: 5
       - name: American
-        start: [38.30, -122.40]   # [lat, lon]
+        start: [38.30, -122.40]
         end: [39.25, -119.70]
         half_width_km: 15
         bin_km: 5
