@@ -38,7 +38,7 @@ unless their `overwrite` is true.
 | `plots/multi_event/depth_duration_ratio.png` | Panel (c) for every event, one panel per finer mesh. |
 | `plots/EVENT/asos_compare.png` | Per station (wettest first): cumulative depth, depth-duration with the neighbourhood cell range, and the 30 wettest 20-min blocks, station vs nearest land cell. |
 
-| `plots/multi_event/hf_contribution.png` | Share of the storm total falling at or above each rate, at 20- and 60-min blocks. ASOS AR3+ climatology (median, IQR) vs each mesh (land cells <= 500 m, pooled over events). |
+| `plots/multi_event/hf_contribution.png` | Share of the storm total falling at or above each rate, at 20- and 60-min blocks, evaluated on the gauge tip ladder (0.76 / 0.25 mm/h steps); top axis = depth per block. ASOS AR3+ climatology (median, IQR) vs each mesh (land cells <= 500 m, pooled over CW3E-matched storms). |
 | `plots/multi_event/hf_metrics_NNmin.png` | Boxplots: share of total at >= 10 and >= 20 mm/h, share in the wettest 1 h and 3 h, fraction of blocks wet, peak block / mean wet block. |
 
 Scripts print the numbers behind each figure, including a pooled median
@@ -72,6 +72,12 @@ and ticks 8 pt, legends 7 pt, png at 300 dpi.
   enter. Wet block = >= 0.254 mm (one 0.01-in tip). 60-min blocks are
   fixed clock-aligned sums of three 20-min blocks; wettest-N-hour shares use
   running windows.
+- **Model storm windows.** Same CW3E selection and padding as the gauges,
+  applied to every AR storm fully inside each run (after 24 h spin-up), from
+  `blocks_run_RES.nc` (whole run, written by the build step). An event with
+  none falls back to its strongest overlapping catalog event (2019: AR2).
+  Model blocks are rounded to whole 0.254 mm tips with the remainder carried
+  forward, as in a tipping bucket.
 - **AR3+ storms.** CW3E events with AR scale >= 3 at the listed coastal
   points, 2000 to Sep 2023, merged when they overlap. Station window = AR
   start - 6 h to AR end + 12 h. A station-storm counts if >= 25 mm and

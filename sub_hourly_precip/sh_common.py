@@ -98,8 +98,17 @@ def event_short(label):
     return label.split("_")[0]
 
 
-def blocks_path(opts, event_label, res):
-    return os.path.join(rel(opts["data_dir"]), event_label, f"blocks_{res}.nc")
+def blocks_path(opts, event_label, res, tag=""):
+    """data/EVENT/blocks_RES.nc (analysis window) or blocks_TAG_RES.nc."""
+    name = f"blocks_{tag}_{res}.nc" if tag else f"blocks_{res}.nc"
+    return os.path.join(rel(opts["data_dir"]), event_label, name)
+
+
+def event_window(cfg):
+    """(t0, t1) of the event's full time: block (the whole run)."""
+    t = cfg["time"]
+    t0 = datetime(t["start_year"], t["start_month"], t["start_day"])
+    return t0, t0 + timedelta(days=t["num_days"])
 
 
 def plot_path(opts, event_label, name):
@@ -294,13 +303,27 @@ def aggregate(depth, k):
     return d[:m].reshape(m // k, k, d.shape[1]).sum(axis=1)
 
 
+def tipify(depth, tip_mm=WET_MM):
+    """Emulate a tipping bucket: the running total is counted in whole tips
+    (remainder carried forward), and each block gets the tips that fall in it.
+    depth (nb, n) mm -> same shape, multiples of tip_mm. NaN blocks are
+    treated as zero for the running total and stay NaN."""
+    d = _col(depth)
+    bad = ~np.isfinite(d)
+    tips = np.floor(np.cumsum(np.where(bad, 0.0, d), axis=0) / tip_mm + 1e-9)
+    out = np.diff(np.vstack([np.zeros((1, d.shape[1])), tips]), axis=0) * tip_mm
+    out[bad] = np.nan
+    return out
+
+
 def contribution_curve(depth, block_min, rates_mmhr):
     """Share of the total falling in blocks with rate >= r, for each r.
     depth (nb, n) -> (nr, n). NaN blocks are left out of both sums."""
     d = _col(depth)
     rate = d * 60.0 / block_min
     tot = np.nansum(d, axis=0)
-    out = np.vstack([np.nansum(np.where(rate >= r, d, 0.0), axis=0) for r in rates_mmhr])
+    # tolerance so thresholds placed exactly on the gauge tip ladder count the step
+    out = np.vstack([np.nansum(np.where(rate >= r * (1 - 1e-6), d, 0.0), axis=0) for r in rates_mmhr])
     with np.errstate(invalid="ignore", divide="ignore"):
         return np.where(tot > 0, out / tot, np.nan)
 
@@ -368,6 +391,59 @@ def read_ar_catalog(path, columns, header_rows=1, verbose=True):
     return rows
 
 
+def catalog_storms(opts, years=None, months="config", verbose=True):
+    """Storms from the CW3E per-point CSVs in ar_catalog.files: events with
+    AR scale >= ar_catalog.min_scale (and inside `years`, and `months` if
+    given; "config" = ar_catalog.months), merged across points when they
+    overlap or are less than merge_gap_hours apart. Each storm: id, start,
+    end, scale, points, w0, w1 (padded station window)."""
+    AC = opts["ar_catalog"]
+    months = AC.get("months") if months == "config" else months
+    events = []
+    for lat, fn in AC["files"].items():
+        path = os.path.join(rel(AC["dir"]), fn)
+        if not os.path.isfile(path):
+            raise FileNotFoundError(f"{path} missing: download the CW3E event CSV for {lat}N "
+                                    f"and set ar_catalog.files")
+        rows = read_ar_catalog(path, AC["columns"], int(AC.get("header_rows", 1)), verbose)
+        keep = [dict(r, point=float(lat)) for r in rows
+                if r["scale"] >= AC["min_scale"]
+                and (years is None or years[0] <= r["start"].year <= years[1])
+                and (not months or r["start"].month in months)]
+        if verbose:
+            print(f"  {lat}N: {len(rows)} events, {len(keep)} AR{AC['min_scale']}+"
+                  + (f" in {years[0]}-{years[1]}" if years else "")
+                  + (f", months {months}" if months else ""))
+        events += keep
+    events.sort(key=lambda e: e["start"])
+    gap = timedelta(hours=float(AC.get("merge_gap_hours", 0)))
+    storms = []
+    for e in events:
+        if storms and e["start"] <= storms[-1]["end"] + gap:
+            st = storms[-1]
+            st["end"] = max(st["end"], e["end"])
+            st["scale"] = max(st["scale"], e["scale"])
+            st["points"].add(e["point"])
+        else:
+            storms.append(dict(start=e["start"], end=e["end"], scale=e["scale"], points={e["point"]}))
+    pre, post = timedelta(hours=AC["hours_before"]), timedelta(hours=AC["hours_after"])
+    for st in storms:
+        st["id"] = st["start"].strftime("%Y%m%d%H")
+        st["w0"], st["w1"] = st["start"] - pre, st["end"] + post
+    return storms
+
+
+def catalog_events_all(opts):
+    """Every catalog event at every listed point (any scale), for fallbacks."""
+    AC = opts["ar_catalog"]
+    out = []
+    for lat, fn in AC["files"].items():
+        for r in read_ar_catalog(os.path.join(rel(AC["dir"]), fn), AC["columns"],
+                                 int(AC.get("header_rows", 1)), verbose=False):
+            out.append(dict(r, point=float(lat)))
+    return out
+
+
 # ── geometry ────────────────────────────────────────────────────────────
 def xyz(lat, lon):
     p, l = np.radians(lat), np.radians(lon)
@@ -428,11 +504,11 @@ def read_blocks_nc(path):
     return d
 
 
-def built_cases(opts, cfg):
+def built_cases(opts, cfg, tag=""):
     """[(case, blocks dict)] for cases whose blocks file exists."""
     out = []
     for case in cfg["cases"]:
-        p = blocks_path(opts, cfg["event_label"], case["resolution"])
+        p = blocks_path(opts, cfg["event_label"], case["resolution"], tag)
         if os.path.isfile(p):
             out.append((case, read_blocks_nc(p)))
         else:

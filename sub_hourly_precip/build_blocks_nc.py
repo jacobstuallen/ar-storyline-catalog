@@ -7,7 +7,10 @@ data/EVENT/blocks_RES.nc with:
     maxdepth(dur, cell)         max running depth for each duration
     lat, lon, area, zsfc, landfrac (cell)
 and, for meshes finer than build.coarsen_to, the same fields aggregated onto
-that mesh's cells (prefix coarse_). Options: sub_hourly.yaml.
+that mesh's cells (prefix coarse_). Also writes data/EVENT/blocks_run_RES.nc
+over the event's whole time: block (no coarsening) for
+plot_hf_characteristics.py, unless build.full_run_blocks is false.
+Options: sub_hourly.yaml.
 
 Run:  python build_blocks_nc.py
 """
@@ -133,3 +136,30 @@ for cfg_name in opts["events"]:
                      window_start=str(t0), window_end=str(t1),
                      region_bbox=str(BOX), coarsened_to=(COARSE_RES if coarse is not None else ""))
         write(path, r, static, md, coarse, attrs)
+
+# ── full-run blocks for plot_hf_characteristics.py (CW3E-matched windows) ──
+if bopt.get("full_run_blocks", True):
+    for cfg_name in opts["events"]:
+        cfg = sh.load_event(opts, cfg_name)
+        label = cfg["event_label"]
+        t0, t1 = sh.event_window(cfg)
+        print(f"\n=== {label} full run: {t0} to {t1} UTC")
+        for case in cfg["cases"]:
+            res = case["resolution"]
+            path = sh.blocks_path(opts, label, res, "run")
+            if os.path.isfile(path) and not bopt.get("overwrite", False):
+                print(f"  {res}: exists, skip ({path})")
+                continue
+            try:
+                r = sh.read_blocks(case, ST["precip"], t0, t1, BOX, B)
+            except (FileNotFoundError, ValueError, KeyError) as e:
+                print(f"  {res}: SKIP: {e}")
+                continue
+            st = sh.read_static(case, ST["static"], r["cols"], ["PHIS", "OCNFRAC"], t0, t1)
+            static = {"zsfc": None if st["PHIS"] is None else st["PHIS"] / sh.G,
+                      "landfrac": None if st["OCNFRAC"] is None else 1.0 - st["OCNFRAC"]}
+            md = sh.max_depths(r["depth"], DURS, B)
+            write(path, r, static, md, None,
+                  dict(event_label=label, resolution=res, case=case["name"], block_minutes=B,
+                       record_seconds=r["record_s"], window_start=str(t0), window_end=str(t1),
+                       region_bbox=str(BOX), coarsened_to=""))

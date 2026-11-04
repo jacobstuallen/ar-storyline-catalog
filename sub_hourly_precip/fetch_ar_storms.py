@@ -17,7 +17,6 @@ Run:  python fetch_ar_storms.py
 """
 import csv
 import os
-from datetime import timedelta
 
 import sh_common as sh
 
@@ -28,42 +27,13 @@ OUT = sh.rel(CL["dir"])
 os.makedirs(OUT, exist_ok=True)
 
 # ── 1. storms ────────────────────────────────────────────────────────────
-events = []
-for lat, fn in AC["files"].items():
-    path = os.path.join(sh.rel(AC["dir"]), fn)
-    if not os.path.isfile(path):
-        raise FileNotFoundError(f"{path} missing: download the CW3E event CSV for {lat}N "
-                                f"and set ar_catalog.files")
-    rows = sh.read_ar_catalog(path, AC["columns"], int(AC.get("header_rows", 1)))
-    y0, y1 = AC["years"]
-    months = AC.get("months")
-    keep = [dict(r, point=float(lat)) for r in rows
-            if r["scale"] >= AC["min_scale"] and y0 <= r["start"].year <= y1
-            and (not months or r["start"].month in months)]
-    print(f"  {lat}N: {len(rows)} events, {len(keep)} AR{AC['min_scale']}+ in {y0}-{y1}"
-          + (f", months {months}" if months else ""))
-    events += keep
-
-events.sort(key=lambda e: e["start"])
-gap = timedelta(hours=float(AC.get("merge_gap_hours", 0)))
-storms = []
-for e in events:
-    if storms and e["start"] <= storms[-1]["end"] + gap:
-        s = storms[-1]
-        s["end"] = max(s["end"], e["end"])
-        s["scale"] = max(s["scale"], e["scale"])
-        s["points"].add(e["point"])
-    else:
-        storms.append(dict(start=e["start"], end=e["end"], scale=e["scale"], points={e["point"]}))
+storms = sh.catalog_storms(opts, years=AC["years"])
 
 sims = []
 for cfg_name in opts["events"]:
     cfg = sh.load_event(opts, cfg_name)
     sims.append((cfg["event_label"], *sh.analysis_window(opts, cfg)))
-pre, post = timedelta(hours=AC["hours_before"]), timedelta(hours=AC["hours_after"])
 for s in storms:
-    s["id"] = s["start"].strftime("%Y%m%d%H")
-    s["w0"], s["w1"] = s["start"] - pre, s["end"] + post
     s["sim"] = ";".join(lab for lab, a, b in sims if a < s["w1"] and b > s["w0"])
 
 with open(os.path.join(OUT, "storms.csv"), "w", newline="") as fh:

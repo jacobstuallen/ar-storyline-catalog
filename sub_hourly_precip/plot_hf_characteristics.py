@@ -5,13 +5,20 @@ storm total, its own wet blocks), so storm placement and timing don't matter.
 Observations: every station-storm from fetch_ar_storms.py with at least
 climatology.min_storm_total_mm and at most climatology.max_missing_frac
 missing 20-min blocks.
-Model: land cells in hf.model_bbox at or below hf.elev_max_m with at least
-the same storm total, pooled over the simulated events (storm windows).
+Model: the same CW3E storm selection and padding as the gauges, applied to
+every AR storm lying fully inside each run (after hf.spinup_hours), read from
+blocks_run_RES.nc. An event with no such storm falls back to its strongest
+catalog event overlapping its storm_window. Land cells in hf.model_bbox at or
+below hf.elev_max_m with at least the station storm-total threshold, pooled
+over storms. Model blocks are rounded to whole gauge tips (hf.tip_mm), with
+the remainder carried forward as in a tipping bucket.
 
 Figures (plots/multi_event/):
   hf_contribution.png    share of the storm total falling at rate >= r, vs r,
-                         one panel per hf.block_minutes. Line = median,
-                         band = interquartile range.
+                         one panel per hf.block_minutes, evaluated on the
+                         gauge tip ladder (one 0.01-in tip per block = the
+                         step width). Line = median, band = interquartile
+                         range; top axis = depth per block.
   hf_metrics_NNmin.png   boxplots (5-95% whiskers) per metric and group.
 
 A gauge is a point and a cell is an area mean, so even a perfect model sits
@@ -37,7 +44,10 @@ if any(b % B for b in BLOCKS):
     raise ValueError(f"hf.block_minutes {BLOCKS} must be multiples of block_minutes={B}")
 RATES = [float(r) for r in HF["rates_mmhr"]]
 TOPH = [float(h) for h in HF["top_hours"]]
-CURVE = np.geomspace(1.0, 80.0, 40)
+TIP = HF.get("tip_mm") or sh.WET_MM
+CURVE_MAX_MMHR = 40.0
+# thresholds on the gauge ladder: k tips per block, as a rate
+CURVE = {b: TIP * 60.0 / b * np.arange(1, int(CURVE_MAX_MMHR / (TIP * 60.0 / b)) + 1) for b in BLOCKS}
 MINTOT = float(CL["min_storm_total_mm"])
 plt = sh.style()
 
@@ -70,7 +80,7 @@ for s in storms:
             d = sh.aggregate(dep, b // B)
             m = sh.hf_metrics(d, b, RATES, TOPH, HF["max_missing_frac"])
             obs[b].append(({k: float(x[0]) for k, x in m.items()},
-                           sh.contribution_curve(d, b, CURVE)[:, 0], s, sid))
+                           sh.contribution_curve(d, b, CURVE[b])[:, 0], s, sid))
 n_storms = len({o[2]["id"] for o in obs[BLOCKS[0]]})
 print(f"ASOS: {n_kept} of {n_seen} station-storms kept (>= {MINTOT:g} mm, <= "
       f"{CL['max_missing_frac']:.0%} missing), from {n_storms} of {len(storms)} storms")
@@ -78,31 +88,63 @@ if not n_kept:
     raise SystemExit("no station-storm passes; nothing to compare")
 
 # ── model ────────────────────────────────────────────────────────────────
-mod = {}       # res -> {b: [metric dicts per event], curves list}
+storms_all = sh.catalog_storms(opts, years=None, verbose=False)
+events_all = sh.catalog_events_all(opts)
+AC = opts["ar_catalog"]
+pre, post = timedelta(hours=AC["hours_before"]), timedelta(hours=AC["hours_after"])
+spin = timedelta(hours=float(HF.get("spinup_hours", 0)))
+mod = {}       # res -> {b: {"m": [metric dicts per storm], "c": [curves]}}
 labels = {}
 mb = HF["model_bbox"]
+print("\nModel storms (CW3E windows inside each run):")
 for cfg_name in opts["events"]:
     cfg = sh.load_event(opts, cfg_name)
-    for case, d in sh.built_cases(opts, cfg):
+    ev = sh.event_short(cfg["event_label"])
+    built = sh.built_cases(opts, cfg, "run")
+    if not built:
+        print(f"  {ev}: no blocks_run files (rerun build_blocks_nc.py); skip")
+        continue
+    r0, r1 = sh.event_window(cfg)
+    sel = [dict(st, fallback=False) for st in storms_all if st["w0"] >= r0 + spin and st["w1"] <= r1]
+    if not sel:
+        s0, s1 = sh.analysis_window(opts, cfg)
+        over = [e for e in events_all if e["start"] < s1 and e["end"] > s0]
+        if over:
+            e = max(over, key=lambda e: (e["scale"], (e["end"] - e["start"])))
+            w0, w1 = max(e["start"] - pre, r0 + spin), min(e["end"] + post, r1)
+            sel = [dict(id=e["start"].strftime("%Y%m%d%H"), start=e["start"], end=e["end"],
+                        scale=e["scale"], points={e["point"]}, w0=w0, w1=w1, fallback=True)]
+    for st in sel:
+        print(f"  {ev}: {st['id']} AR{st['scale']} {st['w0']:%Y-%m-%d %H} to {st['w1']:%Y-%m-%d %H} UTC"
+              + ("  (fallback: no AR" + str(AC['min_scale']) + "+ storm in run)" if st["fallback"] else ""))
+    for case, d in built:
         res = case["resolution"]
         labels[res] = sh.case_label(cfg, case)
-        m = sh.land(d, opts) & (d["lat"] >= mb[0]) & (d["lat"] <= mb[2]) & \
+        base = sh.land(d, opts) & (d["lat"] >= mb[0]) & (d["lat"] <= mb[2]) & \
             (d["lon"] >= mb[1]) & (d["lon"] <= mb[3])
         if "zsfc" in d:
-            m &= d["zsfc"] <= HF["elev_max_m"]
-        m &= np.nansum(d["depth"], axis=0) >= MINTOT
-        if not m.any():
-            continue
-        for b in BLOCKS:
-            dd = sh.aggregate(d["depth"][:, m], b // B)
-            mt = sh.hf_metrics(dd, b, RATES, TOPH, HF["max_missing_frac"])
-            mt["event"] = np.full(m.sum(), sh.event_short(cfg["event_label"]), dtype=object)
-            cc = sh.contribution_curve(dd, b, CURVE)
-            slot = mod.setdefault(res, {}).setdefault(b, {"m": [], "c": []})
-            slot["m"].append(mt)
-            slot["c"].append(cc)
+            base &= d["zsfc"] <= HF["elev_max_m"]
+        ends = d["block_end"]
+        for st in sel:
+            k = np.where((ends > st["w0"]) & (ends <= st["w1"]))[0]
+            if k.size == 0:
+                continue
+            dep = d["depth"][k]
+            m = base & (np.nansum(dep, axis=0) >= MINTOT)
+            if not m.any():
+                continue
+            dep = dep[:, m]
+            if HF.get("tip_mm"):
+                dep = sh.tipify(dep, float(HF["tip_mm"]))
+            for b in BLOCKS:
+                dd = sh.aggregate(dep, b // B)
+                mt = sh.hf_metrics(dd, b, RATES, TOPH, HF["max_missing_frac"])
+                mt["event"] = np.full(m.sum(), f"{ev}/{st['id']}", dtype=object)
+                slot = mod.setdefault(res, {}).setdefault(b, {"m": [], "c": []})
+                slot["m"].append(mt)
+                slot["c"].append(sh.contribution_curve(dd, b, CURVE[b]))
 RES = sorted(mod, key=lambda r: int(r.split("x")[1]))
-print(f"model cells per mesh (pooled over events, {BLOCKS[0]}-min): "
+print(f"model cell-storms per mesh ({BLOCKS[0]}-min): "
       + ", ".join(f"{r}: {sum(x['total'].size for x in mod[r][BLOCKS[0]]['m'])}" for r in RES))
 
 
@@ -134,12 +176,12 @@ for b in BLOCKS:
     for k in keys:
         row = [q3(obs_vals(b, k))] + [q3(pooled(r, b, k)) for r in RES]
         print(f"  {k:22s}" + "".join(f"  {m:6.2f} [{lo:4.2f},{hi:4.2f}]" for lo, m, hi in row))
-    print("  per-event model medians, " + METRICS[0][0] + " / " + METRICS[2][0] + ":")
+    print("  per-storm model medians, " + METRICS[0][0] + " / " + METRICS[2][0] + ":")
     for r in RES:
         parts = []
         for x in mod[r][b]["m"]:
             parts.append(f"{x['event'][0]} {np.nanmedian(x[METRICS[0][0]]):.2f}/{np.nanmedian(x[METRICS[2][0]]):.2f} (n={x['total'].size})")
-        print(f"    {r:6s} " + "; ".join(parts))
+        print(f"    {r:6s} " + "\n           ".join(parts))
     sim = [o for o in obs[b] if o[2]["simulated_event"]]
     if sim:
         print("  ASOS station-storms overlapping simulated events, " + METRICS[0][0] + " / " + METRICS[2][0] + ":")
@@ -152,27 +194,32 @@ outdir = os.path.join(sh.rel(opts["plot_dir"]), "multi_event")
 os.makedirs(outdir, exist_ok=True)
 obs_label = f"ASOS AR{opts['ar_catalog']['min_scale']}+ ({n_kept} station-storms)"
 
-fig, axes = plt.subplots(1, len(BLOCKS), figsize=sh.fig_size(4.3 * len(BLOCKS), 3.5),
+fig, axes = plt.subplots(1, len(BLOCKS), figsize=sh.fig_size(4.3 * len(BLOCKS), 3.6),
                          constrained_layout=True, squeeze=False, sharey=True)
 for i, b in enumerate(BLOCKS):
     ax = axes[0, i]
-    oc = np.vstack([o[1] for o in obs[b]])
-    lo, md, hi = np.nanpercentile(oc, [25, 50, 75], axis=0)
-    ax.fill_between(CURVE, lo, hi, color=sh.INK, alpha=0.12, lw=0)
-    ax.plot(CURVE, md, color=sh.INK, lw=2.0, label=obs_label)
+    x = CURVE[b]
+    series = [(np.vstack([o[1] for o in obs[b]]).T, sh.INK, 2.0, obs_label, 0.14)]
     for r in RES:
-        mc = np.hstack(mod[r][b]["c"])
-        lo, md, hi = np.nanpercentile(mc, [25, 50, 75], axis=1)
-        col = sh.RES_COLORS.get(r, sh.INK)
-        ax.fill_between(CURVE, lo, hi, color=col, alpha=0.10, lw=0)
-        ax.plot(CURVE, md, color=col, lw=1.6, label=labels[r])
-    ax.set_xscale("log")
-    ax.set_xlabel(f"{b}-min rate threshold (mm/h)")
+        series.append((np.hstack(mod[r][b]["c"]), sh.RES_COLORS.get(r, sh.INK), 1.6, labels[r], 0.10))
+    xmax = 0.0
+    for arr, col, lw, lab, alpha in series:
+        lo, md, hi = np.nanpercentile(arr, [25, 50, 75], axis=1)
+        ax.fill_between(x, lo, hi, color=col, alpha=alpha, lw=0, step="pre")
+        ax.plot(x, md, color=col, lw=lw, label=lab, drawstyle="steps-pre")
+        nz = np.where(hi > 0.005)[0]
+        if nz.size:
+            xmax = max(xmax, x[nz[-1]])
+    step = TIP * 60.0 / b
+    ax.set_xlim(0, np.ceil((xmax + 2 * step) / 5.0) * 5.0)
+    ax.set_xlabel(f"Rate threshold, {b}-min blocks (mm/h); steps of {step:.2f} mm/h = one tip")
+    top = ax.secondary_xaxis("top", functions=(lambda v, b=b: v * b / 60.0, lambda v, b=b: v * 60.0 / b))
+    top.set_xlabel(f"Depth per {b}-min block (mm)")
     if i == 0:
         ax.set_ylabel("Share of storm total at or above rate")
     ax.set_ylim(0, 1)
     sh.panel_title(ax, i, f"{b}-min blocks")
-axes[0, 0].legend(loc="lower left")
+axes[0, 0].legend(loc="upper right")
 sh.save_png(fig, os.path.join(outdir, "hf_contribution.png"))
 plt.close(fig)
 

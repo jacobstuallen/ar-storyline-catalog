@@ -43,6 +43,7 @@ build:
   # grid spacing adds by itself from differences that survive at common scale.
   coarsen_to: "30x8"
   coarsen_min_cover: 0.8   # keep coarse cells whose assigned fine area >= this x their own area
+  full_run_blocks: true    # also write blocks_run_RES.nc over the whole run (for hf metrics)
 
 # ── ASOS 1-minute (Iowa Environmental Mesonet copy of NCEI DSI-6406) ──────
 asos:
@@ -112,6 +113,12 @@ hf:                        # plot_hf_characteristics.py
   # threshold over the event window.
   model_bbox: [37.8, -124.5, 41.5, -122.0]
   elev_max_m: 500
+  # Model storm windows = CW3E AR storms (same selection and padding as the
+  # gauges, any year) lying fully inside the run after spinup_hours. An event
+  # with none falls back to its strongest catalog event overlapping the
+  # storm_window (e.g. 2019, AR2 at 38.0N). Needs blocks_run_RES.nc.
+  spinup_hours: 24
+  tip_mm: 0.254            # round model blocks to whole gauge tips (null = off)
 
 compare:
   radius_km: 15            # model cells within this distance of a station form the envelope
