@@ -1,0 +1,76 @@
+# sub_hourly_precip options. Every script runs as `python SCRIPT.py`.
+# Event configs (cases, time window, storm_window, labels) are read from
+# storyline_diag, deep-merged over storyline_diag/defaults.yaml.
+
+storyline_dir: ../storyline_diag
+events:
+  - config.1964.WUS.G-NDG.yaml
+  - config.1986.WUS.G-NDG.yaml
+  - config.2005.WUS.G-NDG.yaml
+  - config.2019.WUS.G-NDG.yaml
+  - config.2024.WUS.G-NDG.yaml
+
+# Analysis window: "storm" = observed_comparison.storm_window of each event
+# config (UTC); "event" = the full time: block.
+window: storm
+
+# Analysis box [min_lat, min_lon, max_lat, max_lon]: Humboldt to Marin/Napa,
+# coast to the Mendocino/Napa ridges. Check the printed median spacing per case
+# to confirm the box sits in the refined region.
+region_bbox: [37.8, -124.5, 41.5, -122.0]
+min_landfrac: 0.5          # land cells only (1 - OCNFRAC), for the regional statistics
+
+data_dir: data             # build output: data/EVENT_LABEL/blocks_RES.nc, data/asos/...
+plot_dir: plots            # plots/EVENT_LABEL/*.png, plots/multi_event/*.png
+
+# EAM history tapes (layout from the 2019 v2 runs; verify for other events).
+streams:
+  precip: h5     # PRECT time-mean every 2 x dtime (20 / 6.7 / 3.3 min)
+  static: h4     # PHIS, OCNFRAC
+
+# Common aggregation interval. Must be a whole multiple of every case's h5
+# interval (1200 s is: 1200, 400, 200 s).
+block_minutes: 20
+
+# Durations for depth-duration curves, minutes. Each must be a multiple of
+# block_minutes.
+durations_min: [20, 40, 60, 120, 180, 360, 720, 1440, 2880, 4320]
+
+build:
+  overwrite: false
+  # Also aggregate finer meshes onto this mesh's cells (each fine cell goes to
+  # the nearest coarse cell centre, area-weighted mean). Separates what finer
+  # grid spacing adds by itself from differences that survive at common scale.
+  coarsen_to: "30x8"
+  coarsen_min_cover: 0.8   # keep coarse cells whose assigned fine area >= this x their own area
+
+# ── ASOS 1-minute (Iowa Environmental Mesonet copy of NCEI DSI-6406) ──────
+asos:
+  dir: data/asos
+  network_url: "https://mesonet.agron.iastate.edu/geojson/network.py?network=ASOS1MIN"
+  request_url: "https://mesonet.agron.iastate.edu/cgi-bin/request/asos1min.py"
+  bbox: null               # null = region_bbox
+  stations: null           # null = every ASOS1MIN station in bbox; or e.g. [STS, UKI, ACV, APC]
+  vars: [precip, ptype, pres1, drct, sknt, tmpf]   # precip in inches per minute
+  pad_hours: 12            # download this much either side of the analysis window
+  overwrite: false
+  sleep_s: 2               # pause between requests
+  # A 20-min block counts only if at least this fraction of its minutes has a
+  # precip value (0.00 is reported explicitly; missing is M or absent). Blocks
+  # are not rescaled for missing minutes.
+  min_valid_frac: 0.9
+  # Running windows (durations > 1 block) may include up to this fraction of
+  # NaN blocks, counted as zero, so station maxima are lower bounds. 0 = strict.
+  window_max_missing_frac: 0.05
+  min_storm_total_mm: 10   # skip stations with less observed precip in the window
+
+compare:
+  radius_km: 15            # model cells within this distance of a station form the envelope
+  elev_tol_m: 300          # ... and within this of the station elevation (null = no limit)
+  max_stations: 5          # rows per event figure (wettest stations first)
+
+plots:
+  depth_duration:
+    quantile: 0.99         # area-weighted quantile of per-cell max depth over land cells
+    ref_resolution: "30x8"
+    band: 0.10             # shaded +-10% around ratio 1 (budget-level uncertainty)

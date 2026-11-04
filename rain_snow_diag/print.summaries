@@ -1,0 +1,411 @@
+=== 1964_G-NDG
+  30x8: band, cells, area km2
+        0-500   m     149      63298
+      500-1000  m      27      11488
+     1000-1500  m      58      24636
+     1500-2000  m      66      28032
+     2000-2500  m      38      16203
+     2500-4500  m      17       7263
+  30x8: snow line median 868 m
+  30x16: band, cells, area km2
+        0-500   m     593      62988
+      500-1000  m     120      12755
+     1000-1500  m     228      24213
+     1500-2000  m     258      27397
+     2000-2500  m     145      15451
+     2500-4500  m      74       7902
+  30x16: snow line median 1244 m
+  30x32: band, cells, area km2
+        0-500   m    2339      62109
+      500-1000  m     521      13846
+     1000-1500  m     931      24718
+     1500-2000  m     988      26230
+     2000-2500  m     558      14861
+     2500-4500  m     326       8702
+  30x32: snow line median 1843 m
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/elevband_timeseries.png
+=== 1986_G-NDG
+  30x8: band, cells, area km2
+        0-500   m     149      63298
+      500-1000  m      27      11488
+     1000-1500  m      58      24636
+     1500-2000  m      66      28032
+     2000-2500  m      38      16203
+     2500-4500  m      17       7263
+  30x8: snow line median 1805 m
+  30x16: band, cells, area km2
+        0-500   m     593      62988
+      500-1000  m     120      12755
+     1000-1500  m     228      24213
+     1500-2000  m     258      27397
+     2000-2500  m     145      15451
+     2500-4500  m      74       7902
+  30x16: snow line median 2129 m
+  30x32: band, cells, area km2
+        0-500   m    2339      62109
+      500-1000  m     521      13846
+     1000-1500  m     931      24718
+     1500-2000  m     988      26230
+     2000-2500  m     558      14861
+     2500-4500  m     326       8702
+  30x32: snow line median 1843 m
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/elevband_timeseries.png
+=== 2005_G-NDG
+  30x8: band, cells, area km2
+        0-500   m     149      63298
+      500-1000  m      27      11488
+     1000-1500  m      58      24636
+     1500-2000  m      66      28032
+     2000-2500  m      38      16203
+     2500-4500  m      17       7263
+  30x8: snow line median 1838 m
+  30x16: band, cells, area km2
+        0-500   m     593      62988
+      500-1000  m     120      12755
+     1000-1500  m     228      24213
+     1500-2000  m     258      27397
+     2000-2500  m     145      15451
+     2500-4500  m      74       7902
+  30x16: snow line median 1963 m
+  30x32: band, cells, area km2
+        0-500   m    2339      62109
+      500-1000  m     521      13846
+     1000-1500  m     931      24718
+     1500-2000  m     988      26230
+     2000-2500  m     558      14861
+     2500-4500  m     326       8702
+  30x32: snow line median 1970 m
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/elevband_timeseries.png
+=== 2019_G-NDG
+  30x8: band, cells, area km2
+        0-500   m     149      63298
+      500-1000  m      27      11488
+     1000-1500  m      58      24636
+     1500-2000  m      66      28032
+     2000-2500  m      38      16203
+     2500-4500  m      17       7263
+  30x8: snow line median 1144 m
+  30x16: band, cells, area km2
+        0-500   m     593      62988
+      500-1000  m     120      12755
+     1000-1500  m     228      24213
+     1500-2000  m     258      27397
+     2000-2500  m     145      15451
+     2500-4500  m      74       7902
+  30x16: snow line median 1193 m
+  30x32: band, cells, area km2
+        0-500   m    2339      62109
+      500-1000  m     521      13846
+     1000-1500  m     931      24718
+     1500-2000  m     988      26230
+     2000-2500  m     558      14861
+     2500-4500  m     326       8702
+  30x32: snow line median 1182 m
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/elevband_timeseries.png
+=== 2024_G-NDG
+  30x8: band, cells, area km2
+        0-500   m     149      63298
+      500-1000  m      27      11488
+     1000-1500  m      58      24636
+     1500-2000  m      66      28032
+     2000-2500  m      38      16203
+     2500-4500  m      17       7263
+  30x8: snow line median 1533 m
+  30x16: band, cells, area km2
+        0-500   m     593      62988
+      500-1000  m     120      12755
+     1000-1500  m     228      24213
+     1500-2000  m     258      27397
+     2000-2500  m     145      15451
+     2500-4500  m      74       7902
+  30x16: snow line median 1691 m
+  30x32: band, cells, area km2
+        0-500   m    2339      62109
+      500-1000  m     521      13846
+     1000-1500  m     931      24718
+     1500-2000  m     988      26230
+     2000-2500  m     558      14861
+     2500-4500  m     326       8702
+  30x32: snow line median 1689 m
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/elevband_timeseries.png
+=== 1964_G-NDG
+  E3SM ~14 km      tw      T50 = -0.91 C   samples 12027
+  E3SM ~14 km      trefht  T50 = -0.56 C   samples 11830
+  E3SM ~7 km       tw      T50 = -2.30 C   samples 45197
+  E3SM ~7 km       trefht  T50 = -1.05 C   samples 43321
+  E3SM ~3.5 km     tw      T50 = -1.87 C   samples 174347
+  E3SM ~3.5 km     trefht  T50 = -0.94 C   samples 166502
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/partition_curve.png
+=== 1986_G-NDG
+  E3SM ~14 km      tw      T50 =  0.41 C   samples 11019
+  E3SM ~14 km      trefht  T50 =  0.86 C   samples 10431
+  E3SM ~7 km       tw      T50 =  0.41 C   samples 36536
+  E3SM ~7 km       trefht  T50 =  0.89 C   samples 34198
+  E3SM ~3.5 km     tw      T50 =  0.43 C   samples 165605
+  E3SM ~3.5 km     trefht  T50 =  0.95 C   samples 154837
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/partition_curve.png
+=== 2005_G-NDG
+  E3SM ~14 km      tw      T50 =  0.38 C   samples 13433
+  E3SM ~14 km      trefht  T50 =  0.74 C   samples 12360
+  E3SM ~7 km       tw      T50 =  0.41 C   samples 51361
+  E3SM ~7 km       trefht  T50 =  0.84 C   samples 46464
+  E3SM ~3.5 km     tw      T50 =  0.39 C   samples 205236
+  E3SM ~3.5 km     trefht  T50 =  0.83 C   samples 186450
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/partition_curve.png
+=== 2019_G-NDG
+  E3SM ~14 km      tw      T50 =  0.32 C   samples 7835
+  E3SM ~14 km      trefht  T50 =  0.78 C   samples 7134
+  E3SM ~7 km       tw      T50 =  0.39 C   samples 31337
+  E3SM ~7 km       trefht  T50 =  0.82 C   samples 28047
+  E3SM ~3.5 km     tw      T50 =  0.38 C   samples 123266
+  E3SM ~3.5 km     trefht  T50 =  0.81 C   samples 109902
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/partition_curve.png
+=== 2024_G-NDG
+  E3SM ~14 km      tw      T50 = -0.61 C   samples 7894
+  E3SM ~14 km      trefht  T50 =  0.31 C   samples 6924
+  E3SM ~7 km       tw      T50 = -1.10 C   samples 29973
+  E3SM ~7 km       trefht  T50 = -0.18 C   samples 25588
+  E3SM ~3.5 km     tw      T50 = -1.25 C   samples 117607
+  E3SM ~3.5 km     trefht  T50 = -0.54 C   samples 100947
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/partition_curve.png
+=== all events pooled
+  E3SM ~14 km      tw      T50 =  0.33 C   samples 52208
+  E3SM ~14 km      trefht  T50 =  0.70 C   samples 48679
+  E3SM ~7 km       tw      T50 =  0.31 C   samples 194404
+  E3SM ~7 km       trefht  T50 =  0.71 C   samples 177618
+  E3SM ~3.5 km     tw      T50 =  0.32 C   samples 786061
+  E3SM ~3.5 km     trefht  T50 =  0.75 C   samples 718638
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/multi_event/partition_curve_all_events.png
+=== 1964_G-NDG
+=== 1986_G-NDG
+=== 2005_G-NDG
+=== 2019_G-NDG
+=== 2024_G-NDG
+
+res      conv % of precip  conv % near 0C LS snow%<-3.0 conv snow%<-3.0  LS T50  conv T50
+30x8                  1.4             0.8          84.0            71.5    0.33     -0.88
+30x16                 2.0             0.9          81.5            87.2    0.31     -0.28
+30x32                 1.4             0.5          82.0            86.7    0.32     -0.45
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/multi_event/snowfrac_conv_ls.png
+=== 1964_G-NDG
+=== 1986_G-NDG
+=== 2005_G-NDG
+=== 2019_G-NDG
+=== 2024_G-NDG
+
+event      res      F_ref      F     dF  sampl  phase  inter  (percentage points)
+1964       30x16     13.0   13.0    0.0    0.9   -0.9   -0.0
+1986       30x16     19.3   21.8    2.5    2.8   -0.4    0.0
+2005       30x16     14.4   17.6    3.2    2.7    0.4    0.1
+2019       30x16     25.8   30.1    4.3    3.0    1.2    0.1
+2024       30x16     14.3   15.0    0.6    2.7   -1.9   -0.1
+All events 30x16     16.6   18.7    2.0    2.4   -0.3   -0.0
+1964       30x32     13.0   13.8    0.8    1.4   -0.6    0.0
+1986       30x32     19.3   25.7    6.3    5.7    0.4    0.2
+2005       30x32     14.4   18.8    4.4    4.0    0.3    0.1
+2019       30x32     25.8   32.2    6.4    5.5    0.8    0.1
+2024       30x32     14.3   15.8    1.5    4.6   -2.5   -0.7
+All events 30x32     16.6   20.8    4.2    4.2   -0.0   -0.0
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/multi_event/snowfrac_decomposition_tw.png
+=== 1964_G-NDG
+=== 1986_G-NDG
+=== 2005_G-NDG
+=== 2019_G-NDG
+=== 2024_G-NDG
+  1964       30x8   D50 =    nan m   frozen-to-ground share  18.1%
+  1964       30x16  D50 =    nan m   frozen-to-ground share  19.6%
+  1964       30x32  D50 =    nan m   frozen-to-ground share  19.5%
+  1986       30x8   D50 =    159 m   frozen-to-ground share  14.7%
+  1986       30x16  D50 =    162 m   frozen-to-ground share  18.4%
+  1986       30x32  D50 =    193 m   frozen-to-ground share  22.6%
+  2005       30x8   D50 =    165 m   frozen-to-ground share  10.6%
+  2005       30x16  D50 =    184 m   frozen-to-ground share  14.5%
+  2005       30x32  D50 =    196 m   frozen-to-ground share  16.2%
+  2019       30x8   D50 =    137 m   frozen-to-ground share  22.5%
+  2019       30x16  D50 =    165 m   frozen-to-ground share  27.0%
+  2019       30x32  D50 =    179 m   frozen-to-ground share  29.5%
+  2024       30x8   D50 =     92 m   frozen-to-ground share  14.7%
+  2024       30x16  D50 =    nan m   frozen-to-ground share  18.6%
+  2024       30x32  D50 =    nan m   frozen-to-ground share  19.8%
+  All events 30x8   D50 =    137 m   frozen-to-ground share  14.9%
+  All events 30x16  D50 =    138 m   frozen-to-ground share  18.4%
+  All events 30x32  D50 =    155 m   frozen-to-ground share  20.6%
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/multi_event/snowfrac_vs_meltlayer.png
+=== 1964_G-NDG
+=== 1986_G-NDG
+=== 2005_G-NDG
+=== 2019_G-NDG
+=== 2024_G-NDG
+
+Share of precip with Tw in [-1.0, 2.0) C by rate class (%):
+res         0.1-1 mm/hr       1-4 mm/hr      >= 4 mm/hr
+30x8               12.9            42.8            44.2
+30x16               9.9            38.2            51.9
+30x32               9.1            34.7            56.2
+  0.1-1 mm/hr    30x8   T50 = -1.34 C  samples 27403
+  0.1-1 mm/hr    30x16  T50 = -0.85 C  samples 99162
+  0.1-1 mm/hr    30x32  T50 = -0.59 C  samples 384188
+  1-4 mm/hr      30x8   T50 =  0.28 C  samples 17536
+  1-4 mm/hr      30x16  T50 =  0.26 C  samples 64872
+  1-4 mm/hr      30x32  T50 =  0.27 C  samples 264116
+  >= 4 mm/hr     30x8   T50 =  0.46 C  samples 7269
+  >= 4 mm/hr     30x16  T50 =  0.40 C  samples 30370
+  >= 4 mm/hr     30x32  T50 =  0.41 C  samples 137757
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/multi_event/snowfrac_vs_rate.png
+=== 1964_G-NDG
+  pulse 12-20 03 to 12-20 18 UTC
+  pulse 12-21 12 to 12-24 21 UTC
+  pulse 12-25 21 to 12-28 15 UTC
+  30x8 pulse 1: land-mean 13 mm, snow line nan m, max rain-on-snow 68 mm
+  30x8 pulse 2: land-mean 118 mm, snow line nan m, max rain-on-snow 452 mm
+  30x8 pulse 3: land-mean 73 mm, snow line 2005 m, max rain-on-snow 157 mm
+  30x16 pulse 1: land-mean 13 mm, snow line 3186 m, max rain-on-snow 130 mm
+  30x16 pulse 2: land-mean 130 mm, snow line nan m, max rain-on-snow 705 mm
+  30x16 pulse 3: land-mean 68 mm, snow line 2079 m, max rain-on-snow 187 mm
+  30x32 pulse 1: land-mean 13 mm, snow line 3253 m, max rain-on-snow 127 mm
+  30x32 pulse 2: land-mean 139 mm, snow line nan m, max rain-on-snow 1026 mm
+  30x32 pulse 3: land-mean 67 mm, snow line 2075 m, max rain-on-snow 187 mm
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/snowline_maps.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/rain_on_snow_maps.png
+=== 1986_G-NDG
+  pulse 02-12 09 to 02-20 06 UTC
+  30x8 pulse 1: land-mean 357 mm, snow line 2187 m, max rain-on-snow 921 mm
+  30x16 pulse 1: land-mean 299 mm, snow line 2230 m, max rain-on-snow 906 mm
+  30x32 pulse 1: land-mean 356 mm, snow line 2061 m, max rain-on-snow 1411 mm
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/snowline_maps.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/rain_on_snow_maps.png
+=== 2005_G-NDG
+  pulse 12-18 06 to 12-19 06 UTC
+  pulse 12-27 15 to 12-29 00 UTC
+  pulse 12-30 12 to 01-01 00 UTC
+  pulse 01-01 12 to 01-03 03 UTC
+  30x8 pulse 1: land-mean 39 mm, snow line 2096 m, max rain-on-snow 104 mm
+  30x8 pulse 2: land-mean 32 mm, snow line 2372 m, max rain-on-snow 130 mm
+  30x8 pulse 3: land-mean 68 mm, snow line 2007 m, max rain-on-snow 143 mm
+  30x8 pulse 4: land-mean 107 mm, snow line 2131 m, max rain-on-snow 231 mm
+  30x16 pulse 1: land-mean 41 mm, snow line 2042 m, max rain-on-snow 106 mm
+  30x16 pulse 2: land-mean 48 mm, snow line 2188 m, max rain-on-snow 296 mm
+  30x16 pulse 3: land-mean 76 mm, snow line 2059 m, max rain-on-snow 347 mm
+  30x16 pulse 4: land-mean 104 mm, snow line 1933 m, max rain-on-snow 264 mm
+  30x32 pulse 1: land-mean 41 mm, snow line 1976 m, max rain-on-snow 152 mm
+  30x32 pulse 2: land-mean 45 mm, snow line 2080 m, max rain-on-snow 354 mm
+  30x32 pulse 3: land-mean 88 mm, snow line 2238 m, max rain-on-snow 349 mm
+  30x32 pulse 4: land-mean 98 mm, snow line 1827 m, max rain-on-snow 295 mm
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/snowline_maps.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/rain_on_snow_maps.png
+=== 2019_G-NDG
+  pulse 02-26 00 to 02-27 18 UTC
+  pulse 03-02 03 to 03-02 21 UTC
+  30x8 pulse 1: land-mean 49 mm, snow line 1181 m, max rain-on-snow 197 mm
+  30x8 pulse 2: land-mean 25 mm, snow line 1763 m, max rain-on-snow 71 mm
+  30x16 pulse 1: land-mean 51 mm, snow line 1133 m, max rain-on-snow 251 mm
+  30x16 pulse 2: land-mean 29 mm, snow line 1908 m, max rain-on-snow 97 mm
+  30x32 pulse 1: land-mean 50 mm, snow line 1084 m, max rain-on-snow 286 mm
+  30x32 pulse 2: land-mean 32 mm, snow line 2012 m, max rain-on-snow 129 mm
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/snowline_maps.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/rain_on_snow_maps.png
+=== 2024_G-NDG
+  pulse 11-21 00 to 11-23 18 UTC
+  pulse 11-25 06 to 11-26 18 UTC
+  30x8 pulse 1: land-mean 62 mm, snow line nan m, max rain-on-snow 389 mm
+  30x8 pulse 2: land-mean 53 mm, snow line 2300 m, max rain-on-snow 189 mm
+  30x16 pulse 1: land-mean 66 mm, snow line nan m, max rain-on-snow 537 mm
+  30x16 pulse 2: land-mean 39 mm, snow line 2437 m, max rain-on-snow 241 mm
+  30x32 pulse 1: land-mean 70 mm, snow line nan m, max rain-on-snow 490 mm
+  30x32 pulse 2: land-mean 36 mm, snow line 2440 m, max rain-on-snow 297 mm
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/snowline_maps.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/rain_on_snow_maps.png
+=== 1964_G-NDG
+=== 1986_G-NDG
+=== 2005_G-NDG
+=== 2019_G-NDG
+=== 2024_G-NDG
+
+event      res     var        T50  CI lo  CI hi    T75    T25  width snow%<-3.0
+1964       30x8    tw       -0.91  -3.04   0.28  -4.49   0.52   5.01       73.8
+1964       30x16   tw       -2.30  -4.87   0.28  -5.63   0.57   6.20       65.4
+1964       30x32   tw       -1.87  -4.57   0.27    nan   0.65    nan       64.0
+1986       30x8    tw        0.41   0.36   0.46  -0.11   0.81   0.92       88.7
+1986       30x16   tw        0.41   0.33   0.46  -0.22   0.90   1.12       86.8
+1986       30x32   tw        0.43   0.39   0.48  -0.11   0.95   1.06       89.1
+2005       30x8    tw        0.38   0.20   0.41  -0.19   0.72   0.92       88.8
+2005       30x16   tw        0.41   0.27   0.45  -0.16   0.87   1.03       88.2
+2005       30x32   tw        0.39   0.25   0.44  -0.18   0.90   1.08       86.6
+2019       30x8    tw        0.32  -0.01   0.49  -0.20   0.78   0.98       89.5
+2019       30x16   tw        0.39   0.27   0.49  -0.10   0.76   0.86       92.0
+2019       30x32   tw        0.38   0.23   0.48  -0.16   0.80   0.96       92.3
+2024       30x8    tw       -0.61  -1.92   0.30    nan   0.61    nan       78.7
+2024       30x16   tw       -1.10  -3.81  -0.15  -4.07   0.45   4.52       73.1
+2024       30x32   tw       -1.25  -4.27  -0.26    nan   0.44    nan       66.5
+All events 30x8    tw        0.33   0.25   0.37  -1.48   0.71   2.19       83.9
+All events 30x16   tw        0.31   0.19   0.37  -1.72   0.75   2.47       81.5
+All events 30x32   tw        0.32   0.23   0.38  -1.61   0.80   2.42       82.0
+1964       30x8    trefht   -0.56  -2.76   0.57  -3.85   0.91   4.76       78.5
+1964       30x16   trefht   -1.05  -4.26   0.56  -4.85   0.97   5.82       69.4
+1964       30x32   trefht   -0.94  -4.06   0.59  -5.65   1.07   6.72       67.2
+1986       30x8    trefht    0.86   0.76   0.92   0.27   1.31   1.04       89.3
+1986       30x16   trefht    0.89   0.79   0.96   0.12   1.51   1.39       87.8
+1986       30x32   trefht    0.95   0.91   0.99   0.33   1.53   1.20       89.3
+2005       30x8    trefht    0.74   0.48   0.83   0.12   1.24   1.11       88.7
+2005       30x16   trefht    0.84   0.67   0.92   0.27   1.40   1.13       88.7
+2005       30x32   trefht    0.83   0.66   0.91   0.20   1.45   1.25       86.7
+2019       30x8    trefht    0.78   0.32   0.95  -0.01   1.26   1.27       89.9
+2019       30x16   trefht    0.82   0.57   0.94   0.31   1.23   0.93       91.9
+2019       30x32   trefht    0.81   0.55   1.00   0.25   1.35   1.09       92.8
+2024       30x8    trefht    0.31  -1.44   0.50  -1.75   0.98   2.73       80.7
+2024       30x16   trefht   -0.18  -2.63   0.31  -3.59   0.94   4.53       75.8
+2024       30x32   trefht   -0.54  -4.16   0.26    nan   0.97    nan       67.0
+All events 30x8    trefht    0.70   0.58   0.79  -0.99   1.19   2.19       85.1
+All events 30x16   trefht    0.71   0.54   0.80  -1.13   1.30   2.42       82.8
+All events 30x32   trefht    0.75   0.61   0.82  -0.84   1.36   2.21       82.7
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/multi_event/threshold_summary.png
+=== 1964_G-NDG
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/transect_locator.png
+  Sonoma_WE: times ['1964-12-22 00', '1964-12-23 12', '1964-12-26 18']
+  30x8: 27 columns, bin 20.6 km
+  30x8: 1 of 19 bins empty, filled along track
+  30x16: 106 columns, bin 10.3 km
+  30x32: 427 columns, bin 5.2 km
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/transect_Sonoma_WE_1964122200.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/transect_Sonoma_WE_1964122312.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1964_G-NDG/transect_Sonoma_WE_1964122618.png
+=== 1986_G-NDG
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/transect_locator.png
+  Sonoma_WE: times ['1986-02-13 06', '1986-02-14 12', '1986-02-17 18']
+  30x8: 27 columns, bin 20.6 km
+  30x8: 1 of 19 bins empty, filled along track
+  30x16: 106 columns, bin 10.3 km
+  30x32: 427 columns, bin 5.2 km
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/transect_Sonoma_WE_1986021306.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/transect_Sonoma_WE_1986021412.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/1986_G-NDG/transect_Sonoma_WE_1986021718.png
+=== 2005_G-NDG
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/transect_locator.png
+  Sonoma_WE: times ['2005-12-18 12', '2005-12-31 18', '2006-01-02 18']
+  30x8: 27 columns, bin 20.6 km
+  30x8: 1 of 19 bins empty, filled along track
+  30x16: 106 columns, bin 10.3 km
+  30x32: 427 columns, bin 5.2 km
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/transect_Sonoma_WE_2005121812.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/transect_Sonoma_WE_2005123118.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2005_G-NDG/transect_Sonoma_WE_2006010218.png
+=== 2019_G-NDG
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/transect_locator.png
+  Sonoma_WE: times ['2019-02-26 12', '2019-02-27 12', '2019-03-02 12']
+  30x8: 27 columns, bin 20.6 km
+  30x8: 1 of 19 bins empty, filled along track
+  30x16: 106 columns, bin 10.3 km
+  30x32: 427 columns, bin 5.2 km
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/transect_Sonoma_WE_2019022612.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/transect_Sonoma_WE_2019022712.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2019_G-NDG/transect_Sonoma_WE_2019030212.png
+=== 2024_G-NDG
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/transect_locator.png
+  Sonoma_WE: times ['2024-11-21 12', '2024-11-23 06', '2024-11-25 18']
+  30x8: 27 columns, bin 20.6 km
+  30x8: 1 of 19 bins empty, filled along track
+  30x16: 106 columns, bin 10.3 km
+  30x32: 427 columns, bin 5.2 km
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/transect_Sonoma_WE_2024112112.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/transect_Sonoma_WE_2024112306.png
+  wrote /global/u2/j/jsallen/projects/ar_storylines_2026/ar-storyline-catalog/rain_snow_diag/plots/2024_G-NDG/transect_Sonoma_WE_2024112518.png

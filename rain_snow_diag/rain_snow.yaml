@@ -94,6 +94,9 @@ plots:
     depth_bins_m: [0, 3000, 150]   # freezing level minus surface elevation
     frozen_to_ground: true  # add a point at 0 m for columns below 0 C to the ground
 
+  elev_attribution:         # plot_elevband_attribution.py
+    bins_m: [0, 4000, 250]  # end bins catch everything outside
+
   rate_classes:             # plot_snowfrac_vs_rate.py
     classes_mmhr: [[0.1, 1.0], [1.0, 4.0], [4.0, null]]
     near_zero_c: [-1.0, 2.0]   # Tw range for the printed rate-share table
