@@ -274,6 +274,100 @@ def wet_fraction_top(depth, hours, block_min):
         return np.where(tot > 0, rolling_max(depth, steps) / tot, np.nan)
 
 
+# ── high-frequency characteristics (location- and timing-free) ──────────
+WET_MM = 0.254   # one 0.01-in tip; a block at or above this counts as wet
+
+
+def _col(depth):
+    """(nb,) -> (nb, 1); (nb, n) unchanged. A 1-D series is one site."""
+    d = np.asarray(depth, float)
+    return d[:, None] if d.ndim == 1 else d
+
+
+def aggregate(depth, k):
+    """Sum k consecutive blocks (from the first block; a partial tail is
+    dropped). NaN if any block in the group is NaN. depth (nb, n)."""
+    d = _col(depth)
+    if k == 1:
+        return d
+    m = (d.shape[0] // k) * k
+    return d[:m].reshape(m // k, k, d.shape[1]).sum(axis=1)
+
+
+def contribution_curve(depth, block_min, rates_mmhr):
+    """Share of the total falling in blocks with rate >= r, for each r.
+    depth (nb, n) -> (nr, n). NaN blocks are left out of both sums."""
+    d = _col(depth)
+    rate = d * 60.0 / block_min
+    tot = np.nansum(d, axis=0)
+    out = np.vstack([np.nansum(np.where(rate >= r, d, 0.0), axis=0) for r in rates_mmhr])
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(tot > 0, out / tot, np.nan)
+
+
+def hf_metrics(depth, block_min, rates_mmhr, top_hours, max_missing_frac=0.05):
+    """Per column: total, missing fraction, share of total at rate >= each
+    threshold, share in the wettest `top_hours` running windows, wet-block
+    fraction, and peak block / mean wet block. depth (nb, n); returns
+    {name: (n,)}. Every metric except total is independent of the storm total."""
+    d = _col(depth)
+    ok = np.isfinite(d)
+    tot = np.nansum(d, axis=0)
+    out = {"total": tot, "missing_frac": 1.0 - ok.mean(axis=0)}
+    cc = contribution_curve(d, block_min, rates_mmhr)
+    for r, row in zip(rates_mmhr, cc):
+        out[f"share_ge_{r:g}"] = row
+    with np.errstate(invalid="ignore", divide="ignore"):
+        for h in top_hours:
+            steps = int(round(h * 60 / block_min))
+            out[f"top_{h:g}h"] = np.where(tot > 0, rolling_max(d, steps, max_missing_frac) / tot, np.nan)
+        wet = ok & (np.where(ok, d, 0.0) >= WET_MM)
+        out["wet_frac"] = wet.sum(axis=0) / np.maximum(ok.sum(axis=0), 1)
+        mean_wet = np.where(wet.sum(axis=0) > 0, np.where(wet, d, 0.0).sum(axis=0) / np.maximum(wet.sum(axis=0), 1), np.nan)
+        peak = np.where(ok.any(axis=0), np.max(np.where(ok, d, -np.inf), axis=0), np.nan)
+        out["peak_over_wetmean"] = peak / mean_wet
+    return out
+
+
+# ── CW3E landfalling AR catalog ─────────────────────────────────────────
+TIME_FORMATS = ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M",
+                "%Y%m%d%H", "%Y%m%d%H%M", "%Y-%m-%d_%H", "%m/%d/%Y %H:%M", "%Y/%m/%d %H:%M")
+
+
+def parse_time(s):
+    s = s.strip().strip('"')
+    for f in TIME_FORMATS:
+        try:
+            return datetime.strptime(s, f)
+        except ValueError:
+            continue
+    raise ValueError(f"unrecognised time {s!r}; add its format to TIME_FORMATS")
+
+
+def read_ar_catalog(path, columns, header_rows=1, verbose=True):
+    """CW3E per-point event CSV -> list of dict(start, end, scale). `columns`
+    gives 1-based column numbers {start, end, scale} (CW3E documents column 6
+    as the AR scale). Prints the header and first rows so the mapping can be
+    checked."""
+    rows = []
+    with open(path) as f:
+        rd = list(csv.reader(f))
+    if verbose:
+        print(f"  {os.path.basename(path)}: {len(rd)} lines; first lines:")
+        for r in rd[:header_rows + 2]:
+            print(f"    | {r}")
+    for r in rd[header_rows:]:
+        if not r or not "".join(r).strip():
+            continue
+        try:
+            rows.append(dict(start=parse_time(r[columns["start"] - 1]),
+                             end=parse_time(r[columns["end"] - 1]),
+                             scale=int(float(r[columns["scale"] - 1]))))
+        except (ValueError, IndexError) as e:
+            raise ValueError(f"{path}: cannot read row {r}: {e}") from None
+    return rows
+
+
 # ── geometry ────────────────────────────────────────────────────────────
 def xyz(lat, lon):
     p, l = np.radians(lat), np.radians(lon)
@@ -399,6 +493,149 @@ def read_asos_csv(path):
         else:
             out[n] = np.array([np.nan if x in ("M", "", "None") else float(x) for x in v])
     return np.array(times), out
+
+
+NCEI_PG2_COLS = ["precip", "ptype", "pres1", "tmpf"]
+
+
+def _real(s, lo, hi):
+    try:
+        v = float(s)
+    except ValueError:
+        return None
+    return v if lo <= v <= hi else None
+
+
+def parse_ncei_pg2(lines, t0=None, t1=None):
+    """NCEI DSI-6406 (ASOS 1-minute page 2) fixed-width lines -> list of
+    (valid_utc, {precip, ptype, pres1, tmpf}); None for missing. Column
+    positions and the local/UTC date rule follow IEM's
+    parse_ncei_asos1minute.py (brackets blanked before slicing). US stations
+    only: UTC is ahead of local time, so a UTC hour below the local hour means
+    the next UTC day. Keeps t0 < valid <= t1 when given."""
+    out = []
+    for ln in lines:
+        ln = ln.rstrip("\n")
+        if len(ln) < 30 or ln[13] not in "12":
+            continue
+        s = ln[13:29]
+        try:
+            day = datetime(int(s[:4]), int(s[4:6]), int(s[6:8]))
+            lhr, uhr, umin = int(s[8:10]), int(s[12:14]), int(s[14:16])
+        except ValueError:
+            continue
+        if uhr < lhr:
+            day += timedelta(days=1)
+        valid = day + timedelta(hours=uhr, minutes=umin)
+        if (t0 is not None and valid <= t0) or (t1 is not None and valid > t1):
+            continue
+        b = ln.replace("[", " ").replace("]", " ").replace("\\", " ")
+        pt = b[31:34].strip()
+        tf = b[94:97].strip()
+        out.append((valid, {
+            "precip": _real(b[43:48].strip(), 0.0, 0.5),
+            "ptype": pt[:2] if pt else None,
+            "pres1": _real(b[69:77].strip(), 10.0, 40.0),
+            "tmpf": int(tf) if tf.lstrip("-").isdigit() and -90 <= int(tf) <= 150 else None,
+        }))
+    return out
+
+
+def write_asos_csv(path, sid, name, lat, lon, records, cols=NCEI_PG2_COLS):
+    """Write records [(valid, {col: value})] in the IEM asos1min.py CSV layout
+    (gis=1), M for missing, so read_asos_csv reads both sources alike."""
+    seen = set()
+    with open(path, "w") as f:
+        f.write(",".join(["station", "station_name", "lat", "lon", "valid(UTC)"] + cols) + "\n")
+        for valid, r in sorted(records, key=lambda x: x[0]):
+            if valid in seen:
+                continue
+            seen.add(valid)
+            vals = ["M" if r.get(c) is None else str(r[c]) for c in cols]
+            f.write(f"{sid},{name.replace(',', '_')},{lat},{lon},{valid:%Y-%m-%d %H:%M}," + ",".join(vals) + "\n")
+
+
+UA = {"User-Agent": "ar-storyline-catalog sub_hourly_precip (python urllib)"}
+
+
+def http_get(url, timeout=300):
+    import urllib.request
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.read().decode("utf-8", errors="replace")
+
+
+def _ncei_window(A, st, s0, s1, path, raw_dir):
+    """NCEI monthly page-2 files for the months spanning (s0, s1]. Returns
+    True if any minute in the window was written to path."""
+    import urllib.error
+    recs = []
+    m = s0.replace(day=1, hour=0, minute=0)
+    sid4 = st["id"] if len(st["id"]) == 4 else f"K{st['id']}"
+    while m <= s1:
+        fn = f"asos-1min-pg2-{sid4}-{m:%Y%m}.dat"
+        cached = os.path.join(raw_dir, fn)
+        try:
+            if os.path.isfile(cached):
+                txt = open(cached).read()
+            else:
+                txt = http_get(f"{A['ncei_url']}/{m:%Y/%m}/{fn}")
+                os.makedirs(raw_dir, exist_ok=True)
+                with open(cached, "w") as fh:
+                    fh.write(txt)
+            lines = txt.splitlines()
+            got = parse_ncei_pg2(lines, s0, s1)
+            print(f"    {fn}: {len(lines)} lines, {len(got)} minutes in window")
+            if not got and lines:
+                print(f"      | {lines[0][:110]!r}")
+            recs += got
+        except urllib.error.HTTPError as e:
+            print(f"    {fn}: HTTP {e.code}")
+        except Exception as e:
+            print(f"    {fn}: FAILED {type(e).__name__}: {e}")
+        m = (m + timedelta(days=32)).replace(day=1)
+    if recs:
+        write_asos_csv(path, st["id"], st["name"], st["lat"], st["lon"], recs)
+    return bool(recs)
+
+
+def fetch_station_window(opts, st, s0, s1, path):
+    """1-minute ASOS for one station over (s0, s1] into path (IEM CSV layout):
+    IEM first, then NCEI monthly files if IEM has nothing and
+    asos.ncei_fallback is true. Prints a one-line summary. Returns True if a
+    file was written."""
+    import time
+    import urllib.parse
+    A = opts["asos"]
+    q = urllib.parse.urlencode({
+        "station": st["id"], "vars": ",".join(A["vars"]),
+        "sts": s0.strftime("%Y-%m-%dT%H:%MZ"), "ets": s1.strftime("%Y-%m-%dT%H:%MZ"),
+        "sample": "1min", "what": "download", "tz": "UTC", "gis": "1", "delim": "comma"})
+    try:
+        txt = http_get(f"{A['request_url']}?{q}")
+    except Exception as e:
+        print(f"  {st['id']}: IEM request FAILED {type(e).__name__}: {e}")
+        txt = ""
+    time.sleep(float(A.get("sleep_s", 2)))
+    src = "IEM"
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    if len(txt.strip().splitlines()) > 1:
+        with open(path, "w") as fh:
+            fh.write(txt)
+    elif A.get("ncei_fallback", True):
+        print(f"  {st['id']}: no records at IEM; trying NCEI monthly files")
+        src = "NCEI"
+        if not _ncei_window(A, st, s0, s1, path, os.path.join(asos_dir(opts), "ncei_raw")):
+            return False
+    else:
+        print(f"  {st['id']}: no records")
+        return False
+    times, v = read_asos_csv(path)
+    p = v.get("precip", np.array([]))
+    nmin = int((s1 - s0).total_seconds() // 60)
+    print(f"  {st['id']} ({src}): {len(times)} of {nmin} minutes, precip valid "
+          f"{np.isfinite(p).sum()} min, total {np.nansum(p) * MM_PER_IN:.1f} mm")
+    return True
 
 
 def asos_blocks(times, precip_in, t0, nb, block_min, min_valid_frac):

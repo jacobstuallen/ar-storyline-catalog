@@ -1,5 +1,5 @@
-"""Download ASOS 1-minute data from the Iowa Environmental Mesonet (a copy of
-NCEI DSI-6405/6406). Needs network access: run on a login node.
+"""Download ASOS 1-minute data for the simulated events. Needs network
+access: run on a login node.
 
 1. Station list: every station in IEM's ASOS1MIN network (sites with 1-minute
    data) inside asos.bbox (default region_bbox), or asos.stations if set.
@@ -7,6 +7,11 @@ NCEI DSI-6405/6406). Needs network access: run on a login node.
 2. For each event, 1-minute asos.vars over the analysis window +- pad_hours,
    one request per station: data/asos/EVENT/ID.csv. Existing files are kept
    unless asos.overwrite is true.
+3. If IEM returns nothing for a station (or the request fails) and
+   asos.ncei_fallback is true, NCEI's monthly page-2 files
+   (asos.ncei_url/YYYY/MM/asos-1min-pg2-KXXX-YYYYMM.dat, cached in
+   data/asos/ncei_raw/) are parsed instead and written in the same CSV layout.
+   Page 2 has precip, ptype, pres1 and tmpf only (no wind).
 
 IEM's own `sample=` option subsamples (every Nth minute), it does not sum, so
 this always requests 1-minute data. Precip is inches per minute; 0.00 is
@@ -17,12 +22,7 @@ Run:  python fetch_asos.py
 import csv
 import json
 import os
-import time
-import urllib.parse
-import urllib.request
 from datetime import timedelta
-
-import numpy as np
 
 import sh_common as sh
 
@@ -30,18 +30,10 @@ opts = sh.load_options()
 A = opts["asos"]
 OUT = sh.asos_dir(opts)
 os.makedirs(OUT, exist_ok=True)
-UA = {"User-Agent": "ar-storyline-catalog sub_hourly_precip (python urllib)"}
-
-
-def get(url, timeout=300):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read().decode("utf-8", errors="replace")
-
 
 # ── 1. stations ──────────────────────────────────────────────────────────
 print(f"Station list: {A['network_url']}")
-feats = json.loads(get(A["network_url"]))["features"]
+feats = json.loads(sh.http_get(A["network_url"]))["features"]
 a, b, c, d = A.get("bbox") or opts["region_bbox"]
 want = [s.upper() for s in A["stations"]] if A.get("stations") else None
 stations = []
@@ -82,35 +74,10 @@ for cfg_name in opts["events"]:
         print(f"\n=== {label}: before 2000, no ASOS 1-minute archive; skip")
         continue
     print(f"\n=== {label}: {s0} to {s1} UTC")
-    edir = os.path.join(OUT, label)
-    os.makedirs(edir, exist_ok=True)
     for s in stations:
-        path = os.path.join(edir, f"{s['id']}.csv")
+        path = os.path.join(OUT, label, f"{s['id']}.csv")
         if os.path.isfile(path) and not A.get("overwrite", False):
             print(f"  {s['id']}: exists, skip")
             continue
-        q = urllib.parse.urlencode({
-            "station": s["id"], "vars": ",".join(A["vars"]),
-            "sts": s0.strftime("%Y-%m-%dT%H:%MZ"), "ets": s1.strftime("%Y-%m-%dT%H:%MZ"),
-            "sample": "1min", "what": "download", "tz": "UTC", "gis": "1", "delim": "comma"})
-        try:
-            txt = get(f"{A['request_url']}?{q}")
-        except Exception as e:
-            print(f"  {s['id']}: FAILED {type(e).__name__}: {e}")
-            time.sleep(float(A.get("sleep_s", 2)))
-            continue
-        lines = txt.strip().splitlines()
-        if len(lines) <= 1:
-            print(f"  {s['id']}: no records")
-        else:
-            with open(path, "w") as fh:
-                fh.write(txt)
-            times, v = sh.read_asos_csv(path)
-            p = v.get("precip", np.array([]))
-            nmin = int((s1 - s0).total_seconds() // 60)
-            print(f"  {s['id']}: {len(times)} of {nmin} minutes, precip valid "
-                  f"{np.isfinite(p).sum()} min, total {np.nansum(p) * sh.MM_PER_IN:.1f} mm")
-            if len(times) and "precip" not in v:
-                print(f"    header: {lines[0]}")
-        time.sleep(float(A.get("sleep_s", 2)))
+        sh.fetch_station_window(opts, s, s0, s1, path)
 print("\nDone.")

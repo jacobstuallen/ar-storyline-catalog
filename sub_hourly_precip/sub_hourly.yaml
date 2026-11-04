@@ -54,6 +54,9 @@ asos:
   vars: [precip, ptype, pres1, drct, sknt, tmpf]   # precip in inches per minute
   pad_hours: 12            # download this much either side of the analysis window
   overwrite: false
+  # If IEM has nothing for a station/window, read NCEI's monthly page-2 files.
+  ncei_fallback: true
+  ncei_url: "https://www.ncei.noaa.gov/data/automated-surface-observing-system-one-minute-pg2/access"
   sleep_s: 2               # pause between requests
   # A 20-min block counts only if at least this fraction of its minutes has a
   # precip value (0.00 is reported explicitly; missing is M or absent). Blocks
@@ -63,6 +66,52 @@ asos:
   # NaN blocks, counted as zero, so station maxima are lower bounds. 0 = strict.
   window_max_missing_frac: 0.05
   min_storm_total_mm: 10   # skip stations with less observed precip in the window
+
+# ── AR3+ reference climatology from ASOS (fetch_ar_storms.py) ────────────
+# CW3E Coastal Landfalling AR Catalog (Ralph et al. 2019 AR scale from ERA5),
+# one event CSV per coastal point, downloaded by hand from
+# https://cw3e.ucsd.edu/Projects/ARCatalog/catalog.html ("Download here" under
+# AR Event Information) into ar_catalog.dir. Cite CW3E and notify J. Cordeira.
+ar_catalog:
+  dir: data/ar_catalog
+  # Coastal points whose events define a storm: latitude -> file name.
+  # CW3E names files CW3E_ARoutput_<lat*10>_<lon*10>.csv (e.g. 395_1235 =
+  # 39.5N 123.5W, Mendocino coast). There is no 38.5N point; 38.0N 123.0W
+  # (Bodega Bay / Point Reyes) is the Sonoma-side point. Storms at any listed
+  # point qualify. 2019 (Feb 25-27) is AR2 at both points (731 kg/m/s, 46 h,
+  # just under the 750 and 48 h cutoffs), so it is not in the AR3+ set.
+  files:
+    38.0: "CW3E_ARoutput_380_1230.csv"
+    39.5: "CW3E_ARoutput_395_1235.csv"
+  # 1-based columns of the CW3E event CSV (no header). Checked on the 39.5N file:
+  # 1 AR start, 2 time of max IVT, 3 AR end (YYYYMMDDHH), 4 duration h
+  # (inclusive), 5 max IVT, 6 AR scale, 7 mean IVT, 8-9 IVT direction (max,
+  # mean), 10-11 IWV (max, mean), 12-13 mean u/v IVT.
+  columns: {start: 1, end: 3, scale: 6}
+  header_rows: 0
+  min_scale: 3
+  years: [2000, 2025]        # ASOS 1-min from 2000; catalog runs to end of 2025
+  months: [10, 11, 12, 1, 2, 3, 4]   # cool season (AR start month); null = all
+  merge_gap_hours: 12        # events this close (any point) are one storm
+  hours_before: 6            # station window = AR start - this ...
+  hours_after: 12            # ... to AR end + this (trailing frontal rain)
+
+climatology:
+  dir: data/asos_ar        # data/asos_ar/STORM_ID/ID.csv, data/asos_ar/storms.csv
+  stations: [STS, UKI, ACV, APC]   # North Coast airports (Napa kept as Sonoma's neighbour)
+  min_storm_total_mm: 25   # station-storm kept only if this wet ...
+  max_missing_frac: 0.10   # ... and at most this fraction of blocks missing
+
+hf:                        # plot_hf_characteristics.py
+  block_minutes: [20, 60]  # metrics at both; 30x8 20-min blocks are two model steps
+  rates_mmhr: [2, 5, 10, 20, 40]          # contribution-curve thresholds (curve uses a finer grid)
+  top_hours: [1, 3, 6]
+  max_missing_frac: 0.05   # running windows may include this fraction of NaN blocks
+  # Model cells compared with the gauges: land cells in this box, at or below
+  # elev_max_m (airports are valley/coastal sites), wetter than the station
+  # threshold over the event window.
+  model_bbox: [37.8, -124.5, 41.5, -122.0]
+  elev_max_m: 500
 
 compare:
   radius_km: 15            # model cells within this distance of a station form the envelope
